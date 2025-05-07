@@ -1,26 +1,29 @@
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
-import Home from './pages/Home';
-import Projects from './pages/Projects';
-import Blog from './pages/Blog';
-import Research from './pages/Research';
-import NoPage from "./pages/NoPage";
+import HomePage from './pages/HomePage';
+import ProjectsPage from './pages/ProjectsPage';
+import BlogPage from './pages/BlogPage';
+import ResearchPage from './pages/ResearchPage';
+import NotFoundPage from "./pages/NotFoundPage";
 
 
-function App() {
+const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<MainLayout />} />
-        <Route index element={<Home />} />
-        <Route path="projects" element={<Projects />} />
-        <Route path="blog" element={<Blog />} />
-        <Route path="research" element={<Research />} />
-        <Route path="*" element={<NoPage />} />
+          <Route path="/" element={<MainLayout />}>
+            <Route index element={<HomePage />} />
+            <Route path="projects" element={<ProjectsPage />} />
+            <Route path="blog" element={<BlogPage />} />
+            <Route path="research" element={<ResearchPage />} />
+          </Route>
+
+          {/* Fallback for undefined routes */}
+          <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
-  )
-
-}
+    );
+};
 
 export default App;
