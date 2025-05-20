@@ -1,12 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
 
+  useEffect(() => {
+    // Check if the user's system preference is dark mode.
+    const prefersDarkMode = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    // Set the initial darkMode state based on the user's preference.
+    setDarkMode(prefersDarkMode);
+
+    // Add or remove the dark class based on the initial state.
+    if (prefersDarkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, []); // Empty dependency array to run only once on mount.
+
   const toggleDarkMode = () => {
-    setDarkMode((prev) => !prev);
-    document.documentElement.classList.toggle("dark");
+    setDarkMode((prev) => {
+      const newDarkMode = !prev;
+      if (newDarkMode) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+      return newDarkMode;
+    });
   };
 
   return (
@@ -14,10 +37,10 @@ const Header = () => {
       <nav className="bg-white border-gray-200 px-4 py-2.5 sm:px-8 sm:py-3 md:px-12 md:py-4 lg:px-16 lg:py-5 dark:bg-gray-800">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
           {/* Logo and Branding */}
-          <a href="/" className="flex items-center">
+          <a href="/" className="flex items-center mr-4">
             <img
               src="https://flowbite.com/docs/images/logo.svg"
-              className="mr-3 h-6 sm:h-9"
+              className="mr-1 h-6 sm:h-9"
               alt="Logo"
             />
             <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
@@ -26,16 +49,16 @@ const Header = () => {
           </a>
 
           {/* Socials, Dark Mode, Hamburger */}
-          <div className="flex items-center gap-3 sm:gap-6 lg:gap-8 lg:order-2">
+          <div className="flex items-center gap-2 sm:gap-3 md:gap-4 lg:gap-6 lg:order-2">
             {/* Social Icons */}
             <a href="https://github.com/TolaniSilas" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="20" height="20" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="16" height="16" />
             </a>
             <a href="https://www.linkedin.com/in/osunbasilas/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" width="20" height="20" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" width="16" height="16" />
             </a>
             <a href="https://x.com/thaguymaxx" target="_blank" rel="noopener noreferrer" aria-label="X">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg" alt="X" width="20" height="20" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg" alt="GitHub" width="16" height="16" />
             </a>
             {/* Dark Mode Toggle */}
             <button
@@ -59,7 +82,7 @@ const Header = () => {
             {/* Hamburger button */}
             <button
               type="button"
-              className="inline-flex items-center p-2 ml-4 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+              className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 -ml-1"
               aria-controls="mobile-menu"
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((open) => !open)}
@@ -103,41 +126,65 @@ const Header = () => {
           >
             <ul className="flex flex-col items-center mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
               <li>
-                <a
-                  href="/"
-                  className="block py-2 pr-4 pl-3 text-white rounded bg-blue-700 lg:bg-transparent lg:text-blue-700 lg:p-0 dark:text-white"
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    `block py-2 pr-4 pl-3 rounded  lg:p-0 dark:text-white
+                    ${isActive
+                      ? "text-white bg-blue-700 lg:bg-transparent lg:text-blue-700"
+                      : "text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"}`
+                  }
                   aria-current="page"
                 >
                   Home
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a
-                  href="/Projects"
-                  className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                <NavLink
+                  to="/Projects"
+                  className={({ isActive }) =>
+                    `block py-2 pr-4 pl-3 rounded  lg:p-0 dark:text-white
+                    ${isActive
+                      ? "text-white bg-blue-700 lg:bg-transparent lg:text-blue-700"
+                      : "text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"}`
+                  }
                 >
                   Projects
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a
-                  href="Blog"
-                  className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                <NavLink
+                  to="/Blog"
+                  className={({ isActive }) =>
+                    `block py-2 pr-4 pl-3 rounded  lg:p-0 dark:text-white
+                    ${isActive
+                      ? "text-white bg-blue-700 lg:bg-transparent lg:text-blue-700"
+                      : "text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"}`
+                  }
                 >
                   Blog
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a
-                  href="Research"
-                  className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                <NavLink
+                  to="/Research"
+                  className={({ isActive }) =>
+                    `block py-2 pr-4 pl-3 rounded  lg:p-0 dark:text-white
+                    ${isActive
+                      ? "text-white bg-blue-700 lg:bg-transparent lg:text-blue-700"
+                      : "text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"}`
+                  }
                 >
                   Research
-                </a>
+                </NavLink>
               </li>
               <li>
                 <a href="#" className="block w-full lg:w-auto">
-                  <button className="w-full lg:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded transition-colors duration-200">
+                  <button className="w-full lg:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded transition-all duration-200
+                  border-4 border-blue-700 hover:border-blue-800
+                  shadow-md hover:shadow-lg
+                  transform hover:translate-y-1
+                  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
                     Contact
                   </button>
                 </a>

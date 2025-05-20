@@ -1,5 +1,34 @@
 @import "tailwindcss";
 
 body {
-  margin: 0
+  background-color: #ffffff; /* Default light mode background */
+  color: #000000; /* Default light mode text color */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+.dark body {
+  background-color: #121212; /* Dark mode background */
+  color: #ffffff; /* Dark mode text color */
+}
+
+html, body {
+    height: 100%;
+}
+
+#root {
+    min-height: 100vh; /* Ensure the root container also takes up the full viewport height */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Example for Header */
+header {
+  background-color: #f0f0f0; /* Default light mode header background */
+  color: #333333; /* Default light mode header text color */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+.dark header {
+  background-color: #333333; /* Dark mode header background */
+  color: #f0f0f0; /* Dark mode header text color */
 }
