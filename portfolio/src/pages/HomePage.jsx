@@ -66,8 +66,7 @@ const HomePage = () => {
   return (
     <div className="flex flex-col gap-8 sm:gap-12 overflow-x-hidden">
       {/* Hero Section */}
-      {/* <section className="min-h-[70vh] sm:min-h-[80vh] flex flex-col justify-center items-center text-center px-6 pt-4 sm:pt-16 lg:pt-24"> */}
-      <section className="flex flex-col justify-center items-center text-center px-6 pt-28 sm:pt-28 md:pt-28 lg:pt-28">
+      <section className="flex flex-col justify-center items-center text-center px-6 pt-32 sm:pt-32 md:pt-32 lg:pt-32">
 
 
 
@@ -84,11 +83,9 @@ const HomePage = () => {
         </h2>
 
         {/* Tagline */}
-        <p className="text-lg sm:text-2xl text-gray-600 dark:text-gray-300 mb-6 max-w-3xl">
-          I'm a result-driven engineer with a huge curiosity for all things
-          research, innovation, data and machine learning! Optimizing solutions
-          one gradient descent at a time... because why take steps when you can
-          slide smoothly down the slope?
+        <p className="text-lg sm:text-2xl text-gray-600 dark:text-white mb-6 max-w-3xl">
+          I'm a result-driven engineer with a huge curiosity for all things research, innovation, data and machine learning! Optimizing solutions
+          one gradient descent at a time... because why take steps when you can slide smoothly down the slope?
         </p>
 
         {/* CTA Buttons */}
@@ -109,7 +106,7 @@ const HomePage = () => {
       </section>
 
       {/* About Section */}
-      <section className="max-w-6xl mx-auto px-6 py-0">
+      <section className="max-w-6xl mx-auto px-6 py-0 pt-28">
         <h2 className="text-3xl sm:text-4xl font-bold mb-10 text-center">
           About Me
         </h2>
@@ -121,16 +118,16 @@ const HomePage = () => {
           </div>
 
           {/* Story Text */}
-          <div className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed space-y-6 mt-6 md:mt-0">
+          <div className="text-lg text-gray-700 dark:text-gray-800 leading-relaxed space-y-6 mt-6 md:mt-0">
             <p>
               Hi Mate, It's splendid to have you here. I'm{" "} <span className="font-semibold">Osunba Silas</span>, a resourceful,
-              passionate, and result-driven engineer & researcher impelled by an unremitted pursuit of knowledge - I am on my voyage to being a
-              polymath. I am an avid learner who is keen on exploring and learning new things within and beyond the horizon. I'm currently
-              pursuing a BSc. degree in Electronic & Computer Engineering at Lagos State University, on track to graduate with First Class Honors.
+              passionate, and result-driven engineer & researcher impelled by an unremitted pursuit of knowledge. I am an avid learner who is keen on exploring and learning new 
+              things within and beyond the horizon. I'm currently pursuing a BSc. degree in Electronic & Computer Engineering at Lagos State University, on track to graduate with 
+              First Class Honors.
             </p>
             <p>
               I have worked on and contributed to research aimed at transforming the status quo of knowledge in the field of machine learning and
-              energy. I currently have three published papers - one in an international journal and two presented at conferences, and I’m
+              energy. I currently have three published papers - one in an international journal and two presented at an international conference, and I’m
               continuously seeking opportunities to expand and extend knowledge.
             </p>
             <p>
@@ -141,8 +138,8 @@ const HomePage = () => {
             </p>
             <p>
               I have served and led in various capacities, including as President and Vice President of the{" "} <span className="font-semibold">Society of Petroleum Engineers,
-              Lagos State University</span> for 2025/2024 and 2023/2024 respectively. I have led impactful events, educational programs, and community outreach efforts as a result 
-              of my love for service and humanity. I'm also an advocate of{" "} <span className="italic">AI for Social Good</span>.
+              Lagos State University Student Chapter</span> for 2025/2024 and 2023/2024 respectively. I have led impactful events, educational programs, and community outreach 
+              efforts as a result of my love for service and humanity. I'm also an advocate of{" "} <span className="italic">AI for Social Good</span>.
             </p>
             <p>
               Outside academics and research, I love staying current with news on X, watching football games, and playing snooker - you know,
