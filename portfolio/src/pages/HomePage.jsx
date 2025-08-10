@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
 import { FaReact, FaJs, FaHtml5, FaCss3Alt, FaPython } from "react-icons/fa";
 import { SiTensorflow, SiPytorch } from "react-icons/si";
+import videoBg from "../assets/blue-digital-programming.3840x2160.mp4";
 
 // Slideshow Component
 const Slideshow = () => {
@@ -64,15 +65,15 @@ const HomePage = () => {
   });
 
   return (
-    <div className="flex flex-col gap-8 sm:gap-12 overflow-x-hidden">
+    <div className="flex flex-col gap-12 sm:gap-12 overflow-x-hidden">
       {/* Hero Section */}
-      <section className="flex flex-col justify-center items-center text-center px-6 pt-32 sm:pt-32 md:pt-32 lg:pt-32">
+      <section className="relative h-[90vh] sm:h-screen w-full overflow-hidden flex flex-col justify-center items-center text-center px-6">
+        <video src={videoBg} autoPlay loop muted playsInline className="absolute top-0 left-0 w-full h-full object-cover -z-10" />
 
 
-
-        <h1 className="text-4xl sm:text-6xl font-bold mb-4">
-          Hi, I'm{" "}
-          <span className="text-blue-600 dark:text-blue-400">Osunba Silas</span>{" "}
+        <h1 className="text-4xl sm:text-6xl font-bold mb-4 text-white">
+          Hi, I'm {" "}
+          <span className="text-white ">Osunba Silas</span>{" "}
           👋
         </h1>
 
@@ -83,7 +84,7 @@ const HomePage = () => {
         </h2>
 
         {/* Tagline */}
-        <p className="text-lg sm:text-2xl text-gray-600 dark:text-white mb-6 max-w-3xl">
+        <p className="text-lg sm:text-2xl text-white mb-6 max-w-3xl">
           I'm a result-driven engineer with a huge curiosity for all things research, innovation, data and machine learning! Optimizing solutions
           one gradient descent at a time... because why take steps when you can slide smoothly down the slope?
         </p>
@@ -92,13 +93,13 @@ const HomePage = () => {
         <div className="flex gap-4 flex-wrap justify-center">
           <Link
             to="/projects"
-            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition"
+            className="bg-blue-600 hover:bg-blue-800 text-white px-6 py-3 rounded-lg font-semibold transition"
           >
             View Projects
           </Link>
           <Link
             to="/contact"
-            className="border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-6 py-3 rounded-lg font-semibold transition"
+            className="bg-purple-600 border-purple-800 text-white hover:bg-purple-800 hover:text-white px-6 py-3 rounded-lg font-semibold transition"
           >
             Contact Me
           </Link>
@@ -106,7 +107,7 @@ const HomePage = () => {
       </section>
 
       {/* About Section */}
-      <section className="max-w-6xl mx-auto px-6 py-0 pt-28">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-0 transition-colors duration-300">
         <h2 className="text-3xl sm:text-4xl font-bold mb-10 text-center">
           About Me
         </h2>
@@ -118,26 +119,26 @@ const HomePage = () => {
           </div>
 
           {/* Story Text */}
-          <div className="text-lg text-gray-700 dark:text-gray-800 leading-relaxed space-y-6 mt-6 md:mt-0">
+          <div className="text-base sm:text-lg leading-relaxed space-y-6 mt-6 md:mt-0">
             <p>
-              Hi Mate, It's splendid to have you here. I'm{" "} <span className="font-semibold">Osunba Silas</span>, a resourceful,
+              Hi Mate, It's splendid to have you here. I'm{" "} <span className="font-semibold text-blue-500 dark:text-blue-400">Osunba Silas</span>, a resourceful,
               passionate, and result-driven engineer & researcher impelled by an unremitted pursuit of knowledge. I am an avid learner who is keen on exploring and learning new 
-              things within and beyond the horizon. I'm currently pursuing a BSc. degree in Electronic & Computer Engineering at Lagos State University, on track to graduate with 
-              First Class Honors.
+              things within and beyond the horizon. I'm currently pursuing a BSc. degree in <span className="font-semibold text-blue-500 dark:text-blue-400">Electronic & Computer Engineering at Lagos State University</span>, on track to graduate with
+              <span className="font-semibold text-blue-500 dark:text-blue-400"> First Class Honors</span>.
             </p>
             <p>
               I have worked on and contributed to research aimed at transforming the status quo of knowledge in the field of machine learning and
-              energy. I currently have three published papers - one in an international journal and two presented at an international conference, and I’m
+              energy. I currently have three published papers - one in an international journal and two presented at an international conference, and I'm
               continuously seeking opportunities to expand and extend knowledge.
             </p>
             <p>
               I'm highly motivated by the drive to excel and the belief that great things can be achieved from even the smallest places. I
               strongly believe excellence should be cultivated as a lifestyle - the way we live, abide, and adhere to. I have volunteered in
-              impactful and educational initiatives. I am the Co-Founder of{" "} <span className="font-semibold">Inspire The Students Initiative</span>,
-              aimed at empowering undergraduate students at Lagos State University to lead, learn and grow in their academic and professional journeys
+              impactful and educational initiatives. I am the Co-Founder of{" "} <span className="font-semibold text-blue-500 dark:text-blue-400">Inspire The Students Initiative</span>,
+              aimed at empowering undergraduate students at Lagos State University to lead, learn and grow in their academic and professional journeys.
             </p>
             <p>
-              I have served and led in various capacities, including as President and Vice President of the{" "} <span className="font-semibold">Society of Petroleum Engineers,
+              I have served and led in various capacities, including as President and Vice President of the{" "} <span className="font-semibold text-blue-500 dark:text-blue-400">Society of Petroleum Engineers,
               Lagos State University Student Chapter</span> for 2025/2024 and 2023/2024 respectively. I have led impactful events, educational programs, and community outreach 
               efforts as a result of my love for service and humanity. I'm also an advocate of{" "} <span className="italic">AI for Social Good</span>.
             </p>
@@ -147,20 +148,20 @@ const HomePage = () => {
             </p>
 
             {/* Buttons */}
-            <div className="flex gap-4 mt-6 justify-center md:justify-start">
+            <div className="flex flex-row flex-wrap justify-center gap-4 sm:gap-6 mt-6">
               <a
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition"
+                className="px-4 py-2 border-blue-700 bg-blue-600 text-white rounded-lg hover:bg-blue-800"
               >
                 Download Resume
               </a>
               <Link
                 to="/contact"
-                className="border border-blue-600 text-blue-600 dark:border-blue-400 dark:text-blue-400 hover:bg-blue-600 hover:text-white px-6 py-3 rounded-lg font-semibold transition"
+                className="border border-gray-900 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-800"
               >
-                Let’s Connect
+                Let's Connect
               </Link>
             </div>
           </div>
