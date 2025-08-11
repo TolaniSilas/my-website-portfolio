@@ -43,10 +43,10 @@ const ResearchPage = () => {
       {/* Page Header */}
       <header className="text-center mb-16 pt-20">
         <h1 className="text-4xl font-bold mb-4">Research</h1>
-        <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
+        <p className="text-lg max-w-3xl mx-auto">
           Machine Learning | Energy | Data Scientist
         </p>
-        <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        <p className="mt-4 max-w-2xl mx-auto">
           The need for clean energy and environmental sustainability are
           challenges facing the world. My focus lies in comprehending the
           conversion and storage of energy and applying this knowledge to
@@ -66,14 +66,14 @@ const ResearchPage = () => {
 
       {/* Research Projects */}
       <section className="mb-16">
-        <h2 className="text-2xl font-semibold mb-6">Research Projects</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center">Research Projects</h2>
         <div className="grid md:grid-cols-2 gap-8">
           {researchProjects.map((proj, index) => (
             <div
               key={index}
               className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition"
             >
-              <h3 className="text-xl font-bold mb-2">{proj.title}</h3>
+              <h3 className="text-xl font-bold mb-2 text-gray-500 dark:text-gray-400">{proj.title}</h3>
               <p className="text-sm text-gray-500 dark:text-gray-400 mb-2 italic">
                 {proj.affiliation}
               </p>

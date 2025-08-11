@@ -35,13 +35,13 @@ const BlogPage = () => {
         {posts.map((post) => (
           <div
             key={post.id}
-            className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition"
+            className="p-6 rounded-lg shadow hover:shadow-xl transition"
           >
             <h2 className="text-2xl font-semibold mb-2">{post.title}</h2>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
+            <p className="text-sm mb-3">
               {post.date}
             </p>
-            <p className="text-gray-700 dark:text-gray-300 mb-4">
+            <p className="mb-4">
               {post.excerpt}
             </p>
             <Link

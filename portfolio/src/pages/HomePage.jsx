@@ -123,8 +123,7 @@ const HomePage = () => {
             <p>
               Hi Mate, It's splendid to have you here. I'm{" "} <span className="font-semibold text-blue-500 dark:text-blue-400">Osunba Silas</span>, a resourceful,
               passionate, and result-driven engineer & researcher impelled by an unremitted pursuit of knowledge. I am an avid learner who is keen on exploring and learning new 
-              things within and beyond the horizon. I'm currently pursuing a BSc. degree in <span className="font-semibold text-blue-500 dark:text-blue-400">Electronic & Computer Engineering at Lagos State University</span>, on track to graduate with
-              <span className="font-semibold text-blue-500 dark:text-blue-400"> First Class Honors</span>.
+              things. I'm currently pursuing a BSc. degree in <span className="font-semibold text-blue-500 dark:text-blue-400">Electronic & Computer Engineering</span> at Lagos State University, on track to graduate with First Class Honors.
             </p>
             <p>
               I have worked on and contributed to research aimed at transforming the status quo of knowledge in the field of machine learning and
@@ -169,10 +168,10 @@ const HomePage = () => {
       </section>
 
       {/* Skills Section */}
-      <section className="bg-gray-50 dark:bg-gray-900 py-16 px-6">
+      <section className="bg-gray-200 dark:bg-gray-900 py-16 px-6 text-purple-800">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-10">Tech Stack</h2>
-          <div className="flex flex-wrap justify-center gap-12 text-5xl text-blue-600 dark:text-blue-400">
+          <div className="flex flex-wrap justify-center gap-12 text-5xl text-purple-750 dark:text-blue-400">
             <FaReact title="React" />
             <FaJs title="JavaScript" />
             <FaHtml5 title="HTML5" />
@@ -192,25 +191,25 @@ const HomePage = () => {
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             {/* Project 1 */}
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition">
+            <div className="bg-blue-700 p-6 rounded-lg shadow hover:shadow-xl transition">
               <h3 className="text-xl font-semibold mb-2">Project One</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
+              <p className="text-white">
                 A short description about your project goes here. Highlight the
                 tools used and the impact of the work.
               </p>
-              <Link to="/projects" className="text-blue-600 hover:underline">
+              <Link to="/projects" className="text-amber-400 hover:underline">
                 Learn More →
               </Link>
             </div>
 
             {/* Project 2 */}
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-xl transition">
+            <div className="bg-blue-700 p-6 rounded-lg shadow hover:shadow-xl transition">
               <h3 className="text-xl font-semibold mb-2">Project Two</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
+              <p className="text-white">
                 Another impactful project description goes here. Make it
                 concise, engaging, and clear.
               </p>
-              <Link to="/projects" className="text-blue-600 hover:underline">
+              <Link to="/projects" className="text-amber-400 hover:underline">
                 Learn More →
               </Link>
             </div>
@@ -219,7 +218,7 @@ const HomePage = () => {
       </section>
 
       {/* Call To Action */}
-      <section className="text-center py-16 px-6 bg-blue-600 dark:bg-blue-700 text-white">
+      <section className="text-center py-16 px-6 bg-purple-600 dark:bg-purple-700 text-white">
         <h2 className="text-3xl font-bold mb-6">Want to work together?</h2>
         <p className="mb-6 text-lg">
           Let's collaborate and build something amazing with data, AI, and
