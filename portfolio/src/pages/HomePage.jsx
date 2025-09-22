@@ -127,19 +127,15 @@ const HomePage = () => {
             </p>
             <p>
               I have worked on and contributed to research aimed at transforming the status quo of knowledge in the field of machine learning and
-              energy. I currently have three published papers - one in an international journal and two presented at an international conference, and I'm
-              continuously seeking opportunities to expand and extend knowledge.
+              energy. I currently have three published papers - one in an international journal and two presented at an international conference.
             </p>
             <p>
               I'm highly motivated by the drive to excel and the belief that great things can be achieved from even the smallest places. I
-              strongly believe excellence should be cultivated as a lifestyle - the way we live, abide, and adhere to. I have volunteered in
-              impactful and educational initiatives. I am the Co-Founder of{" "} <span className="font-semibold text-blue-500 dark:text-blue-400">Inspire The Students Initiative</span>,
-              aimed at empowering undergraduate students at Lagos State University to lead, learn and grow in their academic and professional journeys.
+              strongly believe excellence should be cultivated as a lifestyle - the way we live, abide, and adhere to.
             </p>
             <p>
-              I have served and led in various capacities, including as President and Vice President of the{" "} <span className="font-semibold text-blue-500 dark:text-blue-400">Society of Petroleum Engineers,
-              Lagos State University Student Chapter</span> for 2025/2024 and 2023/2024 respectively. I have led impactful events, educational programs, and community outreach 
-              efforts as a result of my love for service and humanity. I'm also an advocate of{" "} <span className="italic">AI for Social Good</span>.
+              I have led impactful events, educational programs, and community outreach efforts as a result of my love for service and humanity. 
+              I'm also an advocate of{" "} <span className="italic text-green-600">AI for Social Good</span>.
             </p>
             <p>
               Outside academics and research, I love staying current with news on X, watching football games, and playing snooker - you know,
@@ -168,6 +164,14 @@ const HomePage = () => {
       </section>
 
       {/* Skills Section */}
+      
+
+
+
+
+
+
+
       <section className="bg-gray-200 dark:bg-gray-900 py-16 px-6 text-purple-800">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-10">Tech Stack</h2>
