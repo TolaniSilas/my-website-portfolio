@@ -122,7 +122,7 @@ const HomePage = () => {
           <div className="text-base sm:text-lg leading-relaxed space-y-6 mt-6 md:mt-0">
             <p>
               Hi Mate, It's splendid to have you here. I'm{" "} <span className="font-semibold text-blue-500 dark:text-blue-400">Osunba Silas</span>, a resourceful,
-              passionate, and result-driven engineer & researcher impelled by an unremitted pursuit of knowledge. I am an avid learner who is keen on exploring and learning new 
+              and result-driven engineer & researcher impelled by an unremitted pursuit of knowledge. I am an avid learner who is keen on exploring and learning new 
               things. I'm currently pursuing a BSc. degree in <span className="font-semibold text-blue-500 dark:text-blue-400">Electronic & Computer Engineering</span> at Lagos State University, on track to graduate with First Class Honors.
             </p>
             <p>
@@ -130,15 +130,12 @@ const HomePage = () => {
               energy. I currently have three published papers - one in an international journal and two presented at an international conference.
             </p>
             <p>
-              I'm highly motivated by the drive to excel and the belief that great things can be achieved from even the smallest places. I
-              strongly believe excellence should be cultivated as a lifestyle - the way we live, abide, and adhere to.
-            </p>
-            <p>
+              I'm highly motivated by the drive to excel and the belief that great things can be achieved from even the smallest places.
               I have led impactful events, educational programs, and community outreach efforts as a result of my love for service and humanity. 
               I'm also an advocate of{" "} <span className="italic text-green-600">AI for Social Good</span>.
             </p>
             <p>
-              Outside academics and research, I love staying current with news on X, watching football games, and playing snooker - you know,
+              Outside academics and research, I love staying current with news on X, watching football games, learn about crypto, and playing snooker - you know,
               sometimes it’s great to observe carefully before making that perfect shot 🎱.
             </p>
 
@@ -170,9 +167,7 @@ const HomePage = () => {
 
 
 
-
-
-      <section className="bg-gray-200 dark:bg-gray-900 py-16 px-6 text-purple-800">
+      <section className="bg-gray-300 dark:bg-gray-900 py-16 px-6 text-purple-800">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-10">Tech Stack</h2>
           <div className="flex flex-wrap justify-center gap-12 text-5xl text-purple-750 dark:text-blue-400">
