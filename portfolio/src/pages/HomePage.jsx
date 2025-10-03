@@ -136,7 +136,7 @@ const HomePage = () => {
             </p>
             <p>
               Outside academics and research, I love staying current with news on X, watching football games, learn about crypto, and playing snooker - you know,
-              sometimes it’s great to observe carefully before making that perfect shot 🎱.
+              sometimes it's great to observe carefully before making that perfect shot 🎱.
             </p>
 
             {/* Buttons */}

@@ -1,35 +1,14 @@
 import React, { useState, useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { FaExternalLinkAlt } from "react-icons/fa";
 
-// ---- Slideshow Images (add your lab pictures into /public/lab/ folder) ----
+// ---- Slideshow Images ----
 const labImages = [
-  { src: "/lab/lab1.jpg", alt: "In the lab working on experiments" },
-  { src: "/lab/lab2.jpg", alt: "Team discussion during lab research" },
-  { src: "/lab/lab3.jpg", alt: "Testing experimental setup" },
-  { src: "/lab/lab4.jpg", alt: "Analyzing results with instruments" },
-];
-
-// ---- Research Projects ----
-const researchProjects = [
-  {
-    title:
-      "Predicting Proton Exchange Membrane Fuel Cell Performance through Advanced Machine Learning Techniques: A Comparative Analysis of Ensemble Techniques",
-    affiliation: "Engineering.Fit() Laboratory, Lagos State University",
-    description:
-      "Proton exchange membrane fuel cells (PEMFCs) are a key player in the conversion of hydrogen energy and are important for the realization of a clean society. However, their cost and performance have yet to meet the demand for widespread adoption. Therefore, this research aims to deepen our understanding of PEMFCs performance by exploring the complex association between different operational factors and the real part of impedance (z_real). The primary objective is to predict z_real based on a comprehensive set of input variables, utilizing advanced machine learning techniques. Unlike previous studies leveraging machine learning for similar predictions, this study undertook a rigorous comparative analysis of ensemble techniques.",
-  },
-  {
-    title: "Using Convolutional Neural Network for the Detection of Offshore and Onshore Oil Spills",
-    affiliation: "Engineering.Fit() Laboratory, Lagos State University",
-    description:
-      "Oil spills present significant environmental, economic, and health challenges, requiring effective and sophisticated monitoring and detection methods. Traditional techniques, such as field investigations and remote sensing, are expensive and often lack the speed and scalability required for real-time detection. This study proposes a novel approach for oil spill detection using convolutional neural networks (CNNs) deployed on edge devices, especially on mobile phones. Leveraging pre-trained models such as EfficientNet-Lite1, MobileNetV2, and ResNet50, the prediction layers were fine-tuned using domain-specific data. The EfficientNet-Lite1 model achieved the highest accuracy of 99.9%, followed closely by MobileNetV2 with 99.1%. Post-training optimization techniques, such as float16 quantization, were applied to reduce model size and optimize inference speed.",
-  },
-  {
-    title: "Electric Vehicles vs. Biofuels: A Review of Decarbonization in Transportation",
-    affiliation: "Lagos State University & Obafemi Awolowo University",
-    description:
-      "The transportation sector is one of the greatest contributors to global greenhouse gas emissions, making its decarbonization an imperative step toward achieving climate goals. This study conducts a comparative literature review of two major pathways to decarbonizing transportation: electric vehicles (EVs) and biofuels. This review evaluates these technologies across three dimensions: carbon savings, economic feasibility, and regional adoption. Findings indicate that EVs offer strong long-term benefits, especially when powered by renewable energy, but face current limitations such as battery production emissions, charging infrastructure development, and electricity grid dependency. In contrast, biofuels serve as a practical short-term option, particularly in areas with existing fuel-based vehicle systems, though they raise sustainability concerns related to land use and food supply.",
-  },
+  { src: "/images/lab1.jpeg", alt: "In the lab working on experiments" },
+  { src: "/images/lab2.jpeg", alt: "Team discussion during lab research" },
+  { src: "/images/result1.jpeg", alt: "Testing experimental setup" },
+  { src: "/images/result2.jpeg", alt: "Analyzing results with instruments" },
 ];
 
 // ---- Publications ----
@@ -54,6 +33,11 @@ const publications = [
 const ResearchPage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({duration: 1000, once: false});
+  }, []);
+
   // Auto-slide every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
@@ -63,135 +47,164 @@ const ResearchPage = () => {
   }, []);
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-16 dark:text-white">
-      {/* Page Header */}
-      <header className="text-center mb-16 pt-20">
-        <h1 className="text-4xl font-bold mb-4">Research</h1>
-        <p className="text-lg max-w-3xl mx-auto">
-          Machine Learning | Energy | Data Science
-        </p>
-        <p className="mt-4 max-w-2xl mx-auto">
-          I'm on a mission of building machines that learns intelligently just as humans.
-        </p>
-        <div className="mt-6">
-          <a
-            href="https://scholar.google.com/citations?user=akIRrWwAAAAJ&hl=en"
-            className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Google Scholar <FaExternalLinkAlt className="ml-2" />
-          </a>
+    <div className="dark:text-white">
+      {/* Inline animation CSS for vertical float */}
+      <style>{`
+        @keyframes floatY {
+          0% { transform: translateY(0); }
+          50% { transform: translateY(-8px); }
+          100% { transform: translateY(0); }
+        }
+        /* apply to any element that should float up/down */
+        .float-heading {
+          animation: floatY 3.2s ease-in-out infinite;
+        }
+        /* Respect reduced motion preference */
+        @media (prefers-reduced-motion: reduce) {
+          .float-heading {
+            animation: none !important;
+          }
+        }
+      `}</style>
+
+      {/* Hero Section (no gradient background) */}
+      <header className="relative w-full h-[60vh] sm:h-[70vh] lg:h-[80vh] mb-16 overflow-hidden flex items-center justify-center" data-aos="zoom-in-down">
+        <img
+          src="/images/robot-image.png"
+          alt="Research Hero"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+
+        {/* Centered Text (floats up & down) */}
+        <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-4 float-heading">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white drop-shadow-lg mb-4">
+            Research
+          </h1>
+          <p className="text-sm sm:text-lg lg:text-xl text-[#cbf20d] mb-3 font-semibold drop-shadow">
+            Machine Learning | Energy | Data Science
+          </p>
+          <p className="max-w-2xl mx-auto text-sm sm:text-base lg:text-lg text-white drop-shadow-md">
+            I'm on a mission of building machines that learn intelligently just as humans.
+          </p>
+          <div className="mt-6">
+            <a
+              href="https://scholar.google.com/citations?user=akIRrWwAAAAJ&hl=en"
+              className="inline-flex items-center text-white hover:text-[#cbf20d] font-semibold underline text-sm sm:text-base transition"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Google Scholar <FaExternalLinkAlt className="ml-2" />
+            </a>
+          </div>
         </div>
       </header>
 
-      {/* Lab Experience Slideshow */}
-      <section className="mb-16">
-        <div className="flex justify-center mb-8">
-          <h2 className="relative text-2xl font-bold text-white bg-blue-600 px-8 py-3 rounded-2xl shadow-lg">
-            My Research Journey and Interests
-            <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-3/4 h-1 bg-blue-400 rounded-full"></span>
-          </h2>
-        </div>
-
-        <p>
-          Research, as the word implies, is the practical art of re-exploring what has been previously known or unknown. This could result from sheer curiosity or intuition.
-          It is a quest to discover how things can be improved or to find a new and efficient method of performing a task.
-        </p> 
-        <br />
-
-        {/* Slideshow */}
-        <div className="relative w-full max-w-4xl mx-auto">
-          <img
-            src={labImages[currentIndex].src}
-            alt={labImages[currentIndex].alt}
-            className="w-full h-80 object-cover rounded-xl shadow-lg transition duration-700"
-          />
-          <p className="mt-3 text-center text-sm text-gray-600 dark:text-gray-400">
-            {labImages[currentIndex].alt}
-          </p>
-
-          {/* Dots */}
-          <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2">
-            {labImages.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-3 h-3 rounded-full transition ${
-                  index === currentIndex
-                    ? "bg-blue-600 scale-125"
-                    : "bg-gray-300 dark:bg-gray-600"
-                }`}
-              ></button>
-            ))}
+      {/* Page Content */}
+      <div className="max-w-6xl mx-auto px-6">
+        {/* Voyage and Interests Section */}
+        <section className="mb-16">
+          <div className="flex justify-center mb-8" data-aos="slide-up">
+            <h2 className="relative text-xl sm:text-2xl font-bold text-white bg-blue-900 px-6 sm:px-8 py-3 rounded-2xl shadow-lg text-center float-heading">
+              Voyage and Interests
+              <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-3/4 h-1 bg-blue-400 rounded-full" />
+            </h2>
           </div>
-        </div>
 
-        <p className="mt-12">
-          My research journey started when I was in my third year as a student, where I had the opportunity to work as a Student Research Intern at the Department of
-          Electronic & Computer Engineering, Lagos State University, under the supervision and guidance of Dr. M. A. Adedoyin. Her guidance paved the way for my discovery
-          of professional research, which differs from merely exploring without proper documentation.
-        </p>
-        <br />
-        <p>
-          My interests are predominantly in{" "}
-          <span className="font-semibold text-blue-600">Machine Learning, Embodied AI, and Energy</span>. I want to build machines that learn
-          efficiently and intelligently, integrate artificial intelligence into physical systems to enable them to interact with the physical world, and design energy-efficient
-          systems that promote a net-zero and sustainable world.
-        </p>
+          <p data-aos="fade-right">
+            Research, as the word implies, is the practical art of re-exploring
+            what has been previously known or unknown. This could result from
+            sheer curiosity or intuition. It is a quest to discover how things
+            can be improved or to find a new and efficient method of performing
+            a task.
+          </p>
+          <br />
 
-        <h2 className="text-2xl font-bold mb-6 text-center mt-12">
-          Lab Experience
-        </h2>
-      </section>
-
-      {/* Research Projects */}
-      <section className="mb-16">
-        <h2 className="text-2xl font-bold mb-6 text-center">
-          Research Projects
-        </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          {researchProjects.map((proj, index) => (
-            <div
-              key={index}
-              className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition"
-            >
-              <h3 className="text-lg font-bold mb-2">{proj.title}</h3>
-              <p className="text-sm text-gray-500 dark:text-gray-400 mb-2 italic">
-                {proj.affiliation}
-              </p>
-              <p className="text-gray-700 dark:text-gray-300">
-                {proj.description}
-              </p>
+          {/* Slideshow */}
+          <div className="relative w-full max-w-5xl mx-auto">
+            <div className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[550px] rounded-xl overflow-hidden" data-aos="slide-up">
+              <img
+                src={labImages[currentIndex].src}
+                alt={labImages[currentIndex].alt}
+                className="absolute inset-0 w-full h-full object-cover rounded-xl"
+              />
             </div>
-          ))}
-        </div>
-      </section>
 
+            {/* Caption */}
+            <p className="mt-3 text-center text-sm text-gray-600 dark:text-gray-400">
+              {labImages[currentIndex].alt}
+            </p>
+
+            {/* Dots */}
+            <div className="mt-3 flex justify-center space-x-2">
+              {labImages.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  aria-label={`Go to slide ${index + 1}`}
+                  className={`w-3 h-3 rounded-full transition ${
+                    index === currentIndex
+                      ? "bg-blue-600 scale-125"
+                      : "bg-gray-300 dark:bg-gray-600"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Journey & Interests Text */}
+          <p className="mt-12" data-aos="fade-left">
+            My research journey started when I was in my third year as a
+            student, where I had the opportunity to work as a Student Research
+            Intern at the Department of Electronic & Computer Engineering, Lagos
+            State University, under the supervision and guidance of Dr. M. A.
+            Adedoyin. Her guidance paved the way for my discovery of
+            professional research, which differs from merely exploring without
+            proper documentation.
+          </p>
+          <br />
+          <p data-aos="fade-right">
+            My interests are predominantly in{" "}
+            <span className="font-semibold text-blue-600">
+              Machine Learning, Embodied AI, and Energy
+            </span>
+            . I want to build machines that learn efficiently and intelligently,
+            integrate artificial intelligence into physical systems to enable
+            them to interact with the physical world, and design energy-efficient
+            systems that promote a net-zero and sustainable world.
+          </p>
+        </section>
+      </div>
+      
       {/* Publications */}
-      <section>
-        <h2 className="text-2xl font-semibold mb-6 text-center">
-          Publications & Presentations
-        </h2>
-        <ul className="space-y-4 list-disc list-inside text-gray-700 dark:text-gray-300">
-          {publications.map((pub, idx) => (
-            <li key={idx}>
-              {pub.link ? (
-                <a
-                  href={pub.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
-                >
-                  {pub.citation}
-                </a>
-              ) : (
-                <span>{pub.citation}</span>
-              )}
-            </li>
-          ))}
-        </ul>
-      </section>
+        <section className="w-full bg-gray-200 py-12">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="flex justify-center mb-8" data-aos="slide-up">
+            <h2 className="relative text-xl sm:text-2xl font-bold text-purple-600 bg-purple-100 px-6 sm:px-8 py-3 rounded-2xl shadow-lg text-center float-heading">
+              Publications
+              <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-3/4 h-1 bg-purple-400 rounded-full" />
+            </h2>
+          </div>
+
+          <ul className="space-y-4 list-disc list-inside" data-aos="flip-left">
+            {publications.map((pub, idx) => (
+              <li key={idx} className="text-center text-purple-600 font-medium">
+                {pub.link ? (
+                  <a
+                    href={pub.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline"
+                  >
+                    {pub.citation}
+                  </a>
+                ) : (
+                  <span>{pub.citation}</span>
+                )}
+              </li>
+            ))}
+          </ul>
+          </div>
+        </section>
     </div>
   );
 };
