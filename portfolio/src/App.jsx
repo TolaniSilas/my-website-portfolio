@@ -6,6 +6,7 @@ import ProjectsPage from './pages/ProjectsPage';
 import BlogPage from './pages/BlogPage';
 import ResearchPage from './pages/ResearchPage';
 import SchedulePage from './pages/SchedulePage';
+import ContactPage from './pages/ContactPage';
 import NotFoundPage from "./pages/NotFoundPage";
 
 
@@ -19,6 +20,7 @@ const App = () => {
             <Route path="blog" element={<BlogPage />} />
             <Route path="research" element={<ResearchPage />} />
             <Route path="/schedule" element={<SchedulePage />} /> 
+            <Route path="/contact" element={<ContactPage />} />
           </Route>
 
           {/* Fallback for undefined routes */}
