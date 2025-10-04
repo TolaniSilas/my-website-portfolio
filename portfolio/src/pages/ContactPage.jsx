@@ -2,8 +2,14 @@ import { useCallback, useRef, useState, useEffect } from "react";
 import Particles from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import {
-  FaEnvelope, FaGithub, FaClock, FaLinkedin,
-  FaUser, FaTag, FaRegCommentDots, FaTelegramPlane
+  FaEnvelope,
+  FaGithub,
+  FaClock,
+  FaLinkedin,
+  FaUser,
+  FaTag,
+  FaRegCommentDots,
+  FaTelegramPlane,
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import emailjs from "@emailjs/browser";
@@ -61,7 +67,7 @@ export default function Contact() {
   return (
     <div
       className={`relative min-h-screen flex items-center justify-center px-6 py-20 
-      transition-colors duration-700 
+      transition-colors duration-700 overflow-hidden
       ${isDarkMode ? "bg-black text-white" : "bg-white text-black"}`}
     >
       {/* ✅ Background Particles */}
@@ -74,7 +80,7 @@ export default function Contact() {
             fpsLimit: 120,
             interactivity: {
               events: { onHover: { enable: true, mode: "repulse" } },
-              modes: { repulse: { distance: 120 } },
+              modes: { repulse: { distance: 100, duration: 0.4 } },
             },
             particles: {
               color: { value: isDarkMode ? "#cbf20d" : "#7c3aed" },
@@ -82,14 +88,15 @@ export default function Contact() {
                 color: isDarkMode ? "#cbf20d" : "#7c3aed",
                 distance: 150,
                 enable: true,
-                opacity: 0.2,
+                opacity: 0.4,
               },
-              move: { enable: true, speed: 1 },
-              number: { value: 60 },
-              opacity: { value: 0.3 },
+              move: { enable: true, speed: 1, direction: "none", outModes: "out" },
+              number: { value: 60, density: { enable: true, area: 800 } },
+              opacity: { value: 0.5 },
               shape: { type: "circle" },
               size: { value: { min: 1, max: 4 } },
             },
+            detectRetina: true,
           }}
         />
       </div>
@@ -99,8 +106,8 @@ export default function Contact() {
         <div className="text-center mb-20 mt-14">
           <h2 className="text-4xl font-bold text-purple-500 mb-4">Get In Touch</h2>
           <p className="text-lg max-w-2xl mx-auto">
-            I'm always interested in new opportunities and collaborations.
-            Let's create something amazing together!
+            I'm always open to exploring new opportunities and collaborations.
+            Let's build something extraordinary together!
           </p>
         </div>
 
@@ -109,8 +116,9 @@ export default function Contact() {
           <div>
             <h3 className="text-2xl font-bold mb-4">Let's Connect</h3>
             <p className="mb-8">
-              Whether you have a project idea, want to collaborate, or just want to say
-              hello, I'd love to hear from you. I typically respond within 24 hours.
+              Whether you have a project proposal, a collaboration idea, or simply wish
+              to connect, I'd be delighted to hear from you. I usually respond within
+              24 hours.
             </p>
 
             <div className="space-y-6 lg:space-y-10">
@@ -157,7 +165,7 @@ export default function Contact() {
                   <h4 className="font-semibold">X (formerly Twitter)</h4>
                   <p>@thaguymaxx</p>
                   <small className="text-gray-500 dark:text-gray-400">
-                    Tech discussions and updates
+                    Interesting tech discussions and updates
                   </small>
                 </div>
               </div>
@@ -168,7 +176,8 @@ export default function Contact() {
                 <div>
                   <h4 className="font-semibold">Availability</h4>
                   <small className="text-gray-500 dark:text-gray-400">
-                    I'm available around the clock for project collaborations. Please don’t hesitate to get in touch!
+                    I'm available around the clock for project collaborations.
+                    Please don't hesitate to get in touch!
                   </small>
                 </div>
               </div>
@@ -222,13 +231,13 @@ export default function Contact() {
               {/* Subject Dropdown */}
               <div>
                 <label className="block text-sm font-medium mb-2">Subject *</label>
-                <div className="flex items-center bg-white dark:bg-black border border-gray-300 dark:border-gray-700 rounded-xl">
+                <div className="flex items-center bg-white dark:bg-black border border-gray-300 dark:border-gray-700 rounded-xl relative">
                   <FaTag className="text-gray-500 ml-3" />
                   <select
                     name="subject"
                     value={subject}
                     onChange={(e) => setSubject(e.target.value)}
-                    className="w-full p-3 bg-transparent rounded-xl focus:outline-none text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+                    className="w-full p-3 bg-transparent appearance-none rounded-xl focus:outline-none text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                     required
                   >
                     <option value="">Select a subject</option>
@@ -269,7 +278,7 @@ export default function Contact() {
                   <textarea
                     name="message"
                     rows="5"
-                    placeholder="Tell me about your project, research, or ideas..."
+                    placeholder="Tell me about your project, research, or any questions you may have..."
                     className="w-full p-3 bg-transparent rounded-xl focus:outline-none text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                     required
                   ></textarea>

@@ -156,7 +156,7 @@ const ResearchPage = () => {
             My research journey started when I was in my third year as a
             student, where I had the opportunity to work as a Student Research
             Intern at the Department of Electronic & Computer Engineering, Lagos
-            State University, under the supervision and guidance of Dr. M. A.
+            State University, under the supervision and guidance of Dr. M.A.
             Adedoyin. Her guidance paved the way for my discovery of
             professional research, which differs from merely exploring without
             proper documentation.
