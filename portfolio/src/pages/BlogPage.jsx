@@ -1,28 +1,79 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
-// Sample blog posts data
 const posts = [
   {
     id: 1,
-    title: "Getting Started with LLMs: How to Serve LLM Applications as API Endpoints with FastAPI in Python",
+    title:
+      "Getting Started with LLMs: How to Serve LLM Applications as API Endpoints with FastAPI in Python",
     date: "August 20, 2024",
     excerpt:
       "React makes building UIs simple and powerful. In this post, I explain the basics of components, props, and state.",
     slug: "https://medium.com/@tolanisilas3606/getting-started-with-llms-how-to-serve-llm-applications-as-api-endpoints-with-fastapi-in-python-af015399ef3e",
   },
-  // Add more posts as needed
 ];
 
-const BlogPage = () => {
+export default function BlogPage() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [typedText, setTypedText] = useState("");
+
+  const fullText =
+    "Welcome to my digital space where I share my thoughts, information and insights on technology trends, data science, AI and machine learning. Explore my latest posts below.";
+
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: false });
+  }, []);
+
+  // Detect dark mode toggle dynamically (from navbar)
+  useEffect(() => {
+    const html = document.documentElement;
+    const observer = new MutationObserver(() => {
+      setIsDarkMode(html.classList.contains("dark"));
+    });
+
+    observer.observe(html, { attributes: true, attributeFilter: ["class"] });
+
+    // Set the initial mode
+    setIsDarkMode(html.classList.contains("dark"));
+
+    return () => observer.disconnect();
+  }, []);
+
+  // ✅ Fixed typewriter effect (full text now always displays)
+  useEffect(() => {
+    let index = 0;
+    const speed = 35; // typing speed (ms per character)
+
+    const type = () => {
+      if (index < fullText.length) {
+        setTypedText(fullText.slice(0, index + 1));
+        index++;
+        setTimeout(type, speed);
+      }
+    };
+
+    type(); // start typing
+  }, [fullText]);
+
   return (
-    <div className="min-h-screen px-6 pt-28 pb-16 transition-colors duration-500 bg-white text-black dark:bg-black dark:text-white">
+    <div
+      className={`min-h-screen px-6 pt-28 pb-16 transition-colors duration-700 ${
+        isDarkMode ? "bg-black text-white" : "bg-white text-black"
+      }`}
+    >
       {/* Header */}
-      <div className="text-center mb-16">
-        <h1 className="text-4xl md:text-5xl font-bold mb-5 text-blue-600">
+      <div className="text-center mb-16 mt-4">
+        <h1
+          className="text-4xl md:text-5xl font-bold mb-5 text-blue-600 dark:text-blue-400"
+          data-aos="fade-up"
+        >
           My Blog
         </h1>
-        <p className="max-w-2xl mx-auto text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-          Welcome to my digital space where I share my thoughts, information and insights on technology trends, data science, AI and machine learning. Explore my latest posts below.
+        <p className="max-w-2xl mx-auto text-lg leading-relaxed min-h-[120px]">
+          {typedText}
+          <span className="animate-pulse">|</span> {/* blinking cursor */}
         </p>
       </div>
 
@@ -31,13 +82,17 @@ const BlogPage = () => {
         {posts.map((post) => (
           <article
             key={post.id}
-            className="relative group p-6 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-md hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 bg-white dark:bg-gray-900"
+            className={`relative group p-6 rounded-2xl border shadow-md hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 ${
+              isDarkMode
+                ? "bg-gray-900 border-gray-700"
+                : "bg-white border-gray-200"
+            }`}
           >
             <h2 className="text-xl md:text-2xl font-semibold mb-2 text-blue-500 dark:text-blue-400">
               {post.title}
             </h2>
-            <time className="text-sm text-gray-500 mb-3 block">{post.date}</time>
-            <p className="text-gray-700 dark:text-gray-300 mb-6">{post.excerpt}</p>
+            <time className="text-sm mb-3 block">{post.date}</time>
+            <p className="mb-6">{post.excerpt}</p>
             <a
               href={post.slug}
               target="_blank"
@@ -50,13 +105,20 @@ const BlogPage = () => {
         ))}
       </div>
 
-      {/* Read more CTA at the end */}
-      <div className="max-w-4xl mx-auto mt-20 p-10 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-lg bg-gray-50 dark:bg-gray-900 text-center">
+      {/* Read more CTA */}
+      <div
+        className={`max-w-4xl mx-auto mt-20 p-10 rounded-2xl border shadow-lg text-center transition-colors duration-500 ${
+          isDarkMode
+            ? "bg-gray-900 border-gray-700"
+            : "bg-gray-50 border-gray-200"
+        }`}
+        data-aos="zoom-in"
+      >
         <h2 className="text-2xl md:text-3xl font-bold mb-4 text-blue-600 dark:text-blue-400">
           Read More of My Blog Posts
         </h2>
 
-        <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+        <p className="mb-6 leading-relaxed">
           Want to explore more of my writings? Visit my Medium profile to read
           more technical articles and thought pieces.
         </p>
@@ -72,6 +134,4 @@ const BlogPage = () => {
       </div>
     </div>
   );
-};
-
-export default BlogPage;
+}
