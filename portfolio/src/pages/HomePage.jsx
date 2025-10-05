@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
-import { FaReact, FaJs, FaHtml5, FaCss3Alt, FaPython } from "react-icons/fa";
-import { SiTensorflow, SiPytorch } from "react-icons/si";
+import { FaReact, FaJs, FaHtml5, FaCss3Alt, FaPython, FaGithub, FaLaptopCode } from "react-icons/fa";
+import { SiTensorflow, SiPytorch, SiStreamlit, SiRender } from "react-icons/si";
 import videoBg from "../assets/homepage-tech-video.mp4";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -66,22 +66,53 @@ const HomePage = () => {
     delaySpeed: 1800,
   });
 
+  const [selectedCategory, setSelectedCategory] = useState("Languages");
+
+  const techStack = {
+    Languages: [
+      { name: "Python", icon: <FaPython /> },
+      { name: "JavaScript", icon: <FaJs /> },
+      { name: "HTML5", icon: <FaHtml5 /> },
+      { name: "CSS3", icon: <FaCss3Alt /> },
+    ],
+    "Libraries & Frameworks": [
+      { name: "React", icon: <FaReact /> },
+      { name: "TensorFlow", icon: <SiTensorflow /> },
+      { name: "PyTorch", icon: <SiPytorch /> },
+    ],
+    "Tools & Platforms": [
+      { name: "GitHub", icon: <FaGithub /> },
+      { name: "VS Code", icon: <FaLaptopCode /> },
+      { name: "Streamlit", icon: <SiStreamlit /> },
+      { name: "Render", icon: <SiRender /> },
+    ],
+  };
+
+  const filteredTechs = techStack[selectedCategory];
+
   // Initialize AOS
   useEffect(() => {
-    AOS.init({duration: 1000, once: false});
+    AOS.init({ duration: 1000, once: false });
   }, []);
 
   return (
     <div className="flex flex-col gap-12 sm:gap-12 overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative h-[90vh] sm:h-screen w-full overflow-hidden flex flex-col justify-center items-center text-center px-6" data-aos="fade-up">
-        <video src={videoBg} autoPlay loop muted playsInline className="absolute top-0 left-0 w-full h-full object-cover -z-10" />
-
+      <section
+        className="relative h-[90vh] sm:h-screen w-full overflow-hidden flex flex-col justify-center items-center text-center px-6"
+        data-aos="fade-up"
+      >
+        <video
+          src={videoBg}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute top-0 left-0 w-full h-full object-cover -z-10"
+        />
 
         <h1 className="text-4xl sm:text-6xl font-bold mb-4 text-white" data-aos="flip-left">
-          Hi, I'm {" "}
-          <span className="text-white ">Osunba Silas</span>{" "}
-          👋
+          Hi, I'm <span className="text-white">Osunba Silas</span> 👋
         </h1>
 
         {/* Animated Roles */}
@@ -91,9 +122,14 @@ const HomePage = () => {
         </h2>
 
         {/* Tagline */}
-        <p className="text-lg sm:text-2xl text-white mb-6 max-w-3xl" data-aos="fade-down-right">
-          I'm a result-driven engineer with a huge curiosity for all things research, innovation, data and machine learning! Optimizing solutions
-          one gradient descent at a time... because why take steps when you can slide smoothly down the slope?
+        <p
+          className="text-lg sm:text-2xl text-white mb-6 max-w-3xl"
+          data-aos="fade-down-right"
+        >
+          I'm a result-driven engineer with a huge curiosity for all things research,
+          innovation, data and machine learning! Optimizing solutions one gradient
+          descent at a time... because why take steps when you can slide smoothly down
+          the slope?
         </p>
 
         {/* CTA Buttons */}
@@ -115,7 +151,10 @@ const HomePage = () => {
 
       {/* About Section */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-0 transition-colors duration-300">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-10 text-center" data-aos="slide-down">
+        <h2
+          className="text-3xl sm:text-4xl font-bold mb-10 text-center"
+          data-aos="slide-down"
+        >
           About Me
         </h2>
 
@@ -128,26 +167,42 @@ const HomePage = () => {
           {/* Story Text */}
           <div className="text-base sm:text-lg leading-relaxed space-y-6 mt-6 md:mt-0">
             <p data-aos="fade-left">
-              Hi Mate, It's splendid to have you here. I'm{" "} <span className="font-semibold text-blue-500 dark:text-blue-400">Osunba Silas</span>, a resourceful,
-              and result-driven engineer & researcher impelled by an unremitted pursuit of knowledge. I am an avid learner who is keen on exploring and learning new 
-              things. I'm currently pursuing a BSc. degree in <span className="font-semibold text-blue-500 dark:text-blue-400">Electronic & Computer Engineering</span> at Lagos State University, on track to graduate with First Class Honors.
+              Hi Mate, It's splendid to have you here. I'm{" "}
+              <span className="font-semibold text-blue-500 dark:text-blue-400">
+                Osunba Silas
+              </span>
+              , a resourceful, and result-driven engineer & researcher impelled by an
+              unremitted pursuit of knowledge. I am an avid learner who is keen on
+              exploring and learning new things. I'm currently pursuing a BSc. degree in{" "}
+              <span className="font-semibold text-blue-500 dark:text-blue-400">
+                Electronic & Computer Engineering
+              </span>{" "}
+              at Lagos State University, on track to graduate with First Class Honors.
             </p>
             <p data-aos="fade-right">
-              I have worked on and contributed to research aimed at transforming the status quo of knowledge in the field of machine learning and
-              energy. I currently have three published papers - one in an international journal and two presented at an international conference.
+              I have worked on and contributed to research aimed at transforming the
+              status quo of knowledge in the field of machine learning and energy. I
+              currently have three published papers - one in an international journal and
+              two presented at an international conference.
             </p>
             <p data-aos="fade-left">
-              I'm highly motivated by the drive to excel and the belief that great things can be achieved from even the smallest places.
-              I have led impactful events, educational programs, and community outreach efforts as a result of my love for service and humanity. 
-              I'm also an advocate of{" "} <span className="italic text-green-600">AI for Social Good</span>.
+              I'm highly motivated by the drive to excel and the belief that great things
+              can be achieved from even the smallest places. I have led impactful events,
+              educational programs, and community outreach efforts as a result of my love
+              for service and humanity. I'm also an advocate of{" "}
+              <span className="italic text-green-600">AI for Social Good</span>.
             </p>
             <p data-aos="fade-right">
-              Outside academics and research, I love staying current with news on X, watching football games, learn about crypto, and playing snooker - you know,
+              Outside academics and research, I love staying current with news on X,
+              watching football games, learn about crypto, and playing snooker - you know,
               sometimes it's great to observe carefully before making that perfect shot 🎱.
             </p>
 
             {/* Buttons */}
-            <div className="flex flex-row flex-wrap justify-center gap-4 sm:gap-6 mt-6" data-aos="slide-up">
+            <div
+              className="flex flex-row flex-wrap justify-center gap-4 sm:gap-6 mt-6"
+              data-aos="slide-up"
+            >
               <a
                 href="/resume.pdf"
                 target="_blank"
@@ -167,24 +222,44 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Skills Section */}
-      
-
-
-
-
-
-      <section className="bg-gray-300 dark:bg-gray-900 py-16 px-6 text-purple-800">
+      {/* Filterable Tech Stack Section */}
+      <section className="bg-gray-300 dark:bg-gray-900 py-16 px-6 text-purple-800 transition-colors duration-500">
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-10">Tech Stack</h2>
+          <h2 className="text-3xl font-bold mb-10 text-gray-900 dark:text-white">
+            Tech Stack
+          </h2>
+
+          {/* Filter Buttons */}
+          <div className="flex flex-wrap justify-center gap-4 mb-10">
+            {["Languages", "Libraries & Frameworks", "Tools & Platforms"].map((category) => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-5 py-2 rounded-full font-medium transition-all duration-300 ${
+                  selectedCategory === category
+                    ? "bg-blue-600 text-white shadow-lg"
+                    : "bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-300 hover:bg-blue-500 hover:text-white"
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+
+          {/* Tech Icons */}
           <div className="flex flex-wrap justify-center gap-12 text-5xl text-purple-750 dark:text-blue-400">
-            <FaReact title="React" />
-            <FaJs title="JavaScript" />
-            <FaHtml5 title="HTML5" />
-            <FaCss3Alt title="CSS3" />
-            <FaPython title="Python" />
-            <SiTensorflow title="TensorFlow" />
-            <SiPytorch title="PyTorch" />
+            {filteredTechs.map((tech, index) => (
+              <div
+                key={index}
+                className="flex flex-col items-center transition-transform duration-300 hover:scale-110"
+                data-aos="zoom-in"
+              >
+                <div className="text-6xl mb-2">{tech.icon}</div>
+                <p className="text-base font-medium text-gray-700 dark:text-gray-300">
+                  {tech.name}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -198,10 +273,9 @@ const HomePage = () => {
           <div className="grid md:grid-cols-2 gap-8">
             {/* Project 1 */}
             <div className="bg-blue-700 p-6 rounded-lg shadow hover:shadow-xl transition">
-              <h3 className="text-xl font-semibold mb-2">Project One</h3>
-              <p className="text-white">
-                A short description about your project goes here. Highlight the
-                tools used and the impact of the work.
+              <h3 className="text-xl font-semibold mb-2 text-white">Project One</h3>
+              <p className="text-white mb-3">
+                A short description about your project goes here. Highlight the tools used and the impact of the work.
               </p>
               <Link to="/projects" className="text-amber-400 hover:underline">
                 Learn More →
@@ -210,10 +284,9 @@ const HomePage = () => {
 
             {/* Project 2 */}
             <div className="bg-blue-700 p-6 rounded-lg shadow hover:shadow-xl transition">
-              <h3 className="text-xl font-semibold mb-2">Project Two</h3>
-              <p className="text-white">
-                Another impactful project description goes here. Make it
-                concise, engaging, and clear.
+              <h3 className="text-xl font-semibold mb-2 text-white">Project Two</h3>
+              <p className="text-white mb-3">
+                Another impactful project description goes here. Make it concise, engaging, and clear.
               </p>
               <Link to="/projects" className="text-amber-400 hover:underline">
                 Learn More →
