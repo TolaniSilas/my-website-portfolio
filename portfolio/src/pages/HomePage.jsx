@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
-import { FaReact, FaJs, FaHtml5, FaCss3Alt, FaPython, FaGithub, FaLaptopCode } from "react-icons/fa";
+import {
+  FaReact,
+  FaJs,
+  FaHtml5,
+  FaCss3Alt,
+  FaPython,
+  FaGithub,
+  FaLaptopCode,
+} from "react-icons/fa";
 import { SiTensorflow, SiPytorch, SiStreamlit, SiRender } from "react-icons/si";
 import videoBg from "../assets/homepage-tech-video.mp4";
 import AOS from "aos";
@@ -40,9 +48,7 @@ const Slideshow = () => {
             key={index}
             onClick={() => setCurrent(index)}
             className={`w-3 h-3 rounded-full transition ${
-              index === current
-                ? "bg-blue-600 scale-125"
-                : "bg-gray-300 dark:bg-gray-600"
+              index === current ? "bg-blue-600 scale-125" : "bg-gray-300 dark:bg-gray-600"
             }`}
           ></button>
         ))}
@@ -66,29 +72,52 @@ const HomePage = () => {
     delaySpeed: 1800,
   });
 
+  // Default filter category
   const [selectedCategory, setSelectedCategory] = useState("Languages");
 
+  // Tech stack data (icons: use react-icons where available, otherwise fallback to SVG URLs)
   const techStack = {
     Languages: [
-      { name: "Python", icon: <FaPython /> },
-      { name: "JavaScript", icon: <FaJs /> },
-      { name: "HTML5", icon: <FaHtml5 /> },
-      { name: "CSS3", icon: <FaCss3Alt /> },
+      { name: "Python", icon: <FaPython className="text-6xl" /> },
+      { name: "JavaScript", icon: <FaJs className="text-6xl" /> },
+      { name: "C++", icon: <img src="/logo-svg/cplusplus.svg" alt="C++" className="w-12 h-12" /> },
+      { name: "HTML5", icon: <FaHtml5 className="text-6xl" /> },
+      { name: "CSS3", icon: <FaCss3Alt className="text-6xl" /> },
+      { name: "MATLAB", icon: <img src="/logo-svg/matlab.svg" alt="MATLAB" className="w-12 h-12" /> },
+      { name: "PostgreSQL", icon: <img src="/logo-svg/postgresql.svg" alt="PostgreSQL" className="w-12 h-12" /> },
+      { name: "MySQL", icon: <img src="/logo-svg/mysql.svg" alt="MySQL" className="w-12 h-12" /> },
     ],
     "Libraries & Frameworks": [
-      { name: "React", icon: <FaReact /> },
-      { name: "TensorFlow", icon: <SiTensorflow /> },
-      { name: "PyTorch", icon: <SiPytorch /> },
+      { name: "React", icon: <FaReact className="text-6xl" /> },
+      { name: "Node.js", icon: <img src="/logo-svg/nodejs.svg" alt="Node.js" className="w-12 h-12" /> },
+      { name: "NumPy", icon: <img src="/logo-svg/numpy.svg" alt="NumPy" className="w-12 h-12" /> },
+      { name: "pandas", icon: <img src="/logo-svg/pandas.svg" alt="pandas" className="w-12 h-12" /> },
+      { name: "seaborn", icon: <img src="/logo-svg/seaborn.svg" alt="seaborn" className="w-12 h-12" /> },
+      { name: "matplotlib", icon: <img src="/logo-svg/matplotlib.svg" alt="matplotlib" className="w-12 h-12" /> },
+      { name: "scikit-learn", icon: <img src="/logo-svg/scikitlearn.svg" alt="scikit-learn" className="w-12 h-12" /> },
+      { name: "langchain", icon: <img src="/logo-svg/langchain.svg" alt="langchain" className="w-12 h-12" onError={(e)=>{ e.currentTarget.onerror=null; e.currentTarget.src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chain/chain-original.svg'; }} /> },
+      { name: "Flask", icon: <img src="/logo-svg/flask.svg" alt="Flask" className="w-12 h-12" /> },
+      { name: "FastAPI", icon: <img src="/logo-svg/fastapi.svg" alt="FastAPI" className="w-12 h-12" /> },
+      { name: "SQLAlchemy", icon: <img src="/logo-svg/sqlalchemy.svg" alt="SQLAlchemy" className="w-12 h-12" /> },
+      { name: "Bootstrap CSS", icon: <img src="/logo-svg/bootstrap.svg" alt="Bootstrap" className="w-12 h-12" /> },
+      { name: "Tailwind CSS", icon: <img src="/logo-svg/tailwind.svg" alt="Tailwind CSS" className="w-12 h-12" /> },
+      { name: "TensorFlow", icon: <SiTensorflow className="text-5xl" /> },
+      { name: "PyTorch", icon: <SiPytorch className="text-5xl" /> },
     ],
     "Tools & Platforms": [
-      { name: "GitHub", icon: <FaGithub /> },
-      { name: "VS Code", icon: <FaLaptopCode /> },
-      { name: "Streamlit", icon: <SiStreamlit /> },
-      { name: "Render", icon: <SiRender /> },
+      { name: "GitHub", icon: <FaGithub className="text-6xl" /> },
+      { name: "Git", icon: <img src="/logo-svg/git.svg" alt="Git" className="w-12 h-12" /> },
+      { name: "Docker", icon: <img src="/logo-svg/docker.svg" alt="Docker" className="w-12 h-12" /> },
+      { name: "AWS", icon: <img src="/logo-svg/aws.svg" alt="AWS" className="w-12 h-12" /> },
+      { name: "VS Code", icon: <FaLaptopCode className="text-6xl" /> },
+      { name: "Streamlit", icon: <SiStreamlit className="text-5xl" /> },
+      { name: "Render", icon: <SiRender className="text-5xl" /> },
+      { name: "Microsoft Office Suite", icon: <img src="/logo-svg/msoffice.svg" alt="Microsoft Office" className="w-12 h-12" /> },
     ],
   };
 
-  const filteredTechs = techStack[selectedCategory];
+  // ensure selectedCategory always exists (defensive)
+  const filteredTechs = techStack[selectedCategory] || techStack.Languages;
 
   // Initialize AOS
   useEffect(() => {
@@ -151,10 +180,7 @@ const HomePage = () => {
 
       {/* About Section */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-0 transition-colors duration-300">
-        <h2
-          className="text-3xl sm:text-4xl font-bold mb-10 text-center"
-          data-aos="slide-down"
-        >
+        <h2 className="text-3xl sm:text-4xl font-bold mb-10 text-center" data-aos="slide-down">
           About Me
         </h2>
 
@@ -168,41 +194,26 @@ const HomePage = () => {
           <div className="text-base sm:text-lg leading-relaxed space-y-6 mt-6 md:mt-0">
             <p data-aos="fade-left">
               Hi Mate, It's splendid to have you here. I'm{" "}
-              <span className="font-semibold text-blue-500 dark:text-blue-400">
-                Osunba Silas
-              </span>
-              , a resourceful, and result-driven engineer & researcher impelled by an
-              unremitted pursuit of knowledge. I am an avid learner who is keen on
-              exploring and learning new things. I'm currently pursuing a BSc. degree in{" "}
-              <span className="font-semibold text-blue-500 dark:text-blue-400">
-                Electronic & Computer Engineering
-              </span>{" "}
-              at Lagos State University, on track to graduate with First Class Honors.
+              <span className="font-semibold text-blue-500 dark:text-blue-400">Osunba Silas</span>, a resourceful,
+              and result-driven engineer & researcher impelled by an unremitted pursuit of knowledge. I am an avid learner who is keen on exploring and learning new 
+              things. I'm currently pursuing a BSc. degree in <span className="font-semibold text-blue-500 dark:text-blue-400">Electronic & Computer Engineering</span> at Lagos State University, on track to graduate with First Class Honors.
             </p>
             <p data-aos="fade-right">
-              I have worked on and contributed to research aimed at transforming the
-              status quo of knowledge in the field of machine learning and energy. I
-              currently have three published papers - one in an international journal and
-              two presented at an international conference.
+              I have worked on and contributed to research aimed at transforming the status quo of knowledge in the field of machine learning and
+              energy. I currently have three published papers - one in an international journal and two presented at an international conference.
             </p>
             <p data-aos="fade-left">
-              I'm highly motivated by the drive to excel and the belief that great things
-              can be achieved from even the smallest places. I have led impactful events,
-              educational programs, and community outreach efforts as a result of my love
-              for service and humanity. I'm also an advocate of{" "}
-              <span className="italic text-green-600">AI for Social Good</span>.
+              I'm highly motivated by the drive to excel and the belief that great things can be achieved from even the smallest places.
+              I have led impactful events, educational programs, and community outreach efforts as a result of my love for service and humanity. 
+              I'm also an advocate of{" "} <span className="italic text-green-600">AI for Social Good</span>.
             </p>
             <p data-aos="fade-right">
-              Outside academics and research, I love staying current with news on X,
-              watching football games, learn about crypto, and playing snooker - you know,
+              Outside academics and research, I love staying current with news on X, watching football games, learn about crypto, and playing snooker - you know,
               sometimes it's great to observe carefully before making that perfect shot 🎱.
             </p>
 
             {/* Buttons */}
-            <div
-              className="flex flex-row flex-wrap justify-center gap-4 sm:gap-6 mt-6"
-              data-aos="slide-up"
-            >
+            <div className="flex flex-row flex-wrap justify-center gap-4 sm:gap-6 mt-6" data-aos="slide-up">
               <a
                 href="/resume.pdf"
                 target="_blank"
@@ -247,19 +258,22 @@ const HomePage = () => {
           </div>
 
           {/* Tech Icons */}
-          <div className="flex flex-wrap justify-center gap-12 text-5xl text-purple-750 dark:text-blue-400">
+          {/* Tech Icons */}
+          <div className="flex flex-wrap justify-center gap-10 sm:gap-12 text-purple-750 dark:text-blue-400">
             {filteredTechs.map((tech, index) => (
-              <div
-                key={index}
-                className="flex flex-col items-center transition-transform duration-300 hover:scale-110"
-                data-aos="zoom-in"
+              <div 
+              key={index}
+              className="flex flex-col items-center justify-between w-28 h-32 sm:w-32 sm:h-36 transition-transform duration-300 hover:scale-110"
+              data-aos="zoom-in"
               >
-                <div className="text-6xl mb-2">{tech.icon}</div>
-                <p className="text-base font-medium text-gray-700 dark:text-gray-300">
-                  {tech.name}
-                </p>
-              </div>
-            ))}
+                <div className="flex items-center justify-center h-20 sm:h-24">
+                  {tech.icon}
+                  </div>
+                  <p className="text-sm sm:text-base font-medium text-center text-gray-700 dark:text-gray-300">
+                    {tech.name}
+                  </p>
+                </div>
+              ))}
           </div>
         </div>
       </section>
