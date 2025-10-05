@@ -1,16 +1,7 @@
 import { useCallback, useRef, useState, useEffect } from "react";
 import Particles from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
-import {
-  FaEnvelope,
-  FaGithub,
-  FaClock,
-  FaLinkedin,
-  FaUser,
-  FaTag,
-  FaRegCommentDots,
-  FaTelegramPlane,
-} from "react-icons/fa";
+import {FaEnvelope, FaGithub, FaClock, FaLinkedin, FaUser, FaTag, FaRegCommentDots, FaTelegramPlane} from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import emailjs from "@emailjs/browser";
 
@@ -26,7 +17,7 @@ export default function Contact() {
   const [customSubject, setCustomSubject] = useState("");
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // ✅ Detect dark mode toggle dynamically
+  // Detect dark mode toggle dynamically.
   useEffect(() => {
     const html = document.documentElement;
     const observer = new MutationObserver(() => {
@@ -70,7 +61,7 @@ export default function Contact() {
       transition-colors duration-700 overflow-hidden
       ${isDarkMode ? "bg-black text-white" : "bg-white text-black"}`}
     >
-      {/* ✅ Background Particles */}
+      {/* Background Particles */}
       <div className="absolute inset-0 -z-10">
         <Particles
           id="tsparticles"
@@ -112,6 +103,7 @@ export default function Contact() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-16 items-start">
+          
           {/* Left: Info */}
           <div>
             <h3 className="text-2xl font-bold mb-4">Let's Connect</h3>

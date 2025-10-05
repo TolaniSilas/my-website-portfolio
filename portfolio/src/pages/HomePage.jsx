@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
 import { FaReact, FaJs, FaHtml5, FaCss3Alt, FaPython } from "react-icons/fa";
 import { SiTensorflow, SiPytorch } from "react-icons/si";
-import videoBg from "../assets/blue-digital-programming.3840x2160.mp4";
+import videoBg from "../assets/homepage-tech-video.mp4";
 import AOS from "aos";
 import "aos/dist/aos.css";
 

@@ -1,148 +1,338 @@
-import React, { useState } from "react";
-import { FaReact, FaNodeJs, FaPython, FaDatabase } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaGithub } from "react-icons/fa";
+import ai_mlBg from "../assets/ai-and-ml-video.mp4";
+import sw_devBg from "../assets/software-dev-video.mp4";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
-// Example project data
+// ✅ Project Data (now uses "categories" array)
 const projects = [
   {
     id: 1,
-    title: "Portfolio Website",
+    title: "AI Chat Assistant",
+    categories: ["AI & ML", "Backend Development"],
     description:
-      "My personal portfolio built with React, TailwindCSS, and Framer Motion. Includes dark mode and responsive design.",
-    tech: [<FaReact key="react" />, <FaDatabase key="db" />],
-    link: "https://github.com/TolaniSilas/portfolio",
-    image: "/images/portfolio.png",
-    category: "web",
+      "A conversational AI assistant that understands and responds intelligently to user prompts using advanced LLM APIs.",
+    image: "/images/ai-chat-image.png",
+    link: "https://github.com/TolaniSilas/LLM-ChatApp/",
   },
   {
     id: 2,
-    title: "E-commerce Store",
+    title: "Loan Eligibility App",
+    categories: ["Backend Development", "AI & ML", "Web Development"],
     description:
-      "A full-stack e-commerce application with shopping cart, authentication, and payment integration.",
-    tech: [<FaNodeJs key="node" />, <FaReact key="react" />],
-    link: "https://github.com/TolaniSilas/ecommerce",
-    image: "/images/ecommerce.png",
-    category: "backend",
+      "A RESTful API that delivers real-time weather forecasts built using FastAPI and OpenWeatherMap API.",
+    image: "/images/loan-eligibility.png",
+    link: "https://dreamhousingfinance.onrender.com/",
   },
   {
     id: 3,
-    title: "Data Analysis Dashboard",
+    title: "Portfolio Website",
+    categories: ["Web Development"],
     description:
-      "An interactive dashboard for analyzing sales data, built with Python (Flask) and chart libraries.",
-    tech: [<FaPython key="python" />, <FaDatabase key="db" />],
-    link: "https://github.com/TolaniSilas/data-dashboard",
-    image: "/images/dashboard.png",
-    category: "machine-learning",
+      "A modern personal portfolio built with React and Tailwind CSS featuring dark mode and smooth animations.",
+    image: "/images/portfolio-image.png",
+    link: "https://github.com/TolaniSilas/my-website-portfolio",
+  },
+  {
+    id: 4,
+    title: "Automated Detection of Diabetic Retinopathy",
+    categories: ["AI & ML", "Web Development", "Backend Development"],
+    description:
+      "A machine learning model to predict rain attenuation in satellite communication using Python and Scikit-learn.",
+    image: "/images/ai-as-a-doctor.png",
+    link: "https://diabetic-retinopathy-web.streamlit.app/",
+  },
+  {
+    id: 5,
+    title: "emPLE Web Application",
+    categories: ["Web Development", "Backend Development", "Featured"],
+    description:
+      "A machine learning model to predict rain attenuation in satellite communication using Python and Scikit-learn.",
+    image: "/images/emple-image.png",
+    link: "https://www.emple.group/",
+  },
+  {
+    id: 6,
+    title: "Improving-Students-Performance-in-Nigerian-Schools",
+    categories: ["AI & ML", "Featured"],
+    description:
+      "A machine learning model to predict rain attenuation in satellite communication using Python and Scikit-learn.",
+    image: "/images/jamb-image.png",
+    link: "https://github.com/TolaniSilas/Improving-Students-Performance-in-Nigerian-Schools-",
+  },
+];
+
+// 🎥 Hero Section Background Videos
+const heroBackgrounds = [
+  {
+    id: 1,
+    video: ai_mlBg,
+    title: "AI & Machine Learning",
+    subtitle:
+      "I enable machines or systems to sense, reason, act, or adapt like a human",
+  },
+  {
+    id: 2,
+    video: sw_devBg,
+    title: "Software Development",
+    subtitle: "I build scalable, secure and robust software applications",
   },
 ];
 
 const ProjectsPage = () => {
-  const [filter, setFilter] = useState("all");
+  const [selectedCategory, setSelectedCategory] = useState("All Projects");
+  const [currentHero, setCurrentHero] = useState(0);
+  const [displayedText, setDisplayedText] = useState("");
+  const [displayedSubtitle, setDisplayedSubtitle] = useState("");
+  const [phase, setPhase] = useState("typingTitle");
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: false });
+  }, []);
+
+  // 🌙 Detect dark mode dynamically
+  useEffect(() => {
+    const html = document.documentElement;
+    const observer = new MutationObserver(() => {
+      setIsDarkMode(html.classList.contains("dark"));
+    });
+    observer.observe(html, { attributes: true, attributeFilter: ["class"] });
+    setIsDarkMode(html.classList.contains("dark"));
+    return () => observer.disconnect();
+  }, []);
+
+  const { title, subtitle, video } = heroBackgrounds[currentHero];
+
+  // ✍️ Typewriter + Video switch
+  useEffect(() => {
+    let timeout;
+    let text = "";
+    let subText = "";
+
+    if (phase === "typingTitle") {
+      let i = 0;
+      timeout = setInterval(() => {
+        text += title[i];
+        setDisplayedText(text);
+        i++;
+        if (i === title.length) {
+          clearInterval(timeout);
+          setTimeout(() => setPhase("typingSubtitle"), 200);
+        }
+      }, 50);
+    }
+
+    if (phase === "typingSubtitle") {
+      let j = 0;
+      timeout = setInterval(() => {
+        subText += subtitle[j];
+        setDisplayedSubtitle(subText);
+        j++;
+        if (j === subtitle.length) {
+          clearInterval(timeout);
+          setTimeout(() => setPhase("switch"), 3000);
+        }
+      }, 40);
+    }
+
+    if (phase === "switch") {
+      setDisplayedText("");
+      setDisplayedSubtitle("");
+      setCurrentHero((prev) => (prev + 1) % heroBackgrounds.length);
+      setPhase("typingTitle");
+    }
+
+    return () => clearInterval(timeout);
+  }, [phase, title, subtitle]);
+
+  // ✅ Updated filtering logic for multiple categories
   const filteredProjects =
-    filter === "all"
+    selectedCategory === "All Projects"
       ? projects
-      : projects.filter((project) => project.category === filter);
+      : projects.filter((p) => p.categories.includes(selectedCategory));
+
+  const categories = [
+    "All Projects",
+    "AI & ML",
+    "Backend Development",
+    "Web Development",
+    "Featured",
+  ];
 
   return (
-    <div className="w-full">
-      {/* Top Banner Image */}
-      <div className="pt-16">
-        <img
-          src="/images/image.png" // Add your banner image in /public/images/
-          alt="Projects Banner"
-          className="w-full sm:h-[80vh] md:h-[80vh] lg:h-[80vh] object-cover"
-        />
-      </div>
-
-      <div className="max-w-6xl mx-auto px-6 py-16">
-        {/* Page Header */}
-        <header className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">My Projects</h1>
-          <p className="text-lg max-w-2xl mx-auto">
-            Here are some of the projects I've worked on - ranging from personal
-            experiments to real-world applications.
-          </p>
-        </header>
-
-        {/* Filter Buttons */}
-        <div className="flex justify-center gap-4 mb-10 flex-wrap">
-          <button
-            onClick={() => setFilter("all")}
-            className={`px-4 py-2 rounded-lg ${
-              filter === "all"
-                ? "bg-blue-600 text-white"
-                : "bg-gray-200 dark:bg-gray-700 dark:text-white"
-            }`}
-          >
-            All
-          </button>
-          <button
-            onClick={() => setFilter("machine-learning")}
-            className={`px-4 py-2 rounded-lg ${
-              filter === "machine-learning"
-                ? "bg-blue-600 text-white"
-                : "bg-gray-200 dark:bg-gray-700 dark:text-white"
-            }`}
-          >
-            Machine Learning
-          </button>
-          <button
-            onClick={() => setFilter("backend")}
-            className={`px-4 py-2 rounded-lg ${
-              filter === "backend"
-                ? "bg-blue-600 text-white"
-                : "bg-gray-200 dark:bg-gray-700 dark:text-white"
-            }`}
-          >
-            Backend Development
-          </button>
-          <button
-            onClick={() => setFilter("web")}
-            className={`px-4 py-2 rounded-lg ${
-              filter === "web"
-                ? "bg-blue-600 text-white"
-                : "bg-gray-200 dark:bg-gray-700 dark:text-white"
-            }`}
-          >
-            Web Development
-          </button>
+    <div
+      className={`min-h-screen transition-colors duration-700 ${
+        isDarkMode ? "bg-black text-white" : "bg-white text-black"
+      }`}
+    >
+      {/* HERO SECTION */}
+      <div className="relative w-full h-[70vh] flex items-center justify-center overflow-hidden bg-black">
+        {/* Crossfade Videos */}
+        <div className="absolute inset-0">
+          <AnimatePresence>
+            {heroBackgrounds.map(
+              (bg, index) =>
+                index === currentHero && (
+                  <motion.video
+                    key={bg.id}
+                    src={bg.video}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1.2, ease: "easeInOut" }}
+                  />
+                )
+            )}
+          </AnimatePresence>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredProjects.map((project) => (
-            <div
-              key={project.id}
-              className="p-6 rounded-lg shadow hover:shadow-xl transition flex flex-col bg-white dark:bg-gray-800"
-            >
-              {/* Project Image */}
-              <img
-                src={project.image}
-                alt={project.title}
-                className="rounded-md mb-4 w-full h-48 object-cover"
-              />
-              <h2 className="text-xl font-semibold mb-2">{project.title}</h2>
-              <p className="flex-1 mb-4">{project.description}</p>
+        <div
+          className={`absolute inset-0 ${
+            isDarkMode ? "bg-black/70" : "bg-black/60"
+          }`}
+        ></div>
 
-              {/* Tech Stack Icons */}
-              <div className="flex gap-3 text-2xl text-blue-600 dark:text-blue-400 mb-4">
-                {project.tech}
-              </div>
+        <div className="relative z-10 text-center px-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">
+            {displayedText}
+            <motion.span
+              animate={{ opacity: [0, 1, 0] }}
+              transition={{ repeat: Infinity, duration: 0.8 }}
+              className="inline-block w-2 bg-white ml-1 h-6 md:h-8"
+            />
+          </h1>
+          <p className="text-gray-200 text-lg md:text-xl">
+            {displayedSubtitle}
+          </p>
+        </div>
+      </div>
 
-              {/* GitHub / Live Link */}
-              <Link
-                to={project.link}
+      {/* Stats Section */}
+      <div className="max-w-6xl mx-auto px-6 py-20 grid grid-cols-2 md:grid-cols-4 gap-6">
+        {[
+          { value: "30+", label: "Projects Completed" },
+          { value: "20+", label: "Technologies Used" },
+          { value: "350+", label: "GitHub Commits" },
+          { value: "8+", label: "Live Deployments" },
+        ].map((stat, index) => (
+          <motion.div
+            key={index}
+            className={`text-center border rounded-2xl p-6 shadow-md transition-all duration-300 cursor-pointer ${
+              isDarkMode
+                ? "border-gray-700 bg-gray-900"
+                : "border-gray-300 bg-gray-50"
+            }`}
+            whileHover={{
+              y: -8,
+              borderColor: "#2563eb",
+              boxShadow: "0 0 15px rgba(37, 99, 235, 0.4)",
+            }}
+            data-aos="zoom-in"
+            data-aos-duration="1100"
+          >
+            <h2 className="text-3xl font-bold text-blue-600 dark:text-blue-400">
+              {stat.value}
+            </h2>
+            <p className="mt-2">{stat.label}</p>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Filter Buttons */}
+      <div className="flex flex-wrap justify-center gap-4 mb-16 px-4">
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            onClick={() => setSelectedCategory(cat)}
+            className={`px-5 py-2 rounded-full font-medium transition-all duration-300 ${
+              selectedCategory === cat
+                ? "bg-blue-600 text-white shadow-lg"
+                : isDarkMode
+                ? "bg-gray-800 text-gray-300 hover:bg-blue-500 hover:text-white"
+                : "bg-gray-200 text-gray-800 hover:bg-blue-500 hover:text-white"
+            }`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      {/* Projects Grid */}
+      <div className="max-w-6xl mx-auto px-6 grid gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        {filteredProjects.map((project) => (
+          <motion.div
+            key={project.id}
+            className={`group rounded-2xl overflow-hidden border shadow-md hover:shadow-xl transition-all duration-500 ${
+              isDarkMode
+                ? "bg-gray-900 border-gray-700"
+                : "bg-white border-gray-200"
+            }`}
+            whileHover={{ y: -5 }}
+            data-aos="fade-up"
+            data-aos-duration="2000"
+          >
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <div className="p-6">
+              <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-2">
+                {project.title}
+              </h3>
+              <p className="mb-4">{project.description}</p>
+              <a
+                href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-600 dark:text-blue-400 hover:underline mt-auto"
+                className="text-blue-500 dark:text-blue-400 font-medium hover:underline"
               >
                 View Project →
-              </Link>
+              </a>
             </div>
-          ))}
-        </div>
+          </motion.div>
+        ))}
       </div>
+
+      {/* CTA Section */}
+      <motion.div
+        className={`max-w-4xl mx-auto mt-24 mb-20 p-8 sm:p-10 rounded-2xl border shadow-lg text-center transition-all duration-500 ${
+          isDarkMode
+            ? "bg-gray-900 border-gray-700"
+            : "bg-gray-50 border-gray-200"
+        }`}
+        whileHover={{
+          y: -10,
+          borderColor: "#2563eb",
+          boxShadow: "0 0 20px rgba(37, 99, 235, 0.4)",
+        }}
+      >
+        <FaGithub className="mx-auto text-5xl text-blue-600 dark:text-blue-400 mb-4" />
+        <h2 className="text-2xl md:text-3xl font-bold mb-4 text-blue-600 dark:text-blue-400">
+          Explore More Projects on GitHub
+        </h2>
+        <p className="mb-6 leading-relaxed px-2 sm:px-6">
+          Dive deeper into my technical work — from backend systems to machine
+          learning models. Check out more of my projects and contributions.
+        </p>
+        <a
+          href="https://github.com/TolaniSilas"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block bg-blue-600 hover:bg-blue-700 text-white py-3 px-8 rounded-xl font-semibold transition transform hover:-translate-y-1 hover:shadow-lg"
+        >
+          Visit My GitHub
+        </a>
+      </motion.div>
     </div>
   );
 };
