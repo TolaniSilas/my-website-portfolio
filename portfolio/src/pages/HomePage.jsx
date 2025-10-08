@@ -258,7 +258,6 @@ const HomePage = () => {
           </div>
 
           {/* Tech Icons */}
-          {/* Tech Icons */}
           <div className="flex flex-wrap justify-center gap-10 sm:gap-12 text-purple-750 dark:text-blue-400">
             {filteredTechs.map((tech, index) => (
               <div 
@@ -281,27 +280,42 @@ const HomePage = () => {
       {/* Featured Projects */}
       <section className="py-16 px-6">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-10">
+          <h2 className="text-3xl font-bold text-center mb-10" data-aos="slide-up">
             Featured Projects
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             {/* Project 1 */}
-            <div className="bg-blue-700 p-6 rounded-lg shadow hover:shadow-xl transition">
-              <h3 className="text-xl font-semibold mb-2 text-white">Project One</h3>
+            <div className="bg-blue-700 p-6 rounded-lg shadow hover:shadow-xl transition" data-aos="fade-right">
+              <h3 className="text-xl font-semibold mb-2 text-[#05befa]">emPLE Web Application</h3>
               <p className="text-white mb-3">
-                A short description about your project goes here. Highlight the tools used and the impact of the work.
+                emPLE is a modern insurance company that sought a visually appealing, intuitive, and performance-driven web 
+                platform to represent its brand and serve customers seamlessly. This project involved designing and 
+                developing a responsive, aesthetically pleasing web application that reflects emPLE's people-centric 
+                philosophy - “We help you get ready for tomorrow, today.”
               </p>
+              <p>
+                This platform simplifies how users explore insurance services while strengthening emPLE's digital presence. 
+                It embodies the company's values; simplicity, accessibility, and trust, and offering customers a smooth, 
+                engaging experience from first click to policy management.
+              </p> <br></br>
               <Link to="/projects" className="text-amber-400 hover:underline">
                 Learn More →
               </Link>
             </div>
 
             {/* Project 2 */}
-            <div className="bg-blue-700 p-6 rounded-lg shadow hover:shadow-xl transition">
-              <h3 className="text-xl font-semibold mb-2 text-white">Project Two</h3>
+            <div className="bg-blue-700 p-6 rounded-lg shadow hover:shadow-xl transition" data-aos="fade-left">
+              <h3 className="text-xl font-semibold mb-2 text-[#05befa]">Automated Detection of Diabetic Retinopathy</h3>
               <p className="text-white mb-3">
-                Another impactful project description goes here. Make it concise, engaging, and clear.
+                Diabetic Retinopathy (DR) is an eye disease triggered by diabetes, which may lead to blindness. To prevent 
+                diabetic patients from becoming blind, early diagnosis and accurate detection of DR are vital. This immense 
+                significance serves as the motivation for this work. 
               </p>
+              <p>
+                This application automates the early detection of DR using machine learning and computer vision. It analyzes 
+                retinal fundus images to provide consistent and efficient screening results, addressing challenges in manual 
+                diagnosis and limited access to ophthalmologists.
+              </p> <br></br>
               <Link to="/projects" className="text-amber-400 hover:underline">
                 Learn More →
               </Link>
@@ -311,11 +325,10 @@ const HomePage = () => {
       </section>
 
       {/* Call To Action */}
-      <section className="text-center py-16 px-6 bg-purple-600 dark:bg-purple-700 text-white">
+      <section className="text-center py-16 px-6 bg-[#2b6dd4] purple-600 dark:bg-[#2b6dd4] text-white">
         <h2 className="text-3xl font-bold mb-6">Want to work together?</h2>
         <p className="mb-6 text-lg">
-          Let's collaborate and build something amazing with data, AI, and
-          software engineering.
+          I'm open to collaboration and contributions. Let's build something extraordinary together! 
         </p>
         <Link
           to="/contact"
