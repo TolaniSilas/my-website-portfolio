@@ -6,7 +6,7 @@ import sw_devBg from "../assets/software-dev-video.mp4";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-// ✅ Project Data (now uses "categories" array)
+// define the project data 
 const projects = [
   {
     id: 1,
@@ -64,7 +64,7 @@ const projects = [
   },
 ];
 
-// 🎥 Hero Section Background Videos
+// define the hero section background videos
 const heroBackgrounds = [
   {
     id: 1,
@@ -89,12 +89,12 @@ const ProjectsPage = () => {
   const [phase, setPhase] = useState("typingTitle");
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // Initialize AOS
+  // initialize AOS
   useEffect(() => {
     AOS.init({ duration: 1000, once: false });
   }, []);
 
-  // 🌙 Detect dark mode dynamically
+  // detect dark mode dynamically
   useEffect(() => {
     const html = document.documentElement;
     const observer = new MutationObserver(() => {
@@ -107,7 +107,7 @@ const ProjectsPage = () => {
 
   const { title, subtitle, video } = heroBackgrounds[currentHero];
 
-  // ✍️ Typewriter + Video switch
+  // typewriter + video switch
   useEffect(() => {
     let timeout;
     let text = "";
@@ -149,7 +149,7 @@ const ProjectsPage = () => {
     return () => clearInterval(timeout);
   }, [phase, title, subtitle]);
 
-  // ✅ Updated filtering logic for multiple categories
+  // updated filtering logic for multiple categories
   const filteredProjects =
     selectedCategory === "All Projects"
       ? projects
@@ -169,9 +169,9 @@ const ProjectsPage = () => {
         isDarkMode ? "bg-black text-white" : "bg-white text-black"
       }`}
     >
-      {/* HERO SECTION */}
+      {/* hero section */}
       <div className="relative w-full h-[70vh] flex items-center justify-center overflow-hidden bg-black">
-        {/* Crossfade Videos */}
+        {/* crossfade videos */}
         <div className="absolute inset-0">
           <AnimatePresence>
             {heroBackgrounds.map(
@@ -216,7 +216,7 @@ const ProjectsPage = () => {
         </div>
       </div>
 
-      {/* Stats Section */}
+      {/* stats section */}
       <div className="max-w-6xl mx-auto px-6 py-20 grid grid-cols-2 md:grid-cols-4 gap-6">
         {[
           { value: "30+", label: "Projects Completed" },
@@ -247,7 +247,7 @@ const ProjectsPage = () => {
         ))}
       </div>
 
-      {/* Filter Buttons */}
+      {/* filter buttons */}
       <div className="flex flex-wrap justify-center gap-4 mb-16 px-4">
         {categories.map((cat) => (
           <button
@@ -266,7 +266,7 @@ const ProjectsPage = () => {
         ))}
       </div>
 
-      {/* Projects Grid */}
+      {/* define the projects grid */}
       <div className="max-w-6xl mx-auto px-6 grid gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {filteredProjects.map((project) => (
           <motion.div
@@ -303,7 +303,7 @@ const ProjectsPage = () => {
         ))}
       </div>
 
-      {/* CTA Section */}
+      {/* cta section */}
       <motion.div
         className={`max-w-4xl mx-auto mt-24 mb-20 p-8 sm:p-10 rounded-2xl border shadow-lg text-center transition-all duration-500 ${
           isDarkMode
