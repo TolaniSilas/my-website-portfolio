@@ -13,7 +13,7 @@ const projects = [
     title: "AI Chat Assistant",
     categories: ["AI & ML", "Backend Development"],
     description:
-      "A conversational AI assistant that understands and responds intelligently to user prompts using advanced LLM APIs.",
+      "A conversational AI assistant that intelligently understands and responds to user prompts using advanced open-source LLM APIs. Designed for natural dialogue flow, contextual awareness, and seamless backend integration.",
     image: "/images/ai-chat-image.png",
     link: "https://github.com/TolaniSilas/LLM-ChatApp/",
   },
@@ -22,7 +22,7 @@ const projects = [
     title: "Loan Eligibility App",
     categories: ["Backend Development", "AI & ML", "Web Development"],
     description:
-      "A RESTful API that delivers real-time weather forecasts built using FastAPI and OpenWeatherMap API.",
+      "A machine learning web application developed for Dream Housing Finance to automate real-time loan eligibility assessments. It analyzes customer data, validates financial metrics, and predicts approval outcomes with high accuracy, streamlining decision-making for the company.",
     image: "/images/loan-eligibility.png",
     link: "https://dreamhousingfinance.onrender.com/",
   },
@@ -31,7 +31,7 @@ const projects = [
     title: "Portfolio Website",
     categories: ["Web Development"],
     description:
-      "A modern personal portfolio built with React and Tailwind CSS featuring dark mode and smooth animations.",
+      "A visually engaging personal portfolio website that reflects my values, skills, and projects. Built with React.js and Tailwind CSS, it features dark mode, smooth animations, and a fully responsive design for optimal viewing across devices.",
     image: "/images/portfolio-image.png",
     link: "https://github.com/TolaniSilas/my-website-portfolio",
   },
@@ -40,7 +40,7 @@ const projects = [
     title: "Automated Detection of Diabetic Retinopathy",
     categories: ["AI & ML", "Web Development", "Backend Development"],
     description:
-      "A machine learning model to predict rain attenuation in satellite communication using Python and Scikit-learn.",
+      "An AI-driven software system for early detection of Diabetic Retinopathy (DR) using deep learning and computer vision techniques. This project analyzes retinal fundus images to automate diagnosis, improving accuracy, speed, and accessibility of diabetic eye screening for ophthalmologists.",
     image: "/images/ai-as-a-doctor.png",
     link: "https://diabetic-retinopathy-web.streamlit.app/",
   },
@@ -49,16 +49,16 @@ const projects = [
     title: "emPLE Web Application",
     categories: ["Web Development", "Backend Development", "Featured"],
     description:
-      "A machine learning model to predict rain attenuation in satellite communication using Python and Scikit-learn.",
+      "emPLE is a modern insurance web application built for a people-centric brand. It delivers a seamless and intuitive user experience, simplifying how customers explore and manage insurance services. Designed and developed with responsiveness, accessibility, and brand consistency at its core.",
     image: "/images/emple-image.png",
     link: "https://www.emple.group/",
   },
   {
     id: 6,
-    title: "Improving-Students-Performance-in-Nigerian-Schools",
+    title: "Improving Students’ Performance in Nigerian Schools",
     categories: ["AI & ML", "Featured"],
     description:
-      "A machine learning model to predict rain attenuation in satellite communication using Python and Scikit-learn.",
+      "A data analytics and machine learning project designed to recover the key factors influencing students' performance in Nigerian schools. By analyzing survey, and assessment data of JAMB UTME, the model identifies students at risk, and recommends actionable interventions to enhance educational outcomes.",
     image: "/images/jamb-image.png",
     link: "https://github.com/TolaniSilas/Improving-Students-Performance-in-Nigerian-Schools-",
   },
@@ -305,7 +305,7 @@ const ProjectsPage = () => {
 
       {/* cta section */}
       <motion.div
-        className={`max-w-4xl mx-auto mt-24 mb-20 p-8 sm:p-10 rounded-2xl border shadow-lg text-center transition-all duration-500 ${
+        className={`max-w-4xl mx-auto mt-24 mb-0 p-8 sm:p-10 rounded-2xl border shadow-lg text-center transition-all duration-500 ${
           isDarkMode
             ? "bg-gray-900 border-gray-700"
             : "bg-gray-50 border-gray-200"
@@ -321,8 +321,7 @@ const ProjectsPage = () => {
           Explore More Projects on GitHub
         </h2>
         <p className="mb-6 leading-relaxed px-2 sm:px-6">
-          Dive deeper into my technical work — from backend systems to machine
-          learning models. Check out more of my projects and contributions.
+          My projects cover data science, machine learning, backend development, and software engineering. Explore more of my projects and contributions.
         </p>
         <a
           href="https://github.com/TolaniSilas"

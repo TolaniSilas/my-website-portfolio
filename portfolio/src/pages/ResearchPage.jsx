@@ -5,10 +5,10 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 
 // ---- Slideshow Images ----
 const labImages = [
-  { src: "/images/lab1.jpeg", alt: "In the lab working on experiments" },
-  { src: "/images/lab2.jpeg", alt: "Team discussion during lab research" },
-  { src: "/images/result1.jpeg", alt: "Testing experimental setup" },
-  { src: "/images/result2.jpeg", alt: "Analyzing results with instruments" },
+  { src: "/images/lab1.jpeg", alt: "In the lab working on Amplitude and Frequency Modulation (AM & FM) experiment" },
+  { src: "/images/lab2.jpeg", alt: "Team discussion during the lab research" },
+  { src: "/images/result1.jpeg", alt: "Displaying the modulated FM signal" },
+  { src: "/images/result2.jpeg", alt: "Analyzing the experimental results with the aid of an oscilloscope"},
 ];
 
 // ---- Publications ----
@@ -111,11 +111,9 @@ const ResearchPage = () => {
           </div>
 
           <p data-aos="fade-right">
-            Research, as the word implies, is the practical art of re-exploring
-            what has been previously known or unknown. This could result from
-            sheer curiosity or intuition. It is a quest to discover how things
-            can be improved or to find a new and efficient method of performing
-            a task.
+            Research, as the word implies, is the practical art of re-exploring what is already known or exploring the unknown. It may stem from
+            sheer curiosity or intuition. It is a quest to discover how things can be improved or to find new and efficient ways of performing tasks.
+            If you can find and sense the gap, why not try to fill it?
           </p>
           <br />
 
@@ -153,41 +151,37 @@ const ResearchPage = () => {
 
           {/* Journey & Interests Text */}
           <p className="mt-12" data-aos="fade-left">
-            My research journey started when I was in my third year as a
-            student, where I had the opportunity to work as a Student Research
-            Intern at the Department of Electronic & Computer Engineering, Lagos
-            State University, under the supervision and guidance of Dr. M.A.
-            Adedoyin. Her guidance paved the way for my discovery of
-            professional research, which differs from merely exploring without
+            My research voyage started when I was in my third year as a student, where I had the opportunity to work as a Student Research
+            Intern at the Department of Electronic & Computer Engineering, Lagos State University, under the supervision and guidance of Dr. M.A.
+            Adedoyin. Her guidance paved the way for my discovery of professional research, which differs from merely exploring without
             proper documentation.
           </p>
           <br />
           <p data-aos="fade-right">
-            My interests are predominantly in{" "}
-            <span className="font-semibold text-blue-600">
-              Machine Learning, Embodied AI, and Energy
-            </span>
-            . I want to build machines that learn efficiently and intelligently,
-            integrate artificial intelligence into physical systems to enable
-            them to interact with the physical world, and design energy-efficient
+            My interests are predominantly in{" "} <span className="font-semibold text-blue-600">
+            Machine Learning, Embodied AI, and Energy</span>. I want to build machines that learn efficiently and intelligently,
+            integrate artificial intelligence into physical systems to enable them to interact with the physical world, and design energy-efficient
             systems that promote a net-zero and sustainable world.
           </p>
         </section>
       </div>
       
       {/* Publications */}
-        <section className="w-full bg-gray-200 py-12">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="flex justify-center mb-8" data-aos="slide-up">
+      <section className="w-full bg-gray-200 py-12">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex justify-center mb-8" data-aos="slide-up">
             <h2 className="relative text-xl sm:text-2xl font-bold text-purple-600 bg-purple-100 px-6 sm:px-8 py-3 rounded-2xl shadow-lg text-center float-heading">
               Publications
               <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-3/4 h-1 bg-purple-400 rounded-full" />
             </h2>
           </div>
 
-          <ul className="space-y-4 list-disc list-inside" data-aos="flip-left">
+          <ul
+            className="space-y-6 list-disc list-outside text-left mx-auto max-w-4xl"
+            data-aos="flip-left"
+          >
             {publications.map((pub, idx) => (
-              <li key={idx} className="text-center text-purple-600 font-medium">
+              <li key={idx} className="text-purple-600 font-medium leading-relaxed">
                 {pub.link ? (
                   <a
                     href={pub.link}
@@ -203,8 +197,9 @@ const ResearchPage = () => {
               </li>
             ))}
           </ul>
-          </div>
-        </section>
+        </div>
+      </section>
+
     </div>
   );
 };

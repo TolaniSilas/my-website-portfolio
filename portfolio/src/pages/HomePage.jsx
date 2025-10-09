@@ -1,15 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
-import {
-  FaReact,
-  FaJs,
-  FaHtml5,
-  FaCss3Alt,
-  FaPython,
-  FaGithub,
-  FaLaptopCode,
-} from "react-icons/fa";
+import {FaReact, FaJs, FaHtml5, FaCss3Alt, FaPython, FaGithub, FaLaptopCode} from "react-icons/fa";
 import { SiTensorflow, SiPytorch, SiStreamlit, SiRender } from "react-icons/si";
 import videoBg from "../assets/homepage-tech-video.mp4";
 import AOS from "aos";
@@ -75,7 +67,7 @@ const HomePage = () => {
   // Default filter category
   const [selectedCategory, setSelectedCategory] = useState("Languages");
 
-  // Tech stack data (icons: use react-icons where available, otherwise fallback to SVG URLs)
+  // Tech stack data (icons).
   const techStack = {
     Languages: [
       { name: "Python", icon: <FaPython className="text-6xl" /> },
@@ -196,7 +188,7 @@ const HomePage = () => {
               Hi Mate, It's splendid to have you here. I'm{" "}
               <span className="font-semibold text-blue-500 dark:text-blue-400">Osunba Silas</span>, a resourceful,
               and result-driven engineer & researcher impelled by an unremitted pursuit of knowledge. I am an avid learner who is keen on exploring and learning new 
-              things. I'm currently pursuing a BSc. degree in <span className="font-semibold text-blue-500 dark:text-blue-400">Electronic & Computer Engineering</span> at Lagos State University, on track to graduate with First Class Honors.
+              things. I'm on track to graduate with First Class Honors in <span className="font-semibold text-blue-500 dark:text-blue-400">Electronic & Computer Engineering</span> from Lagos State University.
             </p>
             <p data-aos="fade-right">
               I have worked on and contributed to research aimed at transforming the status quo of knowledge in the field of machine learning and
@@ -215,7 +207,7 @@ const HomePage = () => {
             {/* Buttons */}
             <div className="flex flex-row flex-wrap justify-center gap-4 sm:gap-6 mt-6" data-aos="slide-up">
               <a
-                href="/resume.pdf"
+                href="https://docs.google.com/document/d/12pPsc9r_XsGnkyR1deLyTiweF9qSkJoHtXVpVNV7PqM/edit?tab=t.0"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-2 border-blue-700 bg-blue-600 text-white rounded-lg hover:bg-blue-800"
