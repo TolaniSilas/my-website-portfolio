@@ -285,7 +285,7 @@ const HomePage = () => {
                 developing a responsive, aesthetically pleasing web application that reflects emPLE's people-centric 
                 philosophy - “We help you get ready for tomorrow, today.”
               </p>
-              <p>
+              <p className="text-white mb-3">
                 This platform simplifies how users explore insurance services while strengthening emPLE's digital presence. 
                 It embodies the company's values; simplicity, accessibility, and trust, and offering customers a smooth, 
                 engaging experience from first click to policy management.
@@ -303,7 +303,7 @@ const HomePage = () => {
                 diabetic patients from becoming blind, early diagnosis and accurate detection of DR are vital. This immense 
                 significance serves as the motivation for this work. 
               </p>
-              <p>
+              <p className="text-white mb-3">
                 This application automates the early detection of DR using machine learning and computer vision. It analyzes 
                 retinal fundus images to provide consistent and efficient screening results, addressing challenges in manual 
                 diagnosis and limited access to ophthalmologists.
