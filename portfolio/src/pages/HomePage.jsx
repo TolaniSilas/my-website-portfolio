@@ -200,7 +200,7 @@ const HomePage = () => {
               I'm also an advocate of{" "} <span className="italic text-green-600">AI for Social Good</span>.
             </p>
             <p data-aos="fade-right">
-              Outside academics and research, I love staying current with news on X, watching football games, learn about crypto, and playing snooker - you know,
+              Outside academics and research, I love staying current with news on X, watching football games, learn about blockchain tech, and playing snooker - you know,
               sometimes it's great to observe carefully before making that perfect shot 🎱.
             </p>
 
