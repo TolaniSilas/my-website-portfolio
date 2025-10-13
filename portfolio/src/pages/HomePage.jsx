@@ -113,7 +113,7 @@ const HomePage = () => {
 
   // Initialize AOS
   useEffect(() => {
-    AOS.init({ duration: 1000, once: false });
+    AOS.init({ duration: 1000, once: true });
   }, []);
 
   return (

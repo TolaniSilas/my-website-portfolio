@@ -23,7 +23,7 @@ export default function BlogPage() {
 
   // Initialize AOS
   useEffect(() => {
-    AOS.init({ duration: 1000, once: false });
+    AOS.init({ duration: 1000, once: true });
   }, []);
 
   // Detect dark mode toggle dynamically (from navbar)

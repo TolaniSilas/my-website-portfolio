@@ -91,7 +91,7 @@ const ProjectsPage = () => {
 
   // initialize AOS
   useEffect(() => {
-    AOS.init({ duration: 1000, once: false });
+    AOS.init({ duration: 1000, once: true });
   }, []);
 
   // detect dark mode dynamically
