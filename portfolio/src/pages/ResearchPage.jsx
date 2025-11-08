@@ -159,7 +159,7 @@ const ResearchPage = () => {
           <br />
           <p data-aos="fade-right">
             My interests are predominantly in{" "} <span className="font-semibold text-blue-600">
-            Machine Learning, Embodied AI, and Energy</span>. I want to build machines that learn efficiently and intelligently,
+            Trustworthy AI, Embodied AI, Deep Reinforcement Learning and Energy-Efficient Systems</span>. I want to build machines that learn efficiently and intelligently,
             integrate artificial intelligence into physical systems to enable them to interact with the physical world, and design energy-efficient
             systems that promote a net-zero and sustainable world.
           </p>
