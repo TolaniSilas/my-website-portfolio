@@ -188,8 +188,7 @@ const HomePage = () => {
               Hi Mate, It's splendid to have you here. I'm{" "}
               <span className="font-semibold text-blue-500 dark:text-blue-400">Osunba Silas</span>, a resourceful,
               and result-driven engineer & researcher impelled by an unremitted pursuit of knowledge. I am an avid learner who is keen on exploring and learning new 
-              things. I completed my baccalaureate degree in<span className="font-semibold text-blue-500 dark:text-blue-400">Electronic & Computer Engineering</span> 
-              and graduated with the highest honors (Summa Cum Laude equivalent) from Lagos State University.
+              things. I completed my baccalaureate degree in <span className="font-semibold text-blue-500 dark:text-blue-400">Electronic & Computer Engineering</span> and graduated with the highest honors (Summa Cum Laude equivalent) from Lagos State University.
             </p>
             <p data-aos="fade-right">
               I have worked on and contributed to research aimed at transforming the status quo of knowledge in the field of machine learning and
@@ -197,7 +196,6 @@ const HomePage = () => {
             </p>
             <p data-aos="fade-left">
               I am a highly self-motivated individual, guided by the tenet: excellence is a religion, and mastery comes from dedicated hours of practice. 
-              True excellence is forged in the 10,000 hours spent behind closed doors practising, where effort goes unseen but results or rewards endure.
               I have led impactful events, educational programs, and community outreach efforts as a result of my love for service and humanity. 
               I'm also an advocate of{" "} <span className="italic text-green-600">AI for Social Good</span>.
             </p>
