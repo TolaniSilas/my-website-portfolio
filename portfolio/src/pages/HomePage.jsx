@@ -190,10 +190,6 @@ const HomePage = () => {
               and result-driven engineer & researcher impelled by an unremitted pursuit of knowledge. I am an avid learner who is keen on exploring and learning new 
               things. I completed my baccalaureate degree in <span className="font-semibold text-blue-500 dark:text-blue-400">Electronic & Computer Engineering</span> and graduated with the highest honors (Summa Cum Laude equivalent) from Lagos State University.
             </p>
-            <p data-aos="fade-right">
-              I have worked on and contributed to research aimed at transforming the status quo of knowledge in the field of machine learning and
-              energy. I currently have three published papers - one in an international journal and two presented at an international conference.
-            </p>
             <p data-aos="fade-left">
               I am a highly self-motivated individual, guided by the tenet: excellence is a religion, and mastery comes from dedicated hours of practice. 
               I have led impactful events, educational programs, and community outreach efforts as a result of my love for service and humanity. 
