@@ -147,7 +147,7 @@ const HomePage = () => {
           className="text-lg sm:text-2xl text-white mb-6 max-w-3xl"
           data-aos="fade-down-right"
         >
-          I'm a result-driven engineer with a huge curiosity for all things research,
+          I'm a results-driven engineer with a huge curiosity for all things research,
           innovation, data and machine learning! Optimizing solutions one gradient
           descent at a time... because why take steps when you can slide smoothly down
           the slope?
@@ -187,10 +187,11 @@ const HomePage = () => {
             <p data-aos="fade-left">
               Hi Mate, It's splendid to have you here. I'm{" "}
               <span className="font-semibold text-blue-500 dark:text-blue-400">Osunba Silas</span>, a results-driven engineer/researche.
-              I am an avid learner who is keen on exploring new things. I earned a baccalaureate degree in <span className="font-semibold text-blue-500 dark:text-blue-400">Electronic & Computer Engineering</span> and graduated with highest honors (Summa Cum Laude equivalent) from Lagos State University.
+              I'm an avid learner who is keen on exploring new things. I earned a baccalaureate degree in <span className="font-semibold text-blue-500 dark:text-blue-400">Electronic & Computer Engineering</span>, graduating with the highest honors, from Lagos State University.
             </p>
+           
             <p data-aos="fade-left">
-              I am a self-motivated individual, guided by the tenet: excellence is a religion, and mastery comes from dedicated hours of practice. 
+              I'm a self-motivated individual, guided by the tenet: excellence is a religion, and mastery comes from dedicated hours of practice. 
               I have led impactful events, educational programs, and community outreach efforts as a result of my love for service and humanity. 
               I'm also an advocate of{" "} <span className="italic text-green-600">AI for Social Good</span>.
             </p>
