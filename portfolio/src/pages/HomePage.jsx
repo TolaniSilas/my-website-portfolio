@@ -186,12 +186,11 @@ const HomePage = () => {
           <div className="text-base sm:text-lg leading-relaxed space-y-6 mt-6 md:mt-0">
             <p data-aos="fade-left">
               Hi Mate, It's splendid to have you here. I'm{" "}
-              <span className="font-semibold text-blue-500 dark:text-blue-400">Osunba Silas</span>, a resourceful,
-              and result-driven engineer & researcher impelled by an unremitted pursuit of knowledge. I am an avid learner who is keen on exploring and learning new 
-              things. I completed my baccalaureate degree in <span className="font-semibold text-blue-500 dark:text-blue-400">Electronic & Computer Engineering</span> and graduated with the highest honors (Summa Cum Laude equivalent) from Lagos State University.
+              <span className="font-semibold text-blue-500 dark:text-blue-400">Osunba Silas</span>, a results-driven engineer/researche.
+              I am an avid learner who is keen on exploring new things. I earned a baccalaureate degree in <span className="font-semibold text-blue-500 dark:text-blue-400">Electronic & Computer Engineering</span> and graduated with highest honors (Summa Cum Laude equivalent) from Lagos State University.
             </p>
             <p data-aos="fade-left">
-              I am a highly self-motivated individual, guided by the tenet: excellence is a religion, and mastery comes from dedicated hours of practice. 
+              I am a self-motivated individual, guided by the tenet: excellence is a religion, and mastery comes from dedicated hours of practice. 
               I have led impactful events, educational programs, and community outreach efforts as a result of my love for service and humanity. 
               I'm also an advocate of{" "} <span className="italic text-green-600">AI for Social Good</span>.
             </p>
