@@ -183,10 +183,10 @@ const HomePage = () => {
           </div>
 
           {/* Story Text */}
-          <div className="text-base sm:text-lg leading-relaxed space-y-6 mt-6 md:mt-0">
+          <div className="max-w-[680px] mx-auto text-base sm:text-lg leading-relaxed space-y-6 mt-6 md:mt-0">
             <p data-aos="fade-left">
               Hi Mate, It's splendid to have you here. I'm{" "}
-              <span className="font-semibold text-blue-500 dark:text-blue-400">Osunba Silas</span>, a results-driven engineer/researche.
+              <span className="font-semibold text-blue-500 dark:text-blue-400">Osunba Silas</span>, a results-driven engineer/researcher.
               I'm an avid learner who is keen on exploring new things. I earned a baccalaureate degree in <span className="font-semibold text-blue-500 dark:text-blue-400">Electronic & Computer Engineering</span>, graduating with the highest honors, from Lagos State University.
             </p>
            
