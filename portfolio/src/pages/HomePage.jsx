@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
 import {FaReact, FaJs, FaHtml5, FaCss3Alt, FaPython, FaGithub, FaLaptopCode} from "react-icons/fa";
@@ -9,7 +9,7 @@ import "aos/dist/aos.css";
 
 // Slideshow Component
 const Slideshow = () => {
-  const images = ["/images/silas1.png", "/images/silas2.png", "/images/silas3.png"];
+  const images = ["/images/silas2.png", "/images/silas3.png"];
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -133,7 +133,7 @@ const HomePage = () => {
         />
 
         <h1 className="text-4xl sm:text-6xl font-bold mb-4 text-white" data-aos="flip-left">
-          Hi, I'm <span className="text-white">Osunba Silas</span> 👋
+          Hi, I'm <span className="text-white">Silas Osunba</span> 👋
         </h1>
 
         {/* Animated Roles */}
@@ -147,10 +147,9 @@ const HomePage = () => {
           className="text-lg sm:text-2xl text-white mb-6 max-w-3xl"
           data-aos="fade-down-right"
         >
-          I'm a results-driven engineer with a huge curiosity for all things research,
-          innovation, data and machine learning! Optimizing solutions one gradient
-          descent at a time... because why take steps when you can slide smoothly down
-          the slope?
+          I'm a results-driven engineer with a huge curiosity for all things research, innovation, data and machine 
+          learning! Optimizing solutions one gradient descent at a time... because why take steps when you can 
+          slide smoothly down the slope?
         </p>
 
         {/* CTA Buttons */}
@@ -186,17 +185,17 @@ const HomePage = () => {
           <div className="max-w-[680px] mx-auto text-base sm:text-lg leading-relaxed space-y-6 mt-6 md:mt-0">
             <p data-aos="fade-left">
               Hi Mate, It's splendid to have you here. I'm{" "}
-              <span className="font-semibold text-blue-500 dark:text-blue-400">Osunba Silas</span>, a results-driven engineer/researcher.
+              <span className="font-semibold text-blue-500 dark:text-blue-400">Silas Osunba</span>, a results-driven engineer/researcher.
               I'm an avid learner who is keen on exploring new things. I earned a baccalaureate degree in <span className="font-semibold text-blue-500 dark:text-blue-400">Electronic & Computer Engineering</span>, graduating with the highest honors, from Lagos State University.
             </p>
            
             <p data-aos="fade-left">
               I'm a self-motivated individual, guided by the tenet: excellence is a religion, and mastery comes from dedicated hours of practice. 
-              I have led impactful events, educational programs, and community outreach efforts as a result of my love for service and humanity. 
-              I'm also an advocate of{" "} <span className="italic text-green-600">AI for Social Good</span>.
+              I have led impactful events, educational programs, and community outreach efforts as a result of my love for service, science and humanity. 
+              I'm also an advocate of{" "}<span className="italic text-green-600">AI for Social Good</span>.
             </p>
             <p data-aos="fade-right">
-              Outside academics and research, I love staying current with news on X, watching football games, learn about blockchain tech, and playing snooker - you know,
+              Outside academics and research, I enjoy staying current with news on X, love watching football games, learn about blockchain tech, and enjoy playing snooker - you know,
               sometimes it's great to observe carefully before making that perfect shot 🎱.
             </p>
 
@@ -271,42 +270,44 @@ const HomePage = () => {
           <h2 className="text-3xl font-bold text-center mb-10" data-aos="slide-up">
             Featured Projects
           </h2>
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 items-stretch">
             {/* Project 1 */}
-            <div className="bg-blue-700 p-6 rounded-lg shadow hover:shadow-xl transition" data-aos="fade-right">
-              <h3 className="text-xl font-semibold mb-2 text-[#05befa]">emPLE Web Application</h3>
+            <div className="bg-blue-700 p-6 rounded-lg shadow hover:shadow-xl transition flex flex-col" data-aos="fade-right">
+              <h3 className="text-2xl font-semibold mb-2 text-[#05befa]">Mini GPT</h3>
               <p className="text-white mb-3">
-                emPLE is a modern insurance company that sought a visually appealing, intuitive, and performance-driven web 
-                platform to represent its brand and serve customers seamlessly. This project involved designing and 
-                developing a responsive, aesthetically pleasing web application that reflects emPLE's people-centric 
-                philosophy - “We help you get ready for tomorrow, today.”
+                Implemented Generative Pretrained Transformer (GPT) models (e.g., GPT-2, GPT-3) for experimental
+                purposes to gain a deeper understanding of the underlying mechanisms of this technology. The model
+                architecture is inspired by a major breakthrough in deep learning: the self-attention mechanism
+                introduced in "Attention Is All You Need" by Vaswani et al.
               </p>
               <p className="text-white mb-3">
-                This platform simplifies how users explore insurance services while strengthening emPLE's digital presence. 
-                It embodies the company's values; simplicity, accessibility, and trust, and offering customers a smooth, 
-                engaging experience from first click to policy management.
-              </p> <br></br>
-              <Link to="/projects" className="text-amber-400 hover:underline">
-                Learn More →
-              </Link>
+                It employs a decoder-only Transformer design and incorporates Byte Pair Encoding (BPE) tokenization
+                as its robust text-preprocessing technique.
+              </p>
+              <div className="mt-auto pt-4">
+                <Link to="/projects" className="text-amber-400 hover:underline">
+                  Learn More →
+                </Link>
+              </div>
             </div>
 
             {/* Project 2 */}
-            <div className="bg-blue-700 p-6 rounded-lg shadow hover:shadow-xl transition" data-aos="fade-left">
-              <h3 className="text-xl font-semibold mb-2 text-[#05befa]">Automated Detection of Diabetic Retinopathy</h3>
+            <div className="bg-blue-700 p-6 rounded-lg shadow hover:shadow-xl transition flex flex-col" data-aos="fade-left">
+              <h3 className="text-2xl font-semibold mb-2 text-[#05befa]">Computer Vision Research</h3>
               <p className="text-white mb-3">
-                Diabetic Retinopathy (DR) is an eye disease triggered by diabetes, which may lead to blindness. To prevent 
-                diabetic patients from becoming blind, early diagnosis and accurate detection of DR are vital. This immense 
-                significance serves as the motivation for this work. 
+                A repository dedicated to my research, implementation and learning about the groundbreaking advancements in
+                Computer Vision. The repository comprises implementation — from scratch — of various prominent Computer Vision
+                architectures, which includes: Vision Transformer, MobileNet, ResNet, EfficientNet, et al.
               </p>
               <p className="text-white mb-3">
-                This application automates the early detection of DR using machine learning and computer vision. It analyzes 
-                retinal fundus images to provide consistent and efficient screening results, addressing challenges in manual 
-                diagnosis and limited access to ophthalmologists.
-              </p> <br></br>
-              <Link to="/projects" className="text-amber-400 hover:underline">
-                Learn More →
-              </Link>
+                The tasks covered span across image classification, object segmentation, detection and generative models,
+                such as Diffusion models and Generative Adversarial Networks (GANs).
+              </p>
+              <div className="mt-auto pt-4">
+                <Link to="/projects" className="text-amber-400 hover:underline">
+                  Learn More →
+                </Link>
+              </div>
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const Footer = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -26,23 +26,21 @@ const Footer = () => {
       }`}
     >
       <div
-        className={`w-full max-w-screen-xl mx-auto px-4 py-4 flex items-center justify-center rounded-md transition-colors duration-300 ${
-          isDarkMode ? "bg-gray-900" : "bg-gray-100"
-        }`}
+        className={`w-full max-w-screen-xl mx-auto px-4 py-4 flex items-center justify-center rounded-md transition-colors duration-300`}
       >
         <p
           className={`text-xs sm:text-sm text-center transition-colors duration-300 ${
             isDarkMode ? "text-gray-300" : "text-gray-700"
           }`}
         >
-          © 2025 Developed with Love by{" "}
+          © 2025 Developed with ❤️ by{" "}
           <a
             href="/"
             className={`hover:underline transition-colors duration-200 ${
               isDarkMode ? "hover:text-blue-400" : "hover:text-blue-600"
             }`}
           >
-            Osunba Silas™
+            Silas Osunba
           </a>
         </p>
       </div>
