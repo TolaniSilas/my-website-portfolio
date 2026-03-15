@@ -6,19 +6,70 @@ import sw_devBg from "../assets/software-dev-video.mp4";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-// define the project data 
+// define the project data.
 const projects = [
   {
     id: 1,
-    title: "AI Chat Assistant",
-    categories: ["AI & ML", "Backend Development"],
+    title: "Computer Vision Research",
+    categories: ["AI & ML"],
     description:
-      "A conversational AI assistant that intelligently understands and responds to user prompts using advanced open-source LLM APIs. Designed for natural dialogue flow, contextual awareness, and seamless backend integration.",
-    image: "/images/ai-chat-image.png",
-    link: "https://github.com/TolaniSilas/LLM-ChatApp/",
+      "A repository dedicated to my research, implementation and learning about the groundbreaking advancements in Computer Vision. The repository comprises implementation — from scratch — of various prominent Computer Vision architectures, which includes: Vision Transformer, MobileNet, ResNet, EfficientNet, et al. The tasks covered span across image classification, object segmentation, detection and generative models, such as Diffusion models and Generative Adversarial Networks (GANs).",
+    image: "/images/cv-image.png",
+    link: "https://github.com/TolaniSilas/Computer-Vision-Research",
   },
+
   {
     id: 2,
+    title: "Mini GPT",
+    categories: ["AI & ML"],
+    description:
+      "Implemented Generative Pretrained Transformer (GPT) models (e.g., GPT-2, GPT-3) for experimental purposes to gain a deeper understanding of the underlying mechanisms of this technology. The model architecture is inspired by a major breakthrough in deep learning: the self-attention mechanism introduced in 'Attention Is All You Need' by Vaswani et al. It employs a decoder-only Transformer design and incorporates Byte Pair Encoding (BPE) tokenization as its robust text-preprocessing technique.",
+    image: "/images/llm-image.png",
+    link: "https://github.com/TolaniSilas/Mini-GPT",
+  },
+
+  {
+    id: 3,
+    title: "Real-Time Currency Analyst Agent",
+    categories: ["AI & ML", "Backend Development"],
+    description:
+      "A conversational, financial intelligence AI Agent specialized in analyzing currencies. It fetches real-time exchange rate data and interprets currency relationships at real-time (the current moment). It responsibility is also to provide clear and concise insights for users seeking to understand the relative strength of currencies across various countries or perform instant conversions between different currencies.",
+    image: "/images/currency-image.png",
+    link: "https://github.com/TolaniSilas/genai_works/tree/main/src/currency_analyst_agent",
+  },
+
+  {
+    id: 4,
+    title: "Web3 Semantic Search",
+    categories: ["AI & ML", "Backend Development"],
+    description:
+      "This is a decentralized content retrieval system in which users upload content - such as images and blogs - that can later be retrieved by other users using natural-language search (via queries or prompts). It was developed on Camp Network - a Layer-1 blockchain built to modernize intellectual property (IP) infrastructure and power the next generation of AI Agents on verifiable IP.",
+    image: "/images/web3-semantic.png",
+    link: "https://github.com/TolaniSilas/web3-semantic-search",
+  },
+
+  {
+    id: 5,
+    title: "Automated Detection of Diabetic Retinopathy",
+    categories: ["AI & ML", "Web Development", "Backend Development"],
+    description:
+      "An end-to-end AI-driven software system for early detection of Diabetic Retinopathy (DR) using deep learning and computer vision techniques. This project analyzes retinal fundus images to automate diagnosis, improving accuracy, speed, and accessibility of diabetic eye screening for ophthalmologists.",
+    image: "/images/ai-as-a-doctor.png",
+    link: "https://diabetic-retinopathy-web.streamlit.app/",
+  },
+
+  {
+    id: 6,
+    title: "Recipe Site Traffic",
+    categories: ["Backend Development", "AI & ML", "Web Development"],
+    description:
+      "An end-to-end ML system from problem formulation to model deployment via Docker; it also step forward to cover data drift and model monitoring. The product team at Tasty Bytes needs a data-driven assistance in the decision-making process for selecting which recipes to feature on the homepage so they can maximize high-traffic recipes and minimize low-traffic ones, with a target of correctly identifying popular recipes around 80% of the time, thereby boosting subscriptions.",
+    image: "/images/recipe-traffic-image.png",
+    link: "https://github.com/TolaniSilas/Recipe-Site-Traffic",
+  },
+
+  {
+    id: 7,
     title: "Loan Eligibility App",
     categories: ["Backend Development", "AI & ML", "Web Development"],
     description:
@@ -26,26 +77,19 @@ const projects = [
     image: "/images/loan-eligibility.png",
     link: "https://dreamhousingfinance.onrender.com/",
   },
+
   {
-    id: 3,
-    title: "Portfolio Website",
-    categories: ["Web Development"],
+    id: 8,
+    title: "Improving Students' Performance in Nigerian Schools",
+    categories: ["AI & ML", "Featured"],
     description:
-      "A visually engaging personal portfolio website that reflects my values, skills, and projects. Built with React.js and Tailwind CSS, it features dark mode, smooth animations, and a fully responsive design for optimal viewing across devices.",
-    image: "/images/portfolio-image.png",
-    link: "https://github.com/TolaniSilas/my-website-portfolio",
+      "A data analytics and machine learning project designed to recover the key factors influencing students' performance in Nigerian schools. By analyzing survey, and assessment data of JAMB UTME, the model identifies students at risk, and recommends actionable interventions to enhance educational outcomes.",
+    image: "/images/jamb-image.png",
+    link: "https://github.com/TolaniSilas/Improving-Students-Performance-in-Nigerian-Schools-",
   },
+  
   {
-    id: 4,
-    title: "Automated Detection of Diabetic Retinopathy",
-    categories: ["AI & ML", "Web Development", "Backend Development"],
-    description:
-      "An AI-driven software system for early detection of Diabetic Retinopathy (DR) using deep learning and computer vision techniques. This project analyzes retinal fundus images to automate diagnosis, improving accuracy, speed, and accessibility of diabetic eye screening for ophthalmologists.",
-    image: "/images/ai-as-a-doctor.png",
-    link: "https://diabetic-retinopathy-web.streamlit.app/",
-  },
-  {
-    id: 5,
+    id: 9,
     title: "emPLE Web Application",
     categories: ["Web Development", "Backend Development", "Featured"],
     description:
@@ -53,18 +97,20 @@ const projects = [
     image: "/images/emple-image.png",
     link: "https://www.emple.group/",
   },
+
   {
-    id: 6,
-    title: "Improving Students’ Performance in Nigerian Schools",
-    categories: ["AI & ML", "Featured"],
+    id: 10,
+    title: "Portfolio Website",
+    categories: ["Web Development"],
     description:
-      "A data analytics and machine learning project designed to recover the key factors influencing students' performance in Nigerian schools. By analyzing survey, and assessment data of JAMB UTME, the model identifies students at risk, and recommends actionable interventions to enhance educational outcomes.",
-    image: "/images/jamb-image.png",
-    link: "https://github.com/TolaniSilas/Improving-Students-Performance-in-Nigerian-Schools-",
+      "A visually engaging personal portfolio website that reflects my values, skills, and projects. Built with React.js and Tailwind CSS, it features dark mode, smooth animations, and a fully responsive design for optimal viewing across devices.",
+    image: "/images/portfolio-image.png",
+    link: "https://osunbasilasdev.vercel.app/",
   },
+
 ];
 
-// define the hero section background videos
+// hero section background videos.
 const heroBackgrounds = [
   {
     id: 1,
@@ -89,12 +135,10 @@ const ProjectsPage = () => {
   const [phase, setPhase] = useState("typingTitle");
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // initialize AOS
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
   }, []);
 
-  // detect dark mode dynamically
   useEffect(() => {
     const html = document.documentElement;
     const observer = new MutationObserver(() => {
@@ -107,7 +151,6 @@ const ProjectsPage = () => {
 
   const { title, subtitle, video } = heroBackgrounds[currentHero];
 
-  // typewriter + video switch
   useEffect(() => {
     let timeout;
     let text = "";
@@ -149,7 +192,6 @@ const ProjectsPage = () => {
     return () => clearInterval(timeout);
   }, [phase, title, subtitle]);
 
-  // updated filtering logic for multiple categories
   const filteredProjects =
     selectedCategory === "All Projects"
       ? projects
@@ -169,9 +211,9 @@ const ProjectsPage = () => {
         isDarkMode ? "bg-black text-white" : "bg-white text-black"
       }`}
     >
-      {/* hero section */}
+
+      {/* hero section. */}
       <div className="relative w-full h-[70vh] flex items-center justify-center overflow-hidden bg-black">
-        {/* crossfade videos */}
         <div className="absolute inset-0">
           <AnimatePresence>
             {heroBackgrounds.map(
@@ -195,11 +237,7 @@ const ProjectsPage = () => {
           </AnimatePresence>
         </div>
 
-        <div
-          className={`absolute inset-0 ${
-            isDarkMode ? "bg-black/70" : "bg-black/60"
-          }`}
-        ></div>
+        <div className={`absolute inset-0 ${isDarkMode ? "bg-black/70" : "bg-black/60"}`}></div>
 
         <div className="relative z-10 text-center px-4">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">
@@ -216,13 +254,13 @@ const ProjectsPage = () => {
         </div>
       </div>
 
-      {/* stats section */}
+      {/* stats section. */}
       <div className="max-w-6xl mx-auto px-6 py-20 grid grid-cols-2 md:grid-cols-4 gap-6">
         {[
           { value: "30+", label: "Projects Completed" },
           { value: "20+", label: "Technologies Used" },
-          { value: "350+", label: "GitHub Commits" },
-          { value: "8+", label: "Live Deployments" },
+          { value: "650+", label: "GitHub Commits" },
+          { value: "10+", label: "Live Deployments" },
         ].map((stat, index) => (
           <motion.div
             key={index}
@@ -237,7 +275,6 @@ const ProjectsPage = () => {
               boxShadow: "0 0 15px rgba(37, 99, 235, 0.4)",
             }}
             data-aos="zoom-in"
-            data-aos-duration="1100"
           >
             <h2 className="text-3xl font-bold text-blue-600 dark:text-blue-400">
               {stat.value}
@@ -266,12 +303,12 @@ const ProjectsPage = () => {
         ))}
       </div>
 
-      {/* define the projects grid */}
+      {/* project grid. */}
       <div className="max-w-6xl mx-auto px-6 grid gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {filteredProjects.map((project) => (
           <motion.div
             key={project.id}
-            className={`group rounded-2xl overflow-hidden border shadow-md hover:shadow-xl transition-all duration-500 ${
+            className={`group flex flex-col h-full rounded-2xl overflow-hidden border shadow-md hover:shadow-xl transition-all duration-500 ${
               isDarkMode
                 ? "bg-gray-900 border-gray-700"
                 : "bg-white border-gray-200"
@@ -285,16 +322,21 @@ const ProjectsPage = () => {
               alt={project.title}
               className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
             />
-            <div className="p-6">
+
+            <div className="p-6 flex flex-col flex-grow">
               <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-2">
                 {project.title}
               </h3>
-              <p className="mb-4">{project.description}</p>
+
+              <p className="mb-4 text-sm leading-relaxed line-clamp-4">
+                {project.description}
+              </p>
+
               <a
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-500 dark:text-blue-400 font-medium hover:underline"
+                className="mt-auto text-blue-500 dark:text-blue-400 font-medium hover:underline"
               >
                 View Project →
               </a>
@@ -303,26 +345,22 @@ const ProjectsPage = () => {
         ))}
       </div>
 
-      {/* cta section */}
+      {/* cta. */}
       <motion.div
         className={`max-w-4xl mx-auto mt-24 mb-0 p-8 sm:p-10 rounded-2xl border shadow-lg text-center transition-all duration-500 ${
           isDarkMode
             ? "bg-gray-900 border-gray-700"
             : "bg-gray-50 border-gray-200"
         }`}
-        whileHover={{
-          y: -10,
-          borderColor: "#2563eb",
-          boxShadow: "0 0 20px rgba(37, 99, 235, 0.4)",
-        }}
       >
         <FaGithub className="mx-auto text-5xl text-blue-600 dark:text-blue-400 mb-4" />
         <h2 className="text-2xl md:text-3xl font-bold mb-4 text-blue-600 dark:text-blue-400">
           Explore More Projects on GitHub
         </h2>
         <p className="mb-6 leading-relaxed px-2 sm:px-6">
-          My projects cover data science, machine learning, backend development, and software engineering. Explore more of my projects and contributions.
+          My projects cover data science, machine learning, backend development, and software engineering.
         </p>
+
         <a
           href="https://github.com/TolaniSilas"
           target="_blank"
