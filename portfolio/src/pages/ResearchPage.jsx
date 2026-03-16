@@ -123,6 +123,7 @@ const ResearchPage = () => {
               <img
                 src={labImages[currentIndex].src}
                 alt={labImages[currentIndex].alt}
+                loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover rounded-xl"
               />
             </div>

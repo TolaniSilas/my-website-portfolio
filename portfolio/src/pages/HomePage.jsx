@@ -26,6 +26,7 @@ const Slideshow = () => {
         <img
           src={images[current]}
           alt="Osunba Silas"
+          loading="lazy"
           className="w-full h-full object-cover transition duration-700 ease-in-out"
         />
       </div>

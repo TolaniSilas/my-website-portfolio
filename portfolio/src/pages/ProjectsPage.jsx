@@ -319,6 +319,7 @@ const ProjectsPage = () => {
           >
             <img
               src={project.image}
+              loading="lazy"
               alt={project.title}
               className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
             />
