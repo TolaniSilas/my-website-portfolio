@@ -1,14 +1,19 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { FaExternalLinkAlt } from "react-icons/fa";
+import labphoto1 from "../assets/images/lab1.webp";
+import labphoto2 from "../assets/images/lab2.webp";
+import labresult1 from "../assets/images/result1.webp";
+import labresult2 from "../assets/images/result2.webp";
+import robotimage from "../assets/images/robot-image.webp";
 
 // ---- Slideshow Images ----
 const labImages = [
-  { src: "/images/lab1.jpeg", alt: "In the lab working on Amplitude and Frequency Modulation (AM & FM) experiment" },
-  { src: "/images/lab2.jpeg", alt: "Team discussion during the lab research" },
-  { src: "/images/result1.jpeg", alt: "Displaying the modulated FM signal" },
-  { src: "/images/result2.jpeg", alt: "Analyzing the experimental results with the aid of an oscilloscope"},
+  { src: labphoto1, alt: "In the lab working on Amplitude and Frequency Modulation (AM & FM) experiment" },
+  { src: labphoto2, alt: "Team discussion during the lab research" },
+  { src: labresult1, alt: "Displaying the modulated FM signal" },
+  { src: labresult2, alt: "Analyzing the experimental results with the aid of an oscilloscope"},
 ];
 
 // ---- Publications ----
@@ -70,7 +75,7 @@ const ResearchPage = () => {
       {/* Hero Section (no gradient background) */}
       <header className="relative w-full h-[60vh] sm:h-[70vh] lg:h-[80vh] mb-16 overflow-hidden flex items-center justify-center" data-aos="zoom-in-down">
         <img
-          src="/images/robot-image.png"
+          src={robotimage}
           alt="Research Hero"
           className="absolute inset-0 w-full h-full object-cover"
         />

@@ -3,13 +3,15 @@ import { Link } from "react-router-dom";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
 import {FaReact, FaJs, FaHtml5, FaCss3Alt, FaPython, FaGithub, FaLaptopCode} from "react-icons/fa";
 import { SiTensorflow, SiPytorch, SiStreamlit, SiRender } from "react-icons/si";
-import videoBg from "../assets/homepage-tech-video.mp4";
+import videoBg from "../assets/videos/homepage-tech-video.mp4";
+import silasphoto1 from "../assets/images/silas1.webp";
+import silasphoto2 from "../assets/images/silas2.webp";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 // Slideshow Component
 const Slideshow = () => {
-  const images = ["/images/silas2.png", "/images/silas3.png"];
+  const images = [silasphoto1, silasphoto2];
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
-import ai_mlBg from "../assets/ai-and-ml-video.mp4";
-import sw_devBg from "../assets/software-dev-video.mp4";
+import ai_mlBg from "../assets/videos/ai-and-ml-video.mp4";
+import sw_devBg from "../assets/videos/software-dev-video.mp4";
 import AOS from "aos";
 import "aos/dist/aos.css";
+
 
 // define the project data.
 const projects = [
