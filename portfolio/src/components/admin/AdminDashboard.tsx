@@ -40,7 +40,7 @@ export default function AdminDashboard() {
         const { data, error } = await client.from('portfolio_owner').select('user_id').eq('user_id', verified.user.id).maybeSingle();
         if (error) throw new Error('Owner verification failed. Check the database setup.');
         if (!data) throw new Error('This account does not have owner access.');
-        const result = await client.from('portfolio_content').select('*').order('position').order('created_at');
+        const result = await client.from('portfolio_content').select('*').in('kind', ['book', 'plan']).order('position').order('created_at');
         if (result.error) throw result.error;
         if (active) { setOwner(true); setEntries(result.data ?? []); setMessage(''); }
       } catch (error) { if (active) setMessage(error instanceof Error ? error.message : 'Access verification failed.'); }
@@ -109,14 +109,13 @@ export default function AdminDashboard() {
         <form onSubmit={save} className="card-surface space-y-5 p-6">
           <fieldset disabled={busy} className="space-y-5">
             <legend className="mb-5 font-display text-2xl">{draft.id ? 'Edit' : 'Add'} — {labels[kind]}</legend>
-            {field('title', kind === 'intro' ? 'Role below your name' : 'Title', true)}
-            <label className="admin-field">{kind === 'intro' ? 'Mission statement' : 'Description / notes / full text'}<textarea rows={8} value={draft.body} onChange={e => setDraft({ ...draft, body: e.target.value })} /></label>
-            {['project','article','publication','book'].includes(kind) && field('url', 'Link', ['project','article','publication'].includes(kind))}
-            {['project','book'].includes(kind) && field('image', 'Image URL or /images/ path')}
+            {field('title', 'Title', true)}
+            <label className="admin-field">{'Description / notes'}<textarea rows={8} value={draft.body} onChange={e => setDraft({ ...draft, body: e.target.value })} /></label>
+            {kind === 'book' && field('url', 'Link', false)}
+            {kind === 'book' && field('image', 'Image URL or /images/ path')}
             {kind === 'book' && field('author', 'Author')}
             {['book','article','plan'].includes(kind) && field('date', 'Date (e.g. September 2026)')}
             {['book','plan'].includes(kind) && <label className="admin-field">Status<select value={draft.status} onChange={e => setDraft({ ...draft, status: e.target.value as Draft['status'] })}><option value="planned">{kind === 'book' ? 'Want to read' : 'Planned'}</option><option value="in-progress">{kind === 'book' ? 'Reading' : 'In progress'}</option><option value="completed">Completed</option></select></label>}
-            {kind === 'project' && <div><p className="mb-2">Categories</p>{['AI & ML','Backend Development','Web Development'].map(category => <label key={category} className="mr-4 inline-flex items-center gap-2"><input type="checkbox" checked={draft.categories.includes(category)} onChange={e => setDraft({ ...draft, categories: e.target.checked ? [...draft.categories, category] : draft.categories.filter(c => c !== category) })} />{category}</label>)}</div>}
             <label className="admin-field">Display order (lowest first)<input type="number" step="1" required value={draft.position} onChange={e => setDraft({ ...draft, position: Number(e.target.value) })} /></label>
             <label className="flex items-center gap-3"><input type="checkbox" checked={draft.published} onChange={e => setDraft({ ...draft, published: e.target.checked })} />Publish on the website</label>
             <div className="flex gap-3"><button className="btn-primary">{busy ? 'Saving…' : 'Save entry'}</button><button type="button" className="btn-secondary" onClick={() => setDraft(emptyEntry(kind))}>Clear form</button></div>

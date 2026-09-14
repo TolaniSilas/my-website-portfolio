@@ -1,12 +1,10 @@
-"use client";
 
 import Link from "next/link";
 import { FaEnvelope, FaGithub, FaLinkedinIn } from "react-icons/fa";
-import { useContent } from "../context/ContentContext";
+import { projects } from "../data/projects";
 
 const Footer = () => {
-  const { projects, configured } = useContent();
-  const selectedProjects = configured ? projects.slice(0, 5) : [1, 2, 5, 3, 4].flatMap(id => projects.filter(p => p.id === id));
+  const selectedProjects = [1, 2, 5, 3, 4].flatMap(id => projects.filter(p => p.id === id));
   return (
     <footer className="site-footer mt-auto border-t border-line bg-surface dark:border-line-dark dark:bg-surface-dark">
       <div className="page-shell footer-grid">

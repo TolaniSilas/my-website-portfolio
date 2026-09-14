@@ -1,68 +1,19 @@
-"use client";
 
-import { useState } from "react";
-import Link from "next/link";
-import { FaCss3Alt, FaGithub, FaHtml5, FaJs, FaLaptopCode, FaPython, FaReact } from "react-icons/fa";
-import { SiPytorch, SiRender, SiStreamlit, SiTensorflow } from "react-icons/si";
-import silasphoto1 from "../assets/images/silas1.webp";
+import { projects } from "../data/projects";
 import { posts } from "../data/blog";
 import { publications } from "../data/publications";
+import Link from "next/link";
+import silasphoto1 from "../assets/images/silas1.webp";
 import labPhoto from "../assets/images/lab1.webp";
-import { projects } from "../data/projects";
-import type { TechCategory, TechItem } from "../types/content";
 
 const HomePage = () => {
-  const [selectedCategory, setSelectedCategory] = useState<TechCategory>("Languages");
-
-  const techStack: Record<TechCategory, TechItem[]> = {
-    Languages: [
-      { name: "Python", icon: <FaPython className="text-5xl" /> },
-      { name: "JavaScript", icon: <FaJs className="text-5xl" /> },
-      { name: "C++", icon: <img src="/logo-svg/cplusplus.svg" alt="C++" className="h-12 w-12" /> },
-      { name: "HTML5", icon: <FaHtml5 className="text-5xl" /> },
-      { name: "CSS3", icon: <FaCss3Alt className="text-5xl" /> },
-      { name: "MATLAB", icon: <img src="/logo-svg/matlab.svg" alt="MATLAB" className="h-12 w-12" /> },
-      { name: "PostgreSQL", icon: <img src="/logo-svg/postgresql.svg" alt="PostgreSQL" className="h-12 w-12" /> },
-      { name: "MySQL", icon: <img src="/logo-svg/mysql.svg" alt="MySQL" className="h-12 w-12" /> },
-    ],
-    "Libraries & Frameworks": [
-      { name: "React", icon: <FaReact className="text-5xl" /> },
-      { name: "Node.js", icon: <img src="/logo-svg/nodejs.svg" alt="Node.js" className="h-12 w-12" /> },
-      { name: "NumPy", icon: <img src="/logo-svg/numpy.svg" alt="NumPy" className="h-12 w-12" /> },
-      { name: "pandas", icon: <img src="/logo-svg/pandas.svg" alt="pandas" className="h-12 w-12" /> },
-      { name: "seaborn", icon: <img src="/logo-svg/seaborn.svg" alt="seaborn" className="h-12 w-12" /> },
-      { name: "matplotlib", icon: <img src="/logo-svg/matplotlib.svg" alt="matplotlib" className="h-12 w-12" /> },
-      { name: "scikit-learn", icon: <img src="/logo-svg/scikitlearn.svg" alt="scikit-learn" className="h-12 w-12" /> },
-      { name: "langchain", icon: <img src="/logo-svg/langchain.svg" alt="langchain" className="h-12 w-12" /> },
-      { name: "Flask", icon: <img src="/logo-svg/flask.svg" alt="Flask" className="h-12 w-12" /> },
-      { name: "FastAPI", icon: <img src="/logo-svg/fastapi.svg" alt="FastAPI" className="h-12 w-12" /> },
-      { name: "SQLAlchemy", icon: <img src="/logo-svg/sqlalchemy.svg" alt="SQLAlchemy" className="h-12 w-12" /> },
-      { name: "Bootstrap CSS", icon: <img src="/logo-svg/bootstrap.svg" alt="Bootstrap" className="h-12 w-12" /> },
-      { name: "Tailwind CSS", icon: <img src="/logo-svg/tailwind.svg" alt="Tailwind CSS" className="h-12 w-12" /> },
-      { name: "TensorFlow", icon: <SiTensorflow className="text-5xl" /> },
-      { name: "PyTorch", icon: <SiPytorch className="text-5xl" /> },
-    ],
-    "Tools & Platforms": [
-      { name: "GitHub", icon: <FaGithub className="text-5xl" /> },
-      { name: "Git", icon: <img src="/logo-svg/git.svg" alt="Git" className="h-12 w-12" /> },
-      { name: "Docker", icon: <img src="/logo-svg/docker.svg" alt="Docker" className="h-12 w-12" /> },
-      { name: "AWS", icon: <img src="/logo-svg/aws.svg" alt="AWS" className="h-12 w-12" /> },
-      { name: "VS Code", icon: <FaLaptopCode className="text-5xl" /> },
-      { name: "Streamlit", icon: <SiStreamlit className="text-5xl" /> },
-      { name: "Render", icon: <SiRender className="text-5xl" /> },
-      { name: "Microsoft Office Suite", icon: <img src="/logo-svg/msoffice.svg" alt="Microsoft Office" className="h-12 w-12" /> },
-    ],
-  };
-
-  const filteredTechs = techStack[selectedCategory];
 
   return (
     <div className="flex flex-col overflow-x-hidden">
       <section className="home-hero personal-hero page-shell">
         <div className="hero-copy">
-          <p className="section-kicker">A personal space for ideas & exploration</p>
-          <h1>Silas Osunba<span className="hero-role">Machine Learning Engineer & Researcher</span></h1>
-          <p className="hero-description">I work at the intersection of machine learning, software, and research to build intelligent, energy-aware systems that solve real problems.</p>
+          <h1>Silas Osunba<span className="hero-role">Research Engineer & Applied AI Engineer</span></h1>
+          <p className="hero-description">I am on a mission of democratizing the ethical usage of artificial intelligence and super intelligence in under-represented, under-developed and developed countries in Africa. My research interests are in Trustworthy AI, Responsible AI and all things about Machine Intelligence.</p>
           <div className="flex flex-wrap gap-3">
             <Link href="/projects" className="btn-primary">My projects <span aria-hidden="true">↗</span></Link>
             <Link href="/contact" className="btn-secondary">Let’s talk</Link>

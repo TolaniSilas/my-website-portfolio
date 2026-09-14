@@ -1,14 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { ThemeProvider } from "../context/ThemeContext";
-import { ContentProvider, ContentStatus } from "../context/ContentContext";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../index.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://osunbasilasdev.vercel.app"),
-  title: { default: "Silas Osunba | Machine Learning Engineer & Researcher", template: "%s | Silas Osunba" },
+  title: { default: "Silas Osunba | Research Engineer & Applied AI Engineer", template: "%s | Silas Osunba" },
   description: "Silas Osunba — machine learning engineer and researcher building intelligent, energy-aware systems. Explore selected projects, research, and technical writing.",
   icons: { icon: "/images/identity-image.png" },
   openGraph: { type: "website", title: "Silas Osunba", description: "Building intelligent and energy-aware systems.", images: [{ url: "/images/identity-image.png", alt: "Silas Osunba" }] },
@@ -26,14 +25,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
       <body>
         <ThemeProvider>
-        <ContentProvider>
           <div className="flex min-h-screen flex-col bg-canvas text-ink dark:bg-canvas-dark dark:text-ink-dark">
             <a href="#main-content" className="skip-link">Skip to content</a>
             <Header />
-            <main id="main-content" tabIndex={-1} className="flex-grow"><ContentStatus />{children}</main>
+            <main id="main-content" tabIndex={-1} className="flex-grow">{children}</main>
             <Footer />
           </div>
-        </ContentProvider>
         </ThemeProvider>
       </body>
     </html>

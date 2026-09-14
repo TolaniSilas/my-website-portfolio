@@ -1,6 +1,6 @@
 "use client";
 
-import { useContent } from "../context/ContentContext";
+import { projects } from "../data/projects";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
@@ -14,7 +14,6 @@ const categories: ProjectCategory[] = [
 ];
 
 const ProjectsPage = () => {
-  const { projects } = useContent();
   const [selectedCategory, setSelectedCategory] = useState<ProjectCategory>("All Projects");
   const filteredProjects =
     selectedCategory === "All Projects"

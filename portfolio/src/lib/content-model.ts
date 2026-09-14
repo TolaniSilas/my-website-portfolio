@@ -1,4 +1,4 @@
-export const kinds = ['project', 'article', 'publication', 'book', 'plan', 'about', 'intro'] as const;
+export const kinds = ['book', 'plan'] as const;
 export type ContentKind = typeof kinds[number];
 export type ContentEntry = {
   id: string;
@@ -14,10 +14,7 @@ export type ContentEntry = {
   position: number;
   published: boolean;
 };
-export const labels: Record<ContentKind, string> = {
-  project: 'Projects', article: 'Articles', publication: 'Publications', book: 'Books',
-  plan: 'List66', about: 'Biography sections', intro: 'Homepage introduction',
-};
+export const labels: Record<ContentKind, string> = { book: 'Books', plan: 'List66' };
 export function emptyEntry(kind: ContentKind): Omit<ContentEntry, 'id'> {
   return { kind, title: '', body: '', url: '', image: '', author: '', date: '', status: 'planned', categories: [], position: 0, published: false };
 }

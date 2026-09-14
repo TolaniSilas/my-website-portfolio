@@ -1,9 +1,7 @@
-"use client";
-import { useContent } from "../context/ContentContext";
+import { posts } from "../data/blog";
 
 
 export default function BlogPage() {
-  const { posts } = useContent();
   return (
     <div className="min-h-screen px-6 pt-28 pb-16">
       <div className="mb-16 mt-4 text-center">

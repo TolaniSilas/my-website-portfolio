@@ -2,11 +2,7 @@
 
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import { getSupabase } from '../lib/supabase';
-import { safeUrl, type ContentEntry } from '../lib/content-model';
-import { projects as localProjects } from '../data/projects';
-import { posts as localPosts } from '../data/blog';
-import { publications as localPublications } from '../data/publications';
-import type { Project, BlogPost, Publication } from '../types/content';
+import { type ContentEntry } from '../lib/content-model';
 
 const configured = Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY);
 const ContentContext = createContext<{ entries: ContentEntry[]; configured: boolean; loading: boolean; error: boolean }>({ entries: [], configured, loading: configured, error: false });
@@ -20,7 +16,7 @@ export function ContentProvider({ children }: { children: ReactNode }) {
     let active = true;
     async function refresh() {
       try {
-        const { data, error } = await getSupabase().from('portfolio_content').select('*').eq('published', true).order('position').order('created_at');
+        const { data, error } = await getSupabase().from('portfolio_content').select('*').in('kind', ['book', 'plan']).eq('published', true).order('position').order('created_at');
         if (error) throw error;
         if (active) { setEntries(data ?? []); setError(false); }
       } catch { if (active) setError(true); }
@@ -35,11 +31,7 @@ export function ContentProvider({ children }: { children: ReactNode }) {
 }
 
 export function useContent() {
-  const state = useContext(ContentContext);
-  const projects: Project[] = state.configured ? state.entries.filter(e => e.kind === 'project').map(e => ({ id: e.id, title: e.title, description: e.body, link: safeUrl(e.url), image: safeUrl(e.image, true) || '/images/identity-image.png', categories: e.categories as Project['categories'] })) : localProjects;
-  const posts: BlogPost[] = state.configured ? state.entries.filter(e => e.kind === 'article').map(e => ({ id: e.id, title: e.title, excerpt: e.body, date: e.date, slug: safeUrl(e.url) })) : localPosts;
-  const publications: Publication[] = state.configured ? state.entries.filter(e => e.kind === 'publication').map(e => ({ citation: e.body || e.title, link: safeUrl(e.url) })) : localPublications;
-  return { ...state, projects, posts, publications };
+  return useContext(ContentContext);
 }
 
 export function ContentStatus() {

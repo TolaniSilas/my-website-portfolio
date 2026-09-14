@@ -1,6 +1,6 @@
 "use client";
 
-import { useContent } from "../context/ContentContext";
+import { publications } from "../data/publications";
 import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -19,7 +19,6 @@ const labImages = [
 ];
 
 const ResearchPage = () => {
-  const { publications } = useContent();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {

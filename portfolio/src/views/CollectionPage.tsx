@@ -1,7 +1,11 @@
 "use client";
-import { useContent } from '../context/ContentContext';
+import { useContent, ContentProvider, ContentStatus } from '../context/ContentContext';
 import { safeUrl } from '../lib/content-model';
 export default function CollectionPage({ kind }: { kind: 'book' | 'plan' }) {
+  return <ContentProvider><ContentStatus /><CollectionContent kind={kind} /></ContentProvider>;
+}
+
+function CollectionContent({ kind }: { kind: 'book' | 'plan' }) {
   const { entries, loading, error } = useContent();
   const items = entries.filter(e => e.kind === kind);
   return <div className="page-shell min-h-[65vh] pb-20"><header className="page-intro"><p className="section-kicker">Personal notes</p><h1 className="section-title">{kind === 'book' ? 'Books' : 'List66'}</h1><p>{kind === 'book' ? 'Books I read and the ideas I take away from them.' : 'Things I hope to do, explore, and learn.'}</p></header>
