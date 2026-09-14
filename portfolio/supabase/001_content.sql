@@ -12,7 +12,7 @@ create policy "Owner can verify own membership" on public.portfolio_owner
 
 create table public.portfolio_content (
   id uuid primary key default gen_random_uuid(),
-  kind text not null check (kind in ('project','article','publication','book','plan','about','intro')),
+  kind text not null check (kind in ('book','plan')),
   title text not null check (length(trim(title)) between 1 and 300),
   body text not null default '',
   url text not null default '' check (url = '' or url ~ '^https?://'),
@@ -25,7 +25,6 @@ create table public.portfolio_content (
   published boolean not null default false,
   created_at timestamptz not null default now()
 );
-create unique index one_intro on public.portfolio_content(kind) where kind = 'intro';
 alter table public.portfolio_content enable row level security;
 revoke all on public.portfolio_content from anon, authenticated;
 grant select on public.portfolio_content to anon;
