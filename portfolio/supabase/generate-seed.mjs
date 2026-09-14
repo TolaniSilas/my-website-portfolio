@@ -1,0 +1,15 @@
+import { projects } from '../src/data/projects.ts';
+import { posts } from '../src/data/blog.ts';
+import { publications } from '../src/data/publications.ts';
+import { readFileSync, writeFileSync } from 'node:fs';
+const quote = value => "'" + String(value).replaceAll("'", "''") + "'";
+const entries = [];
+for (const p of projects) entries.push({kind:'project', title:p.title, body:p.description, url:p.link, image:p.image, categories:p.categories, position:[1,2,5,3,4,6,7].indexOf(p.id)+1});
+for (const p of posts) entries.push({kind:'article', title:p.title, body:p.excerpt, url:p.slug, date:p.date});
+for (const [i,p] of publications.entries()) entries.push({kind:'publication', title:`Publication ${i+1}`, body:p.citation, url:p.link, position:i});
+const about = readFileSync(new URL('../src/views/AboutPage.tsx',import.meta.url),'utf8');
+for (const match of about.matchAll(/<h2 className="section-title mb-5">([^<]+)<\/h2>\s*<p className="leading-8 text-muted dark:text-muted-dark">([^<]+)<\/p>/g)) entries.push({kind:'about', title:match[1], body:match[2], position:entries.length});
+entries.push({kind:'intro',title:'Research Engineer & Applied AI Engineer',body:'I am on a mission of democratizing the ethical usage of artificial intelligence and super intelligence in under-represented, under-developed and developed countries in Africa. My research interests are in Trustworthy AI, Responsible AI and all things about Machine Intelligence.'});
+const columns=['kind','title','body','url','image','author','date','position','published','categories'];
+const sql=entries.map(e=>`insert into public.portfolio_content (${columns.join(',')}) select ${columns.map(c => c==='published'?'true':c==='position'?(e[c]??0):c==='categories'?`array[${(e[c]??[]).map(quote).join(',')}]::text[]`:quote(e[c]??'')).join(',')} where not exists (select 1 from public.portfolio_content where kind=${quote(e.kind)} and title=${quote(e.title)});`).join('\n');
+writeFileSync(new URL('./002_seed.sql',import.meta.url),'-- Run once after 001_content.sql, before using the editor.\nbegin;\n'+sql+'\ncommit;\n');
