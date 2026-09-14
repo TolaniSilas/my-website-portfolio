@@ -8,7 +8,7 @@ export type ProjectCategory =
   | "Featured";
 
 export type Project = {
-  id: number;
+  id: number | string;
   title: string;
   categories: Exclude<ProjectCategory, "All Projects">[];
   description: string;
@@ -17,7 +17,7 @@ export type Project = {
 };
 
 export type BlogPost = {
-  id: number;
+  id: number | string;
   title: string;
   date: string;
   excerpt: string;
