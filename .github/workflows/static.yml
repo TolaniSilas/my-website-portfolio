@@ -36,14 +36,16 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
 
       - name: Install dependencies
         working-directory: portfolio
-        run: npm install
+        run: npm ci
 
       - name: Build site
         working-directory: portfolio
+        env:
+          NEXT_STATIC_EXPORT: "true"
         run: npm run build
 
       - name: Setup Pages
@@ -52,7 +54,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: portfolio/dist   # 👈 Vite output
+          path: portfolio/out
 
       - name: Deploy to GitHub Pages
         id: deployment
