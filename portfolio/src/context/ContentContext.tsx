@@ -1,5 +1,4 @@
 "use client";
-
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import { getSupabase } from '../lib/supabase';
 import { type ContentEntry } from '../lib/content-model';
