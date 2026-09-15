@@ -3,8 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaFileAlt, FaGithub, FaLinkedin, FaMoon, FaSun } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaMoon, FaSun } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import DocumentViewer from "./DocumentViewer";
 import { useTheme } from "../context/theme";
 
 const Header = () => {
@@ -102,15 +103,7 @@ const Header = () => {
               menuOpen ? "flex" : "hidden"
             } mt-3 w-full flex-col items-center xl:order-1 xl:mt-0 xl:flex xl:w-auto xl:flex-row xl:space-x-2 2xl:space-x-4`}
           >
-            <a
-              href="https://docs.google.com/document/d/12pPsc9r_XsGnkyR1deLyTiweF9qSkJoHtXVpVNV7PqM/edit?tab=t.0"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full px-2 py-2 text-sm text-muted hover:text-accent dark:text-muted-dark dark:hover:text-gold"
-              onClick={() => setMenuOpen(false)}
-            >
-              <FaFileAlt aria-hidden="true" /> CV
-            </a>
+            <DocumentViewer onNavigate={() => setMenuOpen(false)} />
             {[
               { href: "/", label: "Home" },
               { href: "/about", label: "About" },
