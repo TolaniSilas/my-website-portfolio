@@ -38,7 +38,14 @@ export default function AdminDashboard() {
         const { data: verified, error: authError } = await client.auth.getUser();
         if (authError || !verified.user) throw new Error('Please sign in again.');
         const { data, error } = await client.from('portfolio_owner').select('user_id').eq('user_id', verified.user.id).maybeSingle();
-        if (error) throw new Error('Owner verification failed. Check the database setup.');
+        if (error) {
+          const reason = error.code === 'PGRST205' || error.code === '42P01'
+            ? 'The portfolio_owner table was not found. Check that 001_content.sql was applied to the project configured in .env.local.'
+            : error.code === '42501'
+              ? 'The database denied access to portfolio_owner. Check the SELECT grant and owner verification policy from 001_content.sql.'
+              : error.message;
+          throw new Error(`Owner verification failed${error.code ? ` (${error.code})` : ''}: ${reason}`);
+        }
         if (!data) throw new Error('This account does not have owner access.');
         const result = await client.from('portfolio_content').select('*').in('kind', ['book', 'plan']).order('position').order('created_at');
         if (result.error) throw result.error;
@@ -96,10 +103,10 @@ export default function AdminDashboard() {
   const field = (name: 'title' | 'url' | 'image' | 'author' | 'date', label: string, required = false) => <label className="admin-field">{label}<input value={draft[name]} required={required} maxLength={name === 'title' ? 300 : undefined} onChange={e => setDraft({ ...draft, [name]: e.target.value })} /></label>;
 
   return <div className="page-shell page-intro pb-20">
-    <div className="section-heading"><div><p className="section-kicker">Your workspace</p><h1 className="section-title">Portfolio admin</h1></div>{user && <button className="btn-secondary" disabled={busy} onClick={signOut}>Sign out</button>}</div>
+    <div className="section-heading"><h1 className="section-title">Admin</h1>{user && <button className="btn-secondary" disabled={busy} onClick={signOut}>Sign out</button>}</div>
     {message && <p role="status" className="mb-6 rounded-md border border-line p-4">{message}</p>}
     {checking ? <p role="status">Checking access…</p> : !user ? <form onSubmit={login} className="card-surface max-w-md space-y-5 p-8">
-      <h2 className="font-display text-2xl">Owner sign-in</h2>
+      <h2 className="font-display text-2xl">Sign in</h2>
       <label className="admin-field">Email<input name="email" type="email" autoComplete="username" required /></label>
       <label className="admin-field">Password<input name="password" type="password" autoComplete="current-password" required /></label>
       <button className="btn-primary" disabled={busy}>{busy ? 'Signing in…' : 'Sign in'}</button>
@@ -121,7 +128,7 @@ export default function AdminDashboard() {
             <div className="flex gap-3"><button className="btn-primary">{busy ? 'Saving…' : 'Save entry'}</button><button type="button" className="btn-secondary" onClick={() => setDraft(emptyEntry(kind))}>Clear form</button></div>
           </fieldset>
         </form>
-        <div className="space-y-4"><h2 className="font-display text-2xl">Your entries</h2>{entries.filter(e => e.kind === kind).length === 0 && <p>No entries yet.</p>}{entries.filter(e => e.kind === kind).map(entry => <article key={entry.id} className="card-surface p-5"><p className="text-sm text-muted">{entry.published ? 'Published' : 'Private draft'} · Order {entry.position}</p><h3 className="my-3 text-xl">{entry.title}</h3><div className="flex gap-3"><button disabled={busy} className="btn-secondary" onClick={() => setDraft(entry)}>Edit</button><button disabled={busy} className="btn-secondary" onClick={() => remove(entry)}>Delete</button></div></article>)}</div>
+        <div className="space-y-4"><h2 className="font-display text-2xl">Entries</h2>{entries.filter(e => e.kind === kind).length === 0 && <p>Add your first entry using the form.</p>}{entries.filter(e => e.kind === kind).map(entry => <article key={entry.id} className="card-surface p-5"><p className="text-sm text-muted">{entry.published ? 'Published' : 'Private draft'} · Order {entry.position}</p><h3 className="my-3 text-xl">{entry.title}</h3><div className="flex gap-3"><button disabled={busy} className="btn-secondary" onClick={() => setDraft(entry)}>Edit</button><button disabled={busy} className="btn-secondary" onClick={() => remove(entry)}>Delete</button></div></article>)}</div>
       </div>
     </>}
   </div>;

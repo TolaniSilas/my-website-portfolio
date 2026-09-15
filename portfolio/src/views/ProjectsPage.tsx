@@ -22,7 +22,7 @@ const ProjectsPage = () => {
 
   return (
     <div className="min-h-screen">
-      <header className="page-shell page-intro"><p className="section-kicker">Portfolio / Selected projects</p><h1 className="section-title">Ideas, built into reality.</h1><p>Explorations in machine learning, thoughtful software, and systems that connect research to practical problems.</p></header>
+      <header className="page-shell page-intro"><h1 className="section-title">Ideas, built into reality.</h1><p>Explorations in machine learning, thoughtful software, and systems that connect research to practical problems.</p></header>
       <div className="mb-16 flex flex-wrap justify-center gap-3 px-4">
         {categories.map((cat) => (
           <button

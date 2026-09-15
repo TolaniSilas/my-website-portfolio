@@ -41,7 +41,7 @@ const ResearchPage = () => {
         <img src={robotimage.src} alt="Research Hero" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-canvas-dark/65" />
         <div className="relative z-10 flex flex-col items-center px-6 text-center">
-          <p className="section-kicker">Inquiry</p>
+
           <h1 className="font-display mb-4 text-4xl font-semibold text-white sm:text-5xl lg:text-6xl">
             Research
           </h1>
@@ -64,7 +64,7 @@ const ResearchPage = () => {
 
       <div className="mx-auto max-w-6xl px-6">
         <section className="mb-16">
-          <p className="section-kicker text-center">Path</p>
+
           <h2 className="section-title mb-8 text-center" data-aos="fade-up">
             Voyage and Interests
           </h2>
@@ -121,7 +121,7 @@ const ResearchPage = () => {
 
       <section className="w-full border-y border-line bg-surface py-16 dark:border-line-dark dark:bg-surface-dark">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="section-kicker text-center">Archive</p>
+
           <h2 className="section-title mb-10 text-center">Publications</h2>
           <ul className="mx-auto max-w-4xl space-y-6" data-aos="fade-up">
             {publications.map((pub) => (

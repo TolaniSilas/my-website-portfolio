@@ -8,8 +8,8 @@ export default function CollectionPage({ kind }: { kind: 'book' | 'plan' }) {
 function CollectionContent({ kind }: { kind: 'book' | 'plan' }) {
   const { entries, loading, error } = useContent();
   const items = entries.filter(e => e.kind === kind);
-  return <div className="page-shell min-h-[65vh] pb-20"><header className="page-intro"><p className="section-kicker">Personal notes</p><h1 className="section-title">{kind === 'book' ? 'Books' : 'List66'}</h1><p>{kind === 'book' ? 'Books I read and the ideas I take away from them.' : 'Things I hope to do, explore, and learn.'}</p></header>
-    {!loading && !error && !items.length && <p>No published entries yet.</p>}
+  return <div className="page-shell min-h-[65vh] pb-20"><header className="page-intro"><h1 className="section-title">{kind === 'book' ? 'Books' : 'List66'}</h1><p>{kind === 'book' ? 'Books I read and the ideas I take away from them.' : 'Things I hope to do, explore, and learn.'}</p></header>
+    {!loading && !error && !items.length && <p>Coming soon…</p>}
     <div className="grid gap-6 md:grid-cols-2">{items.map(entry => <article key={entry.id} className="card-surface p-6">
       {kind === 'book' && safeUrl(entry.image, true) && <img src={safeUrl(entry.image, true)} alt={`Cover of ${entry.title}`} className="mb-5 h-48 max-w-full object-contain" />}
       <p className="section-kicker">{entry.status === 'in-progress' ? (kind === 'book' ? 'Reading' : 'In progress') : entry.status === 'completed' ? 'Completed' : (kind === 'book' ? 'Want to read' : 'Planned')}</p>

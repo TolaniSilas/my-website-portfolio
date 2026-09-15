@@ -7,7 +7,7 @@ export default function AboutPage() {
   return (
     <article className="page-shell pb-20">
       <header className="page-intro">
-        <p className="section-kicker">The person behind the work</p>
+
         <h1 className="section-title">About me</h1>
         <p>I’m Silas Osunba, an engineer and researcher guided by curiosity, purpose, and the belief that excellence is a practice.</p>
       </header>

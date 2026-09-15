@@ -91,7 +91,7 @@ export default function ContactPage() {
 
       <div className="relative z-10 w-full max-w-6xl">
         <div className="mb-16 text-center">
-          <p className="section-kicker">Contact</p>
+
           <h2 className="section-title mb-4">Get in Touch</h2>
           <p className="mx-auto max-w-2xl text-lg text-muted dark:text-muted-dark">
             Open to opportunities, collaborations, and conversations. I usually respond within 24 hours.

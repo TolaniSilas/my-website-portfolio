@@ -5,7 +5,7 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen px-6 pt-28 pb-16">
       <div className="mb-16 mt-4 text-center">
-        <p className="section-kicker">Writing</p>
+
         <h1 className="section-title mb-5">
           Articles
         </h1>

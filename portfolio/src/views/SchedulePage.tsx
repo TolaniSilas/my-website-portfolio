@@ -1,7 +1,7 @@
 const SchedulePage = () => {
   return (
     <div className="mx-auto max-w-4xl px-6 py-28 text-center">
-      <p className="section-kicker">Calendar</p>
+
       <h1 className="section-title mb-2">Silas Osunba</h1>
       <h2 className="mb-8 text-xl text-muted dark:text-muted-dark">Schedule a Meeting</h2>
 

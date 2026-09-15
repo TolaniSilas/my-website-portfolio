@@ -27,13 +27,13 @@ const HomePage = () => {
       </section>
       <div className="expertise-strip"><div className="page-shell"><span>Explore</span><span aria-hidden="true">✳</span><span>Build</span><span aria-hidden="true">✳</span><span>Learn</span><span aria-hidden="true">✳</span><span>Share</span></div></div>
       <section id="biography" className="page-shell section-space biography-section">
-        <p className="section-kicker text-center">01 / The person behind the work</p>
+
         <h2 className="section-title mb-12 text-center">
           Biography
         </h2>
         <div className="grid items-start gap-14 md:grid-cols-2">
           <div className="flex justify-center">
-            <div className="about-note"><p className="section-kicker">The way I work</p><p className="font-display text-4xl leading-tight">“Excellence is<br />a practice.”</p><span>Engineering with curiosity and purpose.</span></div>
+            <div className="about-note"><p className="font-display text-4xl leading-tight">“Excellence is<br />a practice.”</p><span>Engineering with curiosity and purpose.</span></div>
           </div>
           <div className="mx-auto mt-8 max-w-[680px] space-y-6 text-base leading-relaxed text-muted sm:text-lg dark:text-muted-dark md:mt-0">
             <p>
@@ -73,18 +73,18 @@ const HomePage = () => {
 
       <section className="journal-section section-space">
         <div className="page-shell journal-grid">
-          <div><div className="section-heading"><div><p className="section-kicker">02 / Research</p><h2 className="section-title">Research & publications</h2></div></div>
+          <div><div className="section-heading"><div><h2 className="section-title">Research & publications</h2></div></div>
             <div className="publication-list">{publications.map((publication, index) => <a key={publication.link} href={publication.link} target="_blank" rel="noopener noreferrer"><span className="entry-number">0{index + 1}</span><p>{publication.citation}</p><span aria-hidden="true">↗</span></a>)}</div>
             <Link href="/research" className="text-link">Explore my research ↗</Link>
           </div>
-          <div><p className="section-kicker">03 / Writing</p><h2 className="section-title mb-8">Latest articles</h2>
+          <div><h2 className="section-title mb-8">Latest articles</h2>
             {posts.map(post => <article className="article-preview" key={post.id}><time>{post.date}</time><h3 className="font-display text-2xl">{post.title}</h3><p>{post.excerpt}</p><a href={post.slug} target="_blank" rel="noopener noreferrer" className="text-link">Read article ↗</a></article>)}
             <Link href="/blog" className="text-link">More writing ↗</Link>
           </div>
         </div>
       </section>
       <section className="page-shell section-space">
-        <div className="section-heading"><div><p className="section-kicker">04 / Selected work</p><h2 className="section-title">My projects</h2></div><Link href="/projects" className="text-link">All projects ↗</Link></div>
+        <div className="section-heading"><div><h2 className="section-title">My projects</h2></div><Link href="/projects" className="text-link">All projects ↗</Link></div>
         <div className="grid gap-7 md:grid-cols-2">
           {projects.slice(0, 2).map((project, index) => (
             <a className="work-card group" key={project.id} href={project.link} target="_blank" rel="noopener noreferrer">
@@ -94,12 +94,12 @@ const HomePage = () => {
           ))}
         </div>
       </section>
-      <section className="page-shell section-space collaboration-section"><p className="section-kicker">05 / Collaboration</p><h2 className="section-title mb-10">How can we work together?</h2><div className="service-grid">
+      <section className="page-shell section-space collaboration-section"><h2 className="section-title mb-10">How can we work together?</h2><div className="service-grid">
         <article><span className="service-symbol" aria-hidden="true">↗</span><h3>Build AI & ML systems</h3><p>Turn a problem into a practical machine learning solution, from experiments to software.</p><Link href="/contact" className="text-link">Discuss a project ↗</Link></article>
         <article><span className="service-symbol" aria-hidden="true">✳</span><h3>Explore a research question</h3><p>Connect around intelligent systems, energy-aware machine learning, and AI for social good.</p><Link href="/research" className="text-link">My research interests ↗</Link></article>
         <article><span className="service-symbol" aria-hidden="true">✎</span><h3>Share technical knowledge</h3><p>Make complex concepts accessible through technical writing and thoughtful conversations.</p><Link href="/blog" className="text-link">Explore my writing ↗</Link></article>
       </div></section>
-÷÷          {/* <p className="section-kicker">06 / My toolkit</p>
+÷÷          {/*
           <h2 className="section-title mb-10">Tech Stack</h2>
           <div className="mb-12 flex flex-wrap justify-center gap-3">
             {(["Languages", "Libraries & Frameworks", "Tools & Platforms"] as TechCategory[]).map(
@@ -135,7 +135,7 @@ const HomePage = () => {
         {/* </div>
       </section> */}
 
-      <section className="page-shell section-space personal-note"><img src={labPhoto.src} alt="Silas working on an electronics experiment in the laboratory" loading="lazy" /><div><p className="section-kicker">07 / Beyond the code</p><h2 className="section-title">Grounded in curiosity.<br />Driven by purpose.</h2><p>My path began in Electronic & Computer Engineering at Lagos State University. Today, that same curiosity shapes how I approach research, software, and learning.</p><p>I care about educational outreach and AI for Social Good. Away from the screen, you’ll find me following football, exploring blockchain, or playing a game of snooker.</p><Link href="/contact" className="text-link">Let’s connect ↗</Link></div></section>
+      <section className="page-shell section-space personal-note"><img src={labPhoto.src} alt="Silas working on an electronics experiment in the laboratory" loading="lazy" /><div><h2 className="section-title">Grounded in curiosity.<br />Driven by purpose.</h2><p>My path began in Electronic & Computer Engineering at Lagos State University. Today, that same curiosity shapes how I approach research, software, and learning.</p><p>I care about educational outreach and AI for Social Good. Away from the screen, you’ll find me following football, exploring blockchain, or playing a game of snooker.</p><Link href="/contact" className="text-link">Let’s connect ↗</Link></div></section>
       <section className="contact-banner px-6 py-20 text-center text-white">
         <h2 className="font-display mb-4 text-3xl font-semibold sm:text-4xl">Want to work together?</h2>
         <p className="mx-auto mb-8 max-w-xl text-lg text-white/90">
