@@ -13,18 +13,21 @@ const SchedulePage = () => {
       </div>
 
       <div className="card-surface p-6">
-        <h3 className="mb-4 text-lg font-semibold">Select a Date & Time</h3>
-        <p className="mb-6 text-muted dark:text-muted-dark">August 2025</p>
-        <div className="grid grid-cols-7 gap-2 text-muted dark:text-muted-dark">
-          {Array.from({ length: 31 }, (_, i) => (
-            <div
-              key={i + 1}
-              className="cursor-pointer rounded-md p-3 transition hover:bg-accent hover:text-white"
-            >
-              {i + 1}
-            </div>
-          ))}
-        </div>
+        <h3 className="mb-4 text-lg font-semibold">Find a time to connect</h3>
+        <p className="mb-6 text-muted dark:text-muted-dark">
+          Email me a short note about what you would like to discuss, along with
+          a few times that work for you and your time zone. I’ll reply to confirm
+          a time and share the meeting details.
+        </p>
+        <a
+          href={`mailto:osunbasilas@gmail.com?subject=${encodeURIComponent("20-minute meeting request")}&body=${encodeURIComponent("Hi Silas,\n\nI’d like to discuss:\n\nMy time zone:\nTimes that work for me:\n\nThanks!")}`}
+          className="btn-primary"
+        >
+          Request a meeting by email
+        </a>
+        <p className="mt-4 text-sm text-muted dark:text-muted-dark">
+          Or email osunbasilas@gmail.com directly.
+        </p>
       </div>
     </div>
   );
