@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: { type: "website", title: "Silas Osunba", description: "Building intelligent and energy-aware systems.", images: [{ url: "/images/identity-image.png", alt: "Silas Osunba" }] },
   twitter: { card: "summary_large_image", images: ["/images/identity-image.png"] },
 };
-export const viewport: Viewport = { themeColor: "#fbf6eb" };
+export const viewport: Viewport = { themeColor: "#fafafa" };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (

@@ -24,13 +24,8 @@ const Header = () => {
     <header className="fixed top-0 left-0 z-50 w-full">
       <nav className="border-b border-line/70 bg-canvas/80 px-4 backdrop-blur-xl transition-colors duration-300 sm:px-6 md:px-10 xl:px-6 dark:border-line-dark/70 dark:bg-canvas-dark/80">
         <div className="mx-auto flex max-w-screen-2xl flex-wrap items-center justify-between py-3">
-          <Link href="/" className="flex items-center gap-3">
-            <span className="flex h-9 w-9 items-center justify-center rounded-full border border-gold/50 bg-surface font-display text-sm font-semibold text-accent dark:bg-surface-dark dark:text-gold">
-              SO
-            </span>
-            <span className="font-display text-lg font-semibold tracking-tight sm:text-xl">
-              Silas Osunba
-            </span>
+          <Link href="/" className="font-mono text-xl tracking-tight" aria-label="silas.ai home">
+            silas.ai
           </Link>
 
           <div className="header-actions flex items-center gap-3 text-sm xl:order-2 sm:gap-4">
