@@ -92,15 +92,15 @@ export default function ContactPage() {
       <div className="relative z-10 w-full max-w-6xl">
         <div className="mb-16 text-center">
 
-          <h2 className="section-title mb-4">Get in Touch</h2>
-          <p className="mx-auto max-w-2xl text-lg text-muted dark:text-muted-dark">
+          <h1 className="page-title mb-4">Get in Touch</h1>
+          <p className="mx-auto max-w-2xl page-lead text-muted dark:text-muted-dark">
             Open to opportunities, collaborations, and conversations. I usually respond within 24 hours.
           </p>
         </div>
 
         <div className="grid items-start gap-16 md:grid-cols-2">
           <div>
-            <h3 className="font-display mb-4 text-2xl">Let&apos;s connect</h3>
+            <h3 className="section-title mb-4">Let&apos;s connect</h3>
             <p className="mb-8 text-muted dark:text-muted-dark">
               Whether you have a project proposal, a collaboration idea, or simply wish to connect,
               I&apos;d be glad to hear from you.
@@ -151,7 +151,7 @@ export default function ContactPage() {
           </div>
 
           <div className="card-surface w-full p-6 sm:p-8">
-            <h3 className="font-display mb-6 text-2xl">Send a message</h3>
+            <h3 className="section-title mb-6">Send a message</h3>
             <form ref={formRef} onSubmit={sendEmail} className="space-y-6">
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>

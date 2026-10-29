@@ -2,18 +2,18 @@ const SchedulePage = () => {
   return (
     <div className="mx-auto max-w-4xl px-6 py-28 text-center">
 
-      <h1 className="section-title mb-2">Silas Osunba</h1>
-      <h2 className="mb-8 text-xl text-muted dark:text-muted-dark">Schedule a Meeting</h2>
+      <h1 className="page-title mb-2">Silas Osunba</h1>
+      <h2 className="page-lead mb-8 text-muted dark:text-muted-dark">Schedule a Meeting</h2>
 
       <div className="card-surface mb-10 p-6">
-        <p className="mb-2 text-lg font-semibold">20 min</p>
+        <p className="mb-2 text-base font-semibold">20 min</p>
         <p className="text-muted dark:text-muted-dark">
           Web conferencing details provided upon confirmation.
         </p>
       </div>
 
       <div className="card-surface p-6">
-        <h3 className="mb-4 text-lg font-semibold">Find a time to connect</h3>
+        <h3 className="content-title mb-4">Find a time to connect</h3>
         <p className="mb-6 text-muted dark:text-muted-dark">
           Email me a short note about what you would like to discuss, along with
           a few times that work for you and your time zone. I’ll reply to confirm

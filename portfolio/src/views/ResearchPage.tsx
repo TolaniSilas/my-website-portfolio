@@ -42,18 +42,18 @@ const ResearchPage = () => {
         <div className="absolute inset-0 bg-canvas-dark/65" />
         <div className="relative z-10 flex flex-col items-center px-6 text-center">
 
-          <h1 className="font-display mb-4 text-4xl font-semibold text-white sm:text-5xl lg:text-6xl">
+          <h1 className="page-title mb-4 text-white">
             Research
           </h1>
-          <p className="mb-3 text-sm font-medium text-gold sm:text-lg">
+          <p className="mb-3 page-lead font-medium text-gold">
             Machine Learning · Energy · Data Science
           </p>
-          <p className="mx-auto max-w-2xl text-sm text-white/85 sm:text-base lg:text-lg">
+          <p className="mx-auto max-w-2xl page-lead text-white/85">
             Building machines that learn intelligently, the way people do.
           </p>
           <a
             href="https://scholar.google.com/citations?user=akIRrWwAAAAJ&hl=en"
-            className="mt-6 inline-flex items-center text-sm font-semibold text-white underline decoration-gold/70 underline-offset-4 hover:text-gold sm:text-base"
+            className="mt-6 inline-flex items-center text-sm font-semibold text-white underline decoration-gold/70 underline-offset-4 hover:text-gold"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -125,7 +125,7 @@ const ResearchPage = () => {
           <h2 className="section-title mb-10 text-center">Publications</h2>
           <ul className="mx-auto max-w-4xl space-y-6" data-aos="fade-up">
             {publications.map((pub) => (
-              <li key={pub.link} className="card-surface p-6 text-sm leading-relaxed sm:text-base">
+              <li key={pub.link} className="card-surface p-6 text-sm leading-relaxed">
                 <a
                   href={pub.link}
                   target="_blank"

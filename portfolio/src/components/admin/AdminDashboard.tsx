@@ -3,7 +3,7 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import type { User } from '@supabase/supabase-js';
 import { getSupabase } from '../../lib/supabase';
-import { emptyEntry, kinds, labels, safeUrl, type ContentEntry, type ContentKind } from '../../lib/content-model';
+import { emptyEntry, safeUrl, type ContentEntry } from '../../lib/content-model';
 
 type Draft = Omit<ContentEntry, 'id'> & { id?: string };
 export default function AdminDashboard() {
@@ -13,8 +13,7 @@ export default function AdminDashboard() {
   const [message, setMessage] = useState('');
   const [busy, setBusy] = useState(false);
   const [entries, setEntries] = useState<ContentEntry[]>([]);
-  const [kind, setKind] = useState<ContentKind>('book');
-  const [draft, setDraft] = useState<Draft>(emptyEntry('book'));
+  const [draft, setDraft] = useState<Draft>(emptyEntry());
 
   useEffect(() => {
     try {
@@ -47,7 +46,7 @@ export default function AdminDashboard() {
           throw new Error(`Owner verification failed${error.code ? ` (${error.code})` : ''}: ${reason}`);
         }
         if (!data) throw new Error('This account does not have owner access.');
-        const result = await client.from('portfolio_content').select('*').in('kind', ['book', 'plan']).order('position').order('created_at');
+        const result = await client.from('portfolio_content').select('*').eq('kind', 'book').order('position').order('created_at');
         if (result.error) throw result.error;
         if (active) { setOwner(true); setEntries(result.data ?? []); setMessage(''); }
       } catch (error) { if (active) setMessage(error instanceof Error ? error.message : 'Access verification failed.'); }
@@ -68,7 +67,7 @@ export default function AdminDashboard() {
   }
   async function signOut() {
     setBusy(true);
-    try { const { error } = await getSupabase().auth.signOut(); if (error) throw error; setDraft(emptyEntry(kind)); }
+    try { const { error } = await getSupabase().auth.signOut(); if (error) throw error; setDraft(emptyEntry()); }
     catch { setMessage('Could not sign out. Please try again.'); }
     finally { setBusy(false); }
   }
@@ -83,7 +82,7 @@ export default function AdminDashboard() {
       const { data, error } = await query.select().single();
       if (error) throw error;
       setEntries(previous => [...previous.filter(e => e.id !== data.id), data].sort((a, b) => a.position - b.position));
-      setDraft(emptyEntry(kind)); setMessage(values.published ? 'Saved and published.' : 'Draft saved. Only you can see it.');
+      setDraft(emptyEntry()); setMessage(values.published ? 'Saved and published.' : 'Draft saved. Only you can see it.');
       window.dispatchEvent(new Event('portfolio-content-changed'));
     } catch (error) { setMessage(error instanceof Error ? error.message : 'Save failed. Your changes are still in the form.'); }
     finally { setBusy(false); }
@@ -95,7 +94,7 @@ export default function AdminDashboard() {
       const { error } = await getSupabase().from('portfolio_content').delete().eq('id', entry.id).select().single();
       if (error) throw error;
       setEntries(previous => previous.filter(e => e.id !== entry.id));
-      if (draft.id === entry.id) setDraft(emptyEntry(kind));
+      if (draft.id === entry.id) setDraft(emptyEntry());
       setMessage('Entry deleted.'); window.dispatchEvent(new Event('portfolio-content-changed'));
     } catch { setMessage('Delete failed. Please try again.'); }
     finally { setBusy(false); }
@@ -106,29 +105,28 @@ export default function AdminDashboard() {
     <div className="section-heading"><h1 className="section-title">Admin</h1>{user && <button className="btn-secondary" disabled={busy} onClick={signOut}>Sign out</button>}</div>
     {message && <p role="status" className="mb-6 rounded-md border border-line p-4">{message}</p>}
     {checking ? <p role="status">Checking access…</p> : !user ? <form onSubmit={login} className="card-surface max-w-md space-y-5 p-8">
-      <h2 className="font-display text-2xl">Sign in</h2>
+      <h2 className="content-title">Sign in</h2>
       <label className="admin-field">Email<input name="email" type="email" autoComplete="username" required /></label>
       <label className="admin-field">Password<input name="password" type="password" autoComplete="current-password" required /></label>
       <button className="btn-primary" disabled={busy}>{busy ? 'Signing in…' : 'Sign in'}</button>
     </form> : owner && <>
-      <div className="mb-8 flex flex-wrap gap-3">{kinds.map(k => <button key={k} className={kind === k ? 'btn-primary' : 'btn-secondary'} aria-pressed={kind === k} disabled={busy} onClick={() => { if (window.confirm('Switch section? Unsaved form changes will be discarded.')) { setKind(k); setDraft(emptyEntry(k)); } }}>{labels[k]}</button>)}</div>
       <div className="grid items-start gap-8 lg:grid-cols-2">
         <form onSubmit={save} className="card-surface space-y-5 p-6">
           <fieldset disabled={busy} className="space-y-5">
-            <legend className="mb-5 font-display text-2xl">{draft.id ? 'Edit' : 'Add'} — {labels[kind]}</legend>
+            <legend className="mb-5 content-title">{draft.id ? 'Edit' : 'Add'} — Books</legend>
             {field('title', 'Title', true)}
             <label className="admin-field">{'Description / notes'}<textarea rows={8} value={draft.body} onChange={e => setDraft({ ...draft, body: e.target.value })} /></label>
-            {kind === 'book' && field('url', 'Link', false)}
-            {kind === 'book' && field('image', 'Image URL or /images/ path')}
-            {kind === 'book' && field('author', 'Author')}
-            {['book','article','plan'].includes(kind) && field('date', 'Date (e.g. September 2026)')}
-            {['book','plan'].includes(kind) && <label className="admin-field">Status<select value={draft.status} onChange={e => setDraft({ ...draft, status: e.target.value as Draft['status'] })}><option value="planned">{kind === 'book' ? 'Want to read' : 'Planned'}</option><option value="in-progress">{kind === 'book' ? 'Reading' : 'In progress'}</option><option value="completed">Completed</option></select></label>}
+            {field('url', 'Link', false)}
+            {field('image', 'Image URL or /images/ path')}
+            {field('author', 'Author')}
+            {field('date', 'Date (e.g. September 2026)')}
+            {<label className="admin-field">Status<select value={draft.status} onChange={e => setDraft({ ...draft, status: e.target.value as Draft['status'] })}><option value="planned">Want to read</option><option value="in-progress">Reading</option><option value="completed">Completed</option></select></label>}
             <label className="admin-field">Display order (lowest first)<input type="number" step="1" required value={draft.position} onChange={e => setDraft({ ...draft, position: Number(e.target.value) })} /></label>
             <label className="flex items-center gap-3"><input type="checkbox" checked={draft.published} onChange={e => setDraft({ ...draft, published: e.target.checked })} />Publish on the website</label>
-            <div className="flex gap-3"><button className="btn-primary">{busy ? 'Saving…' : 'Save entry'}</button><button type="button" className="btn-secondary" onClick={() => setDraft(emptyEntry(kind))}>Clear form</button></div>
+            <div className="flex gap-3"><button className="btn-primary">{busy ? 'Saving…' : 'Save entry'}</button><button type="button" className="btn-secondary" onClick={() => setDraft(emptyEntry())}>Clear form</button></div>
           </fieldset>
         </form>
-        <div className="space-y-4"><h2 className="font-display text-2xl">Entries</h2>{entries.filter(e => e.kind === kind).length === 0 && <p>Add your first entry using the form.</p>}{entries.filter(e => e.kind === kind).map(entry => <article key={entry.id} className="card-surface p-5"><p className="text-sm text-muted">{entry.published ? 'Published' : 'Private draft'} · Order {entry.position}</p><h3 className="my-3 text-xl">{entry.title}</h3><div className="flex gap-3"><button disabled={busy} className="btn-secondary" onClick={() => setDraft(entry)}>Edit</button><button disabled={busy} className="btn-secondary" onClick={() => remove(entry)}>Delete</button></div></article>)}</div>
+        <div className="space-y-4"><h2 className="content-title">Entries</h2>{entries.length === 0 && <p>Add your first entry using the form.</p>}{entries.map(entry => <article key={entry.id} className="card-surface p-5"><p className="text-sm text-muted">{entry.published ? 'Published' : 'Private draft'} · Order {entry.position}</p><h3 className="my-3 content-title">{entry.title}</h3><div className="flex gap-3"><button disabled={busy} className="btn-secondary" onClick={() => setDraft(entry)}>Edit</button><button disabled={busy} className="btn-secondary" onClick={() => remove(entry)}>Delete</button></div></article>)}</div>
       </div>
     </>}
   </div>;

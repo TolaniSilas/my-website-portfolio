@@ -22,7 +22,7 @@ export function ContentProvider({ children }: { children: ReactNode }) {
     let active = true;
     async function refresh() {
       try {
-        const { data, error } = await getSupabase().from('portfolio_content').select('*').in('kind', ['book', 'plan']).eq('published', true).order('position').order('created_at');
+        const { data, error } = await getSupabase().from('portfolio_content').select('*').eq('kind', 'book').eq('published', true).order('position').order('created_at');
         if (error) throw error;
         if (active) { setEntries(data ?? []); setError(false); }
       } catch { if (active) setError(true); }
@@ -40,15 +40,15 @@ export function useContent() {
   return useContext(ContentContext);
 }
 
-export function ContentStatus({ kind, hasItems }: { kind: 'book' | 'plan'; hasItems: boolean }) {
+export function ContentStatus({ hasItems }: { hasItems: boolean }) {
   const { loading, error, retry } = useContext(ContentContext);
-  const collection = kind === 'book' ? 'books' : 'list';
+  const collection = 'books';
   if (hasItems) return error ? <div className="collection-notice"><p role="status">Showing the last loaded {collection}. Updates couldn’t load.</p><button type="button" onClick={retry} disabled={loading}>{loading ? 'Trying again…' : 'Try again'}</button></div> : null;
   if (loading) return <div className="collection-loading" role="status"><span className="text-sm text-muted dark:text-muted-dark">Loading {collection}…</span><div className="collection-skeletons" aria-hidden="true"><div /><div /></div></div>;
   return <div className="collection-empty">
     <div role="status">
-      <h2>{error ? `Couldn’t load ${kind === 'book' ? 'the bookshelf' : 'this list'}` : kind === 'book' ? 'The bookshelf is on its way' : 'More to come'}</h2>
-      <p>{error ? 'Give it another try in a moment.' : kind === 'book' ? 'I’ll share my reads and notes here soon.' : 'I’ll share the things I’m planning and exploring here soon.'}</p>
+      <h2>{error ? 'Couldn’t load the bookshelf' : 'The bookshelf is on its way'}</h2>
+      <p>{error ? 'Give it another try in a moment.' : 'I’ll share my reads and notes here soon.'}</p>
     </div>
     {error && <button type="button" onClick={retry}>Try again <span aria-hidden="true">↻</span></button>}
   </div>;

@@ -1,6 +1,6 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, type MouseEvent } from "react";
 
-type ThemeContextValue = { isDark: boolean; toggleTheme: () => void };
+type ThemeContextValue = { isDark: boolean; toggleTheme: (event?: MouseEvent<HTMLButtonElement>) => void };
 export const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
 export function useTheme() {

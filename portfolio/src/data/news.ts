@@ -13,11 +13,7 @@ export type NewsEntry = {
 export const news: NewsEntry[] = [
   {
     id: 'engineering-valedictorian', date: 'Aug 2026', dateTime: '2026-08',
-    text: 'Received the Chancellor’s and Dean’s Award for the Engineering Valedictorian at Lagos State University, Class of 2025.',
-  },
-  {
-    id: 'nse-excellence', date: 'Aug 2026', dateTime: '2026-08',
-    text: 'Received the Nigerian Society of Engineers Award of Excellence as the best student in the Faculty of Engineering, Lagos State University, Class of 2025.',
+    text: 'Recognized as the Best Graduating Student in the Faculty of Engineering and the Department of Electronic and Computer Engineering (ECE), receiving three awards and cash prizes: the Chancellor’s Award, the Dean’s Award for the Engineering Valedictorian, and the Nigerian Society of Engineers Award of Excellence.',
   },
   {
     id: 'condere', date: 'Jun 2026', dateTime: '2026-06',

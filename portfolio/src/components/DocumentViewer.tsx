@@ -60,7 +60,7 @@ export default function DocumentViewer({ onNavigate }: { onNavigate: () => void 
               {open && <iframe key={tab} src={document.previewUrl} title={`Silas Osunba — ${document.label}`} onLoad={() => setLoaded(true)} />}
             </div>
             <p className="document-help">Preview unavailable? <a href={document.openUrl} target="_blank" rel="noopener noreferrer">Open {document.label} in a new tab ↗</a></p>
-          </> : <div className="document-empty"><FaFileAlt aria-hidden="true" /><h3 className="font-display text-3xl">Academic CV coming soon</h3><p>My research, publications, and academic experience will be available here.</p></div>)}
+          </> : <div className="document-empty"><FaFileAlt aria-hidden="true" /><h3 className="content-title">Academic CV coming soon</h3><p>My research, publications, and academic experience will be available here.</p></div>)}
         </div>)}
         <div className="document-actions">
           <a href="mailto:osunbasilas@gmail.com?subject=Hiring%20Opportunity" className="btn-secondary" onClick={() => { dialog.current?.close(); onNavigate(); }}>Hire me</a>

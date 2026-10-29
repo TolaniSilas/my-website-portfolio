@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaGithub, FaLinkedin, FaMoon, FaSun } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaMoon, FaSun, FaBars, FaTimes, FaEnvelope } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import DocumentViewer from "./DocumentViewer";
 import { useTheme } from "../context/theme";
@@ -11,20 +11,64 @@ import { useTheme } from "../context/theme";
 const Header = () => {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const header = useRef<HTMLElement>(null);
+  const menuToggle = useRef<HTMLButtonElement>(null);
+  const menuPanel = useRef<HTMLDivElement>(null);
   const { isDark, toggleTheme } = useTheme();
 
+  useEffect(() => {
+    if (!menuOpen) return;
+    const toggleButton = menuToggle.current;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const background = [...document.querySelectorAll<HTMLElement>('main, .simple-footer')];
+    const previousInert = background.map(element => element.inert);
+    background.forEach(element => { element.inert = true; });
+    menuPanel.current?.querySelector<HTMLAnchorElement>('a[href]')?.focus();
+    const dismiss = (event: PointerEvent) => {
+      if (!header.current?.contains(event.target as Node)) setMenuOpen(false);
+    };
+    const escape = (event: KeyboardEvent) => {
+      if (document.querySelector("dialog[open]")) return;
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        toggleButton?.focus();
+      }
+      if (event.key === 'Tab') {
+        const controls = [...(menuPanel.current?.querySelectorAll<HTMLElement>('a[href], button:not([disabled])') ?? [])].filter(element => element.getClientRects().length > 0);
+        const first = controls[0];
+        const last = controls[controls.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+      }
+    };
+    const desktop = window.matchMedia("(min-width: 1280px)");
+    const resize = () => { if (desktop.matches) setMenuOpen(false); };
+    document.addEventListener("pointerdown", dismiss);
+    document.addEventListener("keydown", escape);
+    desktop.addEventListener("change", resize);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      background.forEach((element, index) => { element.inert = previousInert[index]; });
+      toggleButton?.focus();
+      document.removeEventListener("pointerdown", dismiss);
+      document.removeEventListener("keydown", escape);
+      desktop.removeEventListener("change", resize);
+    };
+  }, [menuOpen]);
+
   const navLinkClasses = (href: string) =>
-    `block rounded-full px-2 py-2 text-sm transition ${
-      (pathname === href || (href === "/articles" && pathname === "/blog"))
+    `site-nav-link block rounded-full px-2 py-2 text-sm transition ${
+      pathname === href
         ? "text-accent font-semibold dark:text-gold"
         : "text-muted hover:text-ink dark:text-muted-dark dark:hover:text-ink-dark"
     }`;
 
   return (
-    <header className="fixed top-0 left-0 z-50 w-full">
-      <nav className="border-b border-line/70 bg-canvas/80 px-4 backdrop-blur-xl transition-colors duration-300 sm:px-6 md:px-10 xl:px-6 dark:border-line-dark/70 dark:bg-canvas-dark/80">
+    <header ref={header} className="site-header fixed top-0 left-0 z-50 w-full">
+      <nav aria-label="Main navigation" className="border-b border-line/70 bg-canvas px-4 transition-colors duration-300 sm:px-6 md:px-10 xl:px-6 dark:border-line-dark/70 dark:bg-canvas-dark">
         <div className="mx-auto flex max-w-screen-2xl flex-wrap items-center justify-between py-3">
-          <Link href="/" className="font-mono text-xl tracking-tight" aria-label="silas.ai home">
+          <Link href="/" onClick={() => setMenuOpen(false)} className="font-sans text-xl font-medium tracking-tight" aria-label="silas.ai home">
             silas.ai
           </Link>
 
@@ -59,8 +103,8 @@ const Header = () => {
 
             <button
               onClick={toggleTheme}
-              className="rounded-full border border-line p-2 text-ink transition hover:border-gold dark:border-line-dark dark:text-ink-dark"
-              aria-label="Toggle dark mode"
+              className="theme-toggle rounded-full border border-line p-2 text-ink transition hover:border-gold dark:border-line-dark dark:text-ink-dark"
+              aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
             >
               {isDark ? (
                 <FaSun className="h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />
@@ -69,35 +113,20 @@ const Header = () => {
               )}
             </button>
 
-            <button
-              onClick={() => setMenuOpen((prev) => !prev)}
-              className="inline-flex items-center rounded-md p-2 text-ink xl:hidden dark:text-ink-dark"
-              aria-controls="mobile-menu"
-              aria-expanded={menuOpen}
-            >
-              <span className="sr-only">Toggle menu</span>
-              {menuOpen ? (
-                <svg className="h-5 w-5 sm:h-6 sm:w-6" fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    fillRule="evenodd"
-                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              ) : (
-                <svg className="h-5 w-5 sm:h-6 sm:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              )}
-            </button>
+            <button ref={menuToggle} type="button" className="mobile-menu-toggle xl:hidden" aria-label="Open navigation" aria-controls="mobile-menu" aria-expanded={menuOpen} onClick={() => setMenuOpen(true)}><FaBars aria-hidden="true" /></button>
           </div>
 
           <div
+            ref={menuPanel}
             id="mobile-menu"
-            className={`${
+            role={menuOpen ? 'dialog' : undefined}
+            aria-modal={menuOpen ? true : undefined}
+            aria-label={menuOpen ? 'Navigation' : undefined}
+            className={`site-nav-panel ${
               menuOpen ? "flex" : "hidden"
             } mt-3 w-full flex-col items-center xl:order-1 xl:mt-0 xl:flex xl:w-auto xl:flex-row xl:space-x-2 2xl:space-x-4`}
           >
+
             <DocumentViewer onNavigate={() => setMenuOpen(false)} />
             {[
               { href: "/", label: "Home" },
@@ -106,22 +135,29 @@ const Header = () => {
               { href: "/projects", label: "Projects" },
               { href: "/articles", label: "Articles" },
               { href: "/books", label: "Books" },
-              { href: "/list66", label: "List66" },
             ].map(({ href, label }) => (
-              <Link key={href} href={href} aria-current={pathname === href || (href === "/articles" && pathname === "/blog") ? "page" : undefined} className={navLinkClasses(href)} onClick={() => setMenuOpen(false)}>
+              <Link key={href} href={href} aria-current={pathname === href ? "page" : undefined} className={navLinkClasses(href)} onClick={() => setMenuOpen(false)}>
                 {label}
               </Link>
             ))}
             <Link
               href="/contact"
               onClick={() => setMenuOpen(false)}
-              className="btn-primary mt-2 px-5 py-2 xl:mt-0"
+              className="mobile-contact btn-primary mt-2 px-5 py-2 xl:mt-0"
             >
               Contact
             </Link>
+            <div className="mobile-menu-socials">
+              <a href="https://www.linkedin.com/in/osunbasilas/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><FaLinkedin aria-hidden="true" /></a>
+              <a href="https://github.com/TolaniSilas" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><FaGithub aria-hidden="true" /></a>
+              <a href="mailto:osunbasilas@gmail.com" aria-label="Email Silas"><FaEnvelope aria-hidden="true" /></a>
+              <button type="button" onClick={toggleTheme} aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}>{isDark ? <FaSun aria-hidden="true" /> : <FaMoon aria-hidden="true" />}</button>
+            </div>
+            <button type="button" className="mobile-menu-close" aria-label="Close navigation" onClick={() => setMenuOpen(false)}><FaTimes aria-hidden="true" /></button>
           </div>
         </div>
       </nav>
+
     </header>
   );
 };
