@@ -5,4 +5,10 @@ export const metadata: Metadata = {
   description: "Get to know Silas Osunba: his engineering background, research interests, and life beyond the code.",
 };
 
-export { default } from "../../views/AboutPage";
+import AboutPage from '../../views/AboutPage';
+import { getPublicContent } from '../../lib/cms/repository';
+export const dynamic = 'force-dynamic';
+export default async function Page() {
+  const projects = await getPublicContent('projects');
+  return <AboutPage projects={projects.entries} />;
+}

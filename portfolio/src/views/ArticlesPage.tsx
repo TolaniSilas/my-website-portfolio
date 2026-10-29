@@ -1,6 +1,8 @@
-import { posts } from "../data/articles";
+import { getPublicContent } from "../lib/cms/repository";
+import { ArticleList, ContentNotice } from "../components/content/ContentLists";
 
-export default function ArticlesPage() {
+export default async function ArticlesPage() {
+  const articles = await getPublicContent("articles");
   return (
     <div className="articles-page page-shell">
       <header className="home-heading">
@@ -8,20 +10,7 @@ export default function ArticlesPage() {
         <p>Notes on what I’m learning, building, and thinking about in AI and software.</p>
       </header>
 
-      <div className="article-list">
-        {posts.map(post => (
-          <article key={post.id} className="article-entry">
-            <a className="article-entry-image" href={post.slug} target="_blank" rel="noopener noreferrer" aria-label={`Read ${post.title}`} tabIndex={-1}>
-              <img src={post.image} alt="" loading="lazy" />
-            </a>
-            <div className="article-entry-content">
-              <div className="article-entry-meta"><time dateTime={post.dateTime}>{post.date}</time><span>{post.readingMinutes} min read</span></div>
-              <h2><a href={post.slug} target="_blank" rel="noopener noreferrer">{post.title} <span aria-hidden="true">↗</span></a></h2>
-              <p>{post.excerpt}</p>
-            </div>
-          </article>
-        ))}
-      </div>
+      {articles.entries.length ? <ArticleList entries={articles.entries} /> : <div className="mt-8"><ContentNotice label="Articles" unavailable={articles.unavailable} /></div>}
 
       <footer className="projects-footer">
         <p>More notes and writing on <a href="https://medium.com/@tolanisilas3606" target="_blank" rel="noopener noreferrer">Medium ↗</a></p>

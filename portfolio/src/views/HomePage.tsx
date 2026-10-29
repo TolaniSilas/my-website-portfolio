@@ -1,8 +1,10 @@
 import Link from "next/link";
 import portrait from "../assets/images/silas1.webp";
-import { news } from "../data/news";
+import { getPublicContent } from "../lib/cms/repository";
+import { ContentNotice, NewsList } from "../components/content/ContentLists";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const news = await getPublicContent("news");
   return (
     <article className="home-introduction page-shell">
       <header className="home-heading">
@@ -47,19 +49,7 @@ export default function HomePage() {
       </div>
       <section className="home-news" aria-labelledby="news-heading">
         <h2 id="news-heading">News</h2>
-        <ol>
-          {news.map(entry => (
-            <li key={entry.id}>
-              {entry.dateTime ? <time dateTime={entry.dateTime}>{entry.date}</time> : <span className="news-date">{entry.date}</span>}
-              <p>
-                {entry.text}
-                {entry.parts?.map((part, index) => typeof part === 'string' ? part : <a key={index} href={part.url} target="_blank" rel="noopener noreferrer">{part.label} <span aria-hidden="true">↗</span></a>)}
-                {entry.link && <a href={entry.link.url} target="_blank" rel="noopener noreferrer">{entry.link.label} <span aria-hidden="true">↗</span></a>}
-                {entry.after}
-              </p>
-            </li>
-          ))}
-        </ol>
+        {news.entries.length ? <NewsList entries={news.entries} /> : <ContentNotice label="News" unavailable={news.unavailable} />}
       </section>
     </article>
   );

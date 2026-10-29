@@ -5,7 +5,7 @@ import Link from "next/link";
 import { FaEnvelope, FaGithub, FaLinkedinIn } from "react-icons/fa";
 import portrait from "../assets/images/silas1.webp";
 import { education, experienceGroups, professionalExperience, researchExperience, service, type AboutEntry } from "../data/about";
-import { projects } from "../data/projects";
+import type { ProjectRecord } from "../lib/cms/model";
 import { publications } from "../data/publications";
 import { documents } from "../data/documents";
 
@@ -41,7 +41,7 @@ function Papers() {
   </ul></section>;
 }
 
-export default function AboutPage() {
+export default function AboutPage({ projects }: { projects: ProjectRecord[] }) {
   const [view, setView] = useState<'about' | 'summary'>('about');
   return (
     <article className="about-page page-shell">
@@ -96,7 +96,7 @@ export default function AboutPage() {
 
           <section className="summary-chapter">
             <h2>Ideas into practice</h2>
-            <div><h3 className="summary-subheading">Selected projects</h3><ul className="summary-projects">{projects.slice(0, 3).map(project => <li key={project.id}><a href={project.link} target="_blank" rel="noopener noreferrer">{project.title} ↗</a></li>)}</ul>
+            <div><h3 className="summary-subheading">Selected projects</h3><ul className="summary-projects">{projects.slice(0, 3).map(project => <li key={project.id}><a href={project.link_url} target="_blank" rel="noopener noreferrer">{project.title} ↗</a></li>)}</ul>
             <h3 className="summary-subheading summary-paper-heading">Papers</h3><ul className="summary-papers">{publications.map(publication => <li key={publication.link}><a href={publication.link} target="_blank" rel="noopener noreferrer">{publication.title}</a>, {publication.venue}</li>)}</ul><div className="summary-links"><Link href="/projects">All projects ↗</Link><Link href="/research">My research ↗</Link></div></div>
           </section>
 
