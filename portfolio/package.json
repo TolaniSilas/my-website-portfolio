@@ -8,10 +8,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types --test tests/*.test.mjs",
+    "seed:generate": "node --experimental-strip-types scripts/generate-cms-seed.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@supabase/ssr": "^0.12.7",
     "@supabase/supabase-js": "^2.116.0",
     "@tailwindcss/postcss": "^4.3.3",
     "@tsparticles/react": "^3.0.0",
@@ -25,6 +28,7 @@
     "tailwindcss": "^4.1.7"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.5.13",
     "@eslint/js": "^9.25.0",
     "@types/aos": "^3.0.8",
     "@types/node": "26.5.1",
@@ -37,6 +41,6 @@
     "typescript-eslint": "^8.70.0"
   },
   "engines": {
-    "node": ">=22.0.0"
+    "node": ">=22.18.0"
   }
 }
