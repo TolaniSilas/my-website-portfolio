@@ -35,7 +35,7 @@ end $$;
 select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-000000000001',true);
 do $$ declare n integer; begin
  if (select count(*) from public.portfolio_content where id::text like '10000000-%') <> 2 then raise exception 'Owner draft access failed'; end if;
- insert into public.portfolio_content(id,kind,title) values ('10000000-0000-0000-0000-000000000003','plan','Owner created');
+ insert into public.portfolio_content(id,kind,title) values ('10000000-0000-0000-0000-000000000003','book','Owner created');
  update public.portfolio_content set title='Owner updated' where id='10000000-0000-0000-0000-000000000003';
  get diagnostics n = row_count; if n <> 1 then raise exception 'Owner update failed'; end if;
  delete from public.portfolio_content where id='10000000-0000-0000-0000-000000000003';

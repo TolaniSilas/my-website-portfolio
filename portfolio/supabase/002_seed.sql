@@ -1,3 +1,0 @@
--- No seed data is required for Books and List66.
--- Create your own entries in /admin. All other content stays in local files.
--- If the previous seed was already applied, existing rows are left untouched.

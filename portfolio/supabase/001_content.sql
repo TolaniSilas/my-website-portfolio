@@ -12,7 +12,7 @@ create policy "Owner can verify own membership" on public.portfolio_owner
 
 create table public.portfolio_content (
   id uuid primary key default gen_random_uuid(),
-  kind text not null check (kind in ('book','plan')),
+  kind text not null check (kind = 'book'),
   title text not null check (length(trim(title)) between 1 and 300),
   body text not null default '',
   url text not null default '' check (url = '' or url ~ '^https?://'),
