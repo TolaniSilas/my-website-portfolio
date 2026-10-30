@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { ThemeProvider } from "../context/ThemeContext";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import RecoveryRedirect from "../components/admin/RecoveryRedirect";
 import "../index.css";
 
 export const metadata: Metadata = {
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </head>
       <body>
+        <RecoveryRedirect />
         <ThemeProvider>
           <div className="flex min-h-screen flex-col bg-canvas text-ink dark:bg-canvas-dark dark:text-ink-dark">
             <a href="#main-content" className="skip-link">Skip to content</a>

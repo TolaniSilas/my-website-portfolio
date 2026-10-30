@@ -25,7 +25,7 @@ export async function proxy(request: NextRequest) {
     try { const { data, error } = await client.auth.getUser(); authenticated = !error && !!data.user; }
     catch { /* The page handles unavailable auth. */ }
   }
-  if (!authenticated && request.nextUrl.pathname.startsWith('/admin') && request.nextUrl.pathname !== '/admin/login') {
+  if (!authenticated && request.nextUrl.pathname.startsWith('/admin') && !['/admin/login', '/admin/reset-password'].includes(request.nextUrl.pathname)) {
     const login = NextResponse.redirect(new URL('/admin/login', request.url));
     response.cookies.getAll().forEach(cookie => login.cookies.set(cookie));
     login.headers.set('Cache-Control', 'private, no-store');
