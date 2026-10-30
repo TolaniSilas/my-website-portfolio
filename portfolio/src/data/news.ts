@@ -13,7 +13,7 @@ export type NewsEntry = {
 export const news: NewsEntry[] = [
   {
     id: 'engineering-valedictorian', date: 'Aug 2026', dateTime: '2026-08',
-    text: 'Recognized as the Best Graduating Student in the Faculty of Engineering and the Department of Electronic and Computer Engineering (ECE), receiving three awards and cash prizes: the Chancellor’s Award, the Dean’s Award for the Engineering Valedictorian, and the Nigerian Society of Engineers Award of Excellence.',
+    text: 'Received three awards and cash prizes - the Chancellor’s Award, the Dean’s Award for the Engineering Valedictorian, and the Nigerian Society of Engineers Award of Excellence - for graduating as the Faculty Valedictorian.',
   },
   {
     id: 'condere', date: 'Jun 2026', dateTime: '2026-06',
@@ -71,6 +71,10 @@ export const news: NewsEntry[] = [
   },
 
   {
+    id: 'lagos-bursaries', date: 'Jun 2025', dateTime: '2025-06',
+    text: 'Received multiple bursary scholarships from the Lagos State Government (Badagry LGA).',
+  },
+  {
     id: 'spe-president', date: 'Oct 2024', dateTime: '2024-10',
     text: 'Elected as the President of the Society of Petroleum Engineers International (SPEI), Lagos State University Student Chapter.',
   },
@@ -86,7 +90,7 @@ export const news: NewsEntry[] = [
   },
   {
     id: 'datican-award', date: 'Jun 2024', dateTime: '2024-06',
-    text: 'Led my team to fourth place out of 24 teams in the DATICAN 1.0 Data Science and Medical Image Analysis Competition with our project, “Automatic Detection of Diabetic Retinopathy,” organized by the University of Chicago in collaboration with Lagos State University.',
+    text: 'Led my team to a Finalist Award at the DATICAN 1.0 Data Science and Medical Image Analysis Competition, organized by the University of Chicago, with our project, “Automatic Detection of Diabetic Retinopathy.”',
   },
   {
     id: 'datacamp-scholarships', date: 'Dec 2023', dateTime: '2023-12',

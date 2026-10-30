@@ -133,7 +133,7 @@ const Header = () => {
               { href: "/about", label: "About" },
               { href: "/research", label: "Research" },
               { href: "/projects", label: "Projects" },
-              { href: "/articles", label: "Articles" },
+              { href: "/articles", label: "Writings" },
               { href: "/books", label: "Books" },
             ].map(({ href, label }) => (
               <Link key={href} href={href} aria-current={pathname === href ? "page" : undefined} className={navLinkClasses(href)} onClick={() => setMenuOpen(false)}>

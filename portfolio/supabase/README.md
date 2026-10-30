@@ -1,6 +1,6 @@
 # Portfolio content management
 
-News, Projects, Articles, and Books live in separate Supabase tables. Public pages render on the Next.js server; the browser does not query Supabase. About's selected projects use the same published project records. The homepage biography, About story, research publications, documents, and visual design remain repository-managed.
+News, Projects, Articles, and Books live in separate Supabase tables. Public pages render on the Next.js server; the browser does not query Supabase. The homepage biography, About story, research publications, documents, and visual design remain repository-managed.
 
 ## Hosting
 
@@ -47,7 +47,7 @@ Open `/admin` and sign in at `/admin/login`. Choose News, Projects, Articles, or
 - Edits remain in the form after a failed save. A version check prevents overwriting a record changed in another tab. Reload the dashboard and select the latest record after a conflict.
 - Deletion requires confirmation. Deleting an entry does not delete its image, which may be shared by another entry. Unattached uploads remain private. You can remove unused objects through the Supabase Storage dashboard.
 
-New content appears without code changes or a deployment. Successful writes expire the relevant server cache and refresh the affected routes, including About when a project changes. Public lists also revalidate every five minutes if a change is made directly in Supabase. Cached queries use an anonymous client, never your owner session. Failed queries show a small unavailable state and are not replaced with old static content.
+New content appears without code changes or a deployment. Public lists query Supabase on every server render using an anonymous client and no persistent content cache. Successful writes revalidate the affected routes. Changes made from another deployment or directly in Supabase are visible on the next fresh page request when both environments use the same Supabase project. Refresh an already-open public page to see updates; pages do not subscribe to live changes. Public reads never use your owner session. Failed queries show a small unavailable state and are not replaced with old static content.
 
 ## Images and privacy
 
@@ -71,3 +71,18 @@ Generate the initial SQL from the retained migration data files only when prepar
 ```sh
 npm run seed:generate
 ```
+## Password recovery
+
+The recovery email contains a link, not a replacement password. Use **Forgot your password?** at `/admin/login`, or visit `/admin/reset-password`.
+
+In Supabase → Authentication → URL Configuration:
+
+- Set Site URL to your deployed portfolio origin.
+- Add your exact production callback URL, for example `https://YOUR-DOMAIN/auth/callback`, to Redirect URLs.
+- For local development, also add `http://localhost:3000/auth/callback` (adjust the port if needed).
+
+Request the reset from the app and open the newest email in the same browser/profile; the server-side PKCE flow uses a verifier cookie. `/auth/callback` verifies the code and owner identity, then opens `/admin/update-password`. Enter and confirm a new password (12–128 characters); after saving, sign in again with it. Requests use a generic response to avoid disclosing which emails have accounts.
+
+Dashboard-generated legacy recovery links that redirect with a `#access_token=...&type=recovery` fragment are also handled: the app removes the fragment and exchanges it for an HttpOnly server session through a same-origin Server Action. Recovery fragments are not stored in local storage. Token-hash email templates can target `/auth/callback?token_hash={{ .TokenHash }}&type=recovery` as an alternative.
+
+If the link opens your deployed website, the deployed app must include these recovery pages. If it is expired/already used or was requested in another browser, request a new link from the app. Do not share the recovery URL or its tokens.

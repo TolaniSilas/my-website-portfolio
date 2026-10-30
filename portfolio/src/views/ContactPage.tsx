@@ -4,7 +4,6 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import {
-  FaClock,
   FaEnvelope,
   FaGithub,
   FaLinkedin,
@@ -57,7 +56,7 @@ export default function ContactPage() {
   const particleColor = isDark ? "#c4a574" : "#0f766e";
 
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 py-28">
+    <div className="contact-page relative flex min-h-screen items-center justify-center overflow-hidden px-6 py-28">
       {engineReady && (
         <div className="absolute inset-0 -z-10">
           <Particles
@@ -94,60 +93,40 @@ export default function ContactPage() {
 
           <h1 className="page-title mb-4">Get in Touch</h1>
           <p className="mx-auto max-w-2xl page-lead text-muted dark:text-muted-dark">
-            Open to opportunities, collaborations, and conversations. I usually respond within 24 hours.
+            Let’s talk about research, ideas, and what we can build together.
           </p>
         </div>
 
         <div className="grid items-start gap-16 md:grid-cols-2">
           <div>
             <h3 className="section-title mb-4">Let&apos;s connect</h3>
-            <p className="mb-8 text-muted dark:text-muted-dark">
-              Whether you have a project proposal, a collaboration idea, or simply wish to connect,
-              I&apos;d be glad to hear from you.
+            <p className="mb-5 leading-relaxed text-muted dark:text-muted-dark">
+              I’m mostly interested in <strong className="font-semibold text-ink dark:text-ink-dark">AI research, trustworthy AI, and healthcare AI research</strong>.
+              I’d love to connect with people exploring how intelligent systems can be more reliable,
+              understandable, and useful in people’s lives.
             </p>
-            <div className="space-y-5">
+            <p className="mb-8 leading-relaxed text-muted dark:text-muted-dark">
+              Have a research question or a collaboration in mind? Send me a message, or connect directly below.
+            </p>
+            <nav aria-label="Connect with Silas" className="flex flex-wrap items-center gap-4">
               {[
-                {
-                  icon: FaEnvelope,
-                  title: "Email",
-                  body: "osunbasilas@gmail.com",
-                  note: "Best for project inquiries and collaborations",
-                },
-                {
-                  icon: FaGithub,
-                  title: "GitHub",
-                  body: "github.com/TolaniSilas",
-                  note: "Code, versioning, and open source",
-                },
-                {
-                  icon: FaLinkedin,
-                  title: "LinkedIn",
-                  body: "linkedin.com/in/osunbasilas/",
-                  note: "Professional networking",
-                },
-                {
-                  icon: FaXTwitter,
-                  title: "X",
-                  body: "@thaguymaxx",
-                  note: "Tech discussions and updates",
-                },
-                {
-                  icon: FaClock,
-                  title: "Availability",
-                  body: "Open for collaboration",
-                  note: "Please don't hesitate to get in touch.",
-                },
-              ].map((item) => (
-                <div key={item.title} className="card-surface flex items-center space-x-5 p-4">
-                  <item.icon className="text-2xl text-accent dark:text-gold" />
-                  <div>
-                    <h4 className="font-semibold">{item.title}</h4>
-                    <p>{item.body}</p>
-                    <small className="text-muted dark:text-muted-dark">{item.note}</small>
-                  </div>
-                </div>
+                { icon: FaEnvelope, title: "Email Silas", href: "mailto:osunbasilas@gmail.com" },
+                { icon: FaGithub, title: "GitHub", href: "https://github.com/TolaniSilas" },
+                { icon: FaLinkedin, title: "LinkedIn", href: "https://www.linkedin.com/in/osunbasilas/" },
+                { icon: FaXTwitter, title: "X", href: "https://x.com/thaguymaxx" },
+              ].map(({ icon: Icon, title, href }) => (
+                <a
+                  key={title}
+                  href={href}
+                  aria-label={title}
+                  title={title}
+                  {...(href.startsWith("https:") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-line text-xl transition-colors hover:border-accent hover:bg-accent/10 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent dark:border-line-dark dark:hover:border-gold dark:hover:bg-gold/10 dark:hover:text-gold dark:focus-visible:outline-gold"
+                >
+                  <Icon aria-hidden="true" focusable="false" />
+                </a>
               ))}
-            </div>
+            </nav>
           </div>
 
           <div className="card-surface w-full p-6 sm:p-8">
@@ -156,8 +135,8 @@ export default function ContactPage() {
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
                   <label htmlFor="from_name" className="mb-2 block text-sm font-medium">Name *</label>
-                  <div className="flex items-center rounded-xl border border-line bg-canvas dark:border-line-dark dark:bg-canvas-dark">
-                    <FaUser className="ml-3 text-muted" />
+                  <div className="contact-field">
+                    <FaUser className="text-muted dark:text-muted-dark" aria-hidden="true" />
                     <input
                       type="text"
                       id="from_name" name="from_name"
@@ -169,8 +148,8 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <label htmlFor="from_email" className="mb-2 block text-sm font-medium">Email *</label>
-                  <div className="flex items-center rounded-xl border border-line bg-canvas dark:border-line-dark dark:bg-canvas-dark">
-                    <FaEnvelope className="ml-3 text-muted" />
+                  <div className="contact-field">
+                    <FaEnvelope className="text-muted dark:text-muted-dark" aria-hidden="true" />
                     <input
                       type="email"
                       id="from_email" name="from_email"
@@ -184,8 +163,8 @@ export default function ContactPage() {
 
               <div>
                 <label htmlFor="subject" className="mb-2 block text-sm font-medium">Subject *</label>
-                <div className="flex items-center rounded-xl border border-line bg-canvas dark:border-line-dark dark:bg-canvas-dark">
-                  <FaTag className="ml-3 text-muted" />
+                <div className="contact-field">
+                  <FaTag className="text-muted dark:text-muted-dark" aria-hidden="true" />
                   <select
                     id="subject" name="subject"
                     value={subject}
@@ -194,6 +173,7 @@ export default function ContactPage() {
                     required
                   >
                     <option value="">Select a subject</option>
+                    <option value="Research Collaboration">Research Collaboration</option>
                     <option value="Project Inquiry">Project Inquiry</option>
                     <option value="Collaboration Opportunity">Collaboration Opportunity</option>
                     <option value="Speaking Engagement">Speaking Engagement</option>
@@ -207,8 +187,8 @@ export default function ContactPage() {
               {subject === "Other" && (
                 <div>
                   <label htmlFor="custom_subject" className="mb-2 block text-sm font-medium">Custom Subject *</label>
-                  <div className="flex items-center rounded-xl border border-line bg-canvas dark:border-line-dark dark:bg-canvas-dark">
-                    <FaTag className="ml-3 text-muted" />
+                  <div className="contact-field">
+                    <FaTag className="text-muted dark:text-muted-dark" aria-hidden="true" />
                     <input
                       type="text"
                       id="custom_subject" name="custom_subject"
@@ -224,8 +204,8 @@ export default function ContactPage() {
 
               <div>
                 <label htmlFor="message" className="mb-2 block text-sm font-medium">Message *</label>
-                <div className="flex items-start rounded-xl border border-line bg-canvas dark:border-line-dark dark:bg-canvas-dark">
-                  <FaRegCommentDots className="mt-3 ml-3 text-muted" />
+                <div className="contact-field contact-field-message">
+                  <FaRegCommentDots className="text-muted dark:text-muted-dark" aria-hidden="true" />
                   <textarea
                     id="message" name="message"
                     rows={5}

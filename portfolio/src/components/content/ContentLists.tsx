@@ -3,7 +3,7 @@ import { imageFor, safeUrl } from '../../lib/cms/model';
 import RichText from './RichText';
 
 export function ContentNotice({ label, unavailable = false }: { label: string; unavailable?: boolean }) {
-  return <div className="collection-empty" role="status"><h2>{unavailable ? `${label} couldn’t load right now` : `${label} will be here soon`}</h2><p>{unavailable ? 'Please try again in a moment.' : 'Check back for new updates.'}</p></div>;
+  return <div className="collection-empty" role="status"><h2>{unavailable ? `${label} couldn’t load right now` : `${label} will be here soon`}</h2>{(unavailable || label !== 'Books') && <p>{unavailable ? 'Please try again in a moment.' : 'Check back for new updates.'}</p>}</div>;
 }
 export function NewsList({ entries }: { entries: NewsRecord[] }) {
   return <ol>{entries.map(entry => <li key={entry.id}><time dateTime={entry.date_value}>{entry.date_label}</time><div className="news-rich-text"><RichText body={entry.body} /></div></li>)}</ol>;
