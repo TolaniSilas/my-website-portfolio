@@ -1,6 +1,6 @@
 export const contentKinds = ['news', 'projects', 'articles', 'books'] as const;
 export type ContentKind = typeof contentKinds[number];
-export const contentLabels: Record<ContentKind, string> = { news: 'News', projects: 'Projects', articles: 'Articles', books: 'Books' };
+export const contentLabels: Record<ContentKind, string> = { news: 'News', projects: 'Projects', articles: 'Writings', books: 'Books' };
 export const contentTables: Record<ContentKind, string> = { news: 'portfolio_news', projects: 'portfolio_projects', articles: 'portfolio_articles', books: 'portfolio_books' };
 export type RichSpan = { text: string; href?: string; bold?: boolean; italic?: boolean };
 export type NewsBody = { version: 1; blocks: { type: 'paragraph'; children: RichSpan[] }[] };
@@ -99,7 +99,7 @@ export function validateContent(kind: ContentKind, input: unknown): Record<strin
   if (kind === 'articles') {
     const url = link(raw.url, 'Medium URL', true);
     const host = new URL(url).hostname;
-    if (host !== 'medium.com' && !host.endsWith('.medium.com')) throw new Error('Articles must link to Medium.');
+    if (host !== 'medium.com' && !host.endsWith('.medium.com')) throw new Error('Writings must link to Medium.');
     return { ...base, ...images, excerpt: text(raw.excerpt, 'Excerpt', 5000, true), date_value: validateDate(raw.date_value, true, true), reading_minutes: integer(raw.reading_minutes, 'Reading time', 1, 300), url };
   }
   if (!['planned', 'in-progress', 'completed'].includes(String(raw.status))) throw new Error('Choose a reading status.');

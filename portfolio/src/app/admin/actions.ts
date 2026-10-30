@@ -1,13 +1,12 @@
 'use server';
 
-import { revalidatePath, updateTag } from 'next/cache';
+import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { requireOwner, sessionClient } from '../../lib/supabase/server';
 import { contentTables, imageType, isContentKind, isUuid, MAX_IMAGE_BYTES, validateContent, type ActionResult, type ContentKind, type ContentRecord } from '../../lib/cms/model';
 
 function invalidate(kind: ContentKind) {
-  updateTag(`portfolio-${kind}`);
-  const paths = kind === 'news' ? ['/'] : kind === 'projects' ? ['/projects', '/about'] : [`/${kind}`];
+  const paths = kind === 'news' ? ['/'] : kind === 'projects' ? ['/projects'] : [`/${kind}`];
   paths.forEach(path => revalidatePath(path));
   revalidatePath('/admin');
 }
@@ -38,6 +37,13 @@ export async function saveContent(kind: ContentKind, input: unknown): Promise<Ac
     const raw = input as Record<string, unknown>;
     const values = validateContent(kind, input);
     if (values.image_path && !String(values.image_path).startsWith(`${user.id}/`)) throw new Error('You can only attach your own uploads.');
+    // Existing seeded covers may remain, but new/replacement covers must be uploads.
+    if (kind !== 'news' && values.image_url) {
+      if (!isUuid(raw.id)) throw new Error('Upload an image file instead of entering an image URL.');
+      const { data: existing, error: readError } = await client.from(contentTables[kind]).select('image_url').eq('id', raw.id).maybeSingle();
+      if (readError || !existing) throw new Error('Could not verify the existing image. Reload the entry and try again.');
+      if (existing.image_url !== values.image_url) throw new Error('Upload an image file to replace the current image.');
+    }
     let query;
     if (raw.id !== undefined) {
       if (!isUuid(raw.id) || !Number.isSafeInteger(raw.version) || Number(raw.version) < 1) throw new Error('Invalid record version. Reload this entry.');
